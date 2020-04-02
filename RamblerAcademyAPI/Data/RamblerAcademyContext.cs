@@ -60,12 +60,13 @@ namespace RamblerAcademyAPI.Data
                 .HasOne(csts => csts.DayTimeSlot)
                 .WithMany(dts => dts.CourseSectionTimeSlots)
                 .HasForeignKey(csts => new { csts.DayId, csts.TimeSlotId });
-         
+
+            builder.CreateIndexes();
             builder.Seed();
         }
 
        
-        public DbSet<User> Students { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Day> Days { get; set; }
         public DbSet<CourseSectionTimeSlot> CourseSectionTimeSlots { get; set; }

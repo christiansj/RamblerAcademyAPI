@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RamblerAcademyAPI.Data.Seed;
+using RamblerAcademyAPI.Data.Index;
 namespace RamblerAcademyAPI.Data
 {
     public static class ModelBuilderExtensions
@@ -22,6 +23,12 @@ namespace RamblerAcademyAPI.Data
             ClassroomSeed.Seed(builder);
             CourseSectionSeed.Seed(builder);
             CourseSectionTimeSlotSeed.Seed(builder);
+            RoleSeed.Seed(builder);
+        }
+
+        public static void CreateIndexes(this ModelBuilder builder)
+        {
+            RoleIndex.Index(builder);
         }
 
         private static void SeedSeasons(ModelBuilder builder)

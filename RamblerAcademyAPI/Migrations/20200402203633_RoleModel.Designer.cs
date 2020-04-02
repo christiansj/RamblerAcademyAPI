@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RamblerAcademyAPI.Data;
@@ -9,9 +10,10 @@ using RamblerAcademyAPI.Data;
 namespace RamblerAcademyAPI.Migrations
 {
     [DbContext(typeof(RamblerAcademyContext))]
-    partial class RamblerAcademyContextModelSnapshot : ModelSnapshot
+    [Migration("20200402203633_RoleModel")]
+    partial class RoleModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -354,23 +356,6 @@ namespace RamblerAcademyAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("Role");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Normal"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Admin"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Super Admin"
-                        });
                 });
 
             modelBuilder.Entity("RamblerAcademyAPI.Models.Season", b =>
