@@ -14,14 +14,17 @@ namespace RamblerAcademyAPI.Models
 
         [ForeignKey("Course")]
         public String CourseId { get; set; }
+        public Course Course { get; set; }
 
         [ForeignKey("Semester")]
         public int SemesterId { get; set; }
+        public Semester Semester { get; set; }
 
         public int SectionNumber { get; set; }
 
         [ForeignKey("Classroom")]
         public int ClassroomId { get; set; }
+        public Classroom Classroom { get; set; }
 
         public DateTime FinalExamDate { get; set; }
     }
