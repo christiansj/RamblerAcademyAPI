@@ -28,7 +28,7 @@ namespace RamblerAcademyAPI.Data
 
         public static void CreateIndexes(this ModelBuilder builder)
         {
-            RoleIndex.Index(builder);
+            IndexUtil.CreateUniqueNameIndexes(builder);
         }
 
         private static void SeedSeasons(ModelBuilder builder)
