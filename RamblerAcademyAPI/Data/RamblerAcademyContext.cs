@@ -17,9 +17,6 @@ namespace RamblerAcademyAPI.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<CourseSemester>()
-                .HasKey(cs => new { cs.CourseId, cs.SemesterId });
-
             builder.Entity<User>()
                 .HasIndex(s => s.Email)
                 .IsUnique();
@@ -31,6 +28,11 @@ namespace RamblerAcademyAPI.Data
             builder.Entity<Season>()
                 .HasIndex(s => s.Name)
                 .IsUnique();
+
+            builder.Entity<CourseSection>()
+                .HasIndex(cs => new { cs.CourseId, cs.SectionNumber, cs.SemesterId })
+                .IsUnique();
+
 
             builder.Entity<Day>()
                 .HasIndex(d => d.Name)

@@ -18,6 +18,6 @@ namespace RamblerAcademyAPI.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public List<CourseSemester> CourseSemesters { get; set; }
+        public List<CourseSection> CourseSections { get; set; }
     }
 }

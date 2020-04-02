@@ -14,6 +14,6 @@ namespace RamblerAcademyAPI.Models
 
         public String Name { get; set; }
 
-        public List<CourseSemester> CourseSemsters { get; set; }
+        public List<CourseSection> CourseSections { get; set; }
     }
 }

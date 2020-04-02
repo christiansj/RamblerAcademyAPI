@@ -14,12 +14,13 @@ namespace RamblerAcademyAPI.Data
             SeedSeasons(builder);
             SeedSemesters(builder);
             SeedCourses(builder);
-            SeedCourseSemesters(builder);
+            
             DaySeed.Seed(builder);
             TimeSlotSeed.Seed(builder);
             DayTimeSlotSeed.Seed(builder);
             BuildingSeed.Seed(builder);
             ClassroomSeed.Seed(builder);
+            CourseSectionSeed.Seed(builder);
         }
 
         private static void SeedSeasons(ModelBuilder builder)
@@ -95,48 +96,6 @@ namespace RamblerAcademyAPI.Data
                 {
                     Id = "MAT250",
                     Name = "Summer Math Camp"
-                }
-                );
-        }
-
-        private static void SeedCourseSemesters(ModelBuilder builder)
-        {
-           
-            builder.Entity<CourseSemester>().HasData(
-                new CourseSemester
-                {
-                    CourseId = "MAT010",
-                    SemesterId = 1
-                },
-                new CourseSemester
-                {
-                    CourseId = "MAT100",
-                    SemesterId = 1
-                },
-                new CourseSemester
-                {
-                    CourseId  = "MAT400",
-                    SemesterId = 1
-                },
-                new CourseSemester
-                {
-                    CourseId = "MAT250",
-                    SemesterId = 2
-                },
-                 new CourseSemester
-                 {
-                     CourseId = "MAT010",
-                     SemesterId = 3
-                 },
-                new CourseSemester
-                {
-                    CourseId = "MAT100",
-                    SemesterId = 3
-                },
-                new CourseSemester
-                {
-                    CourseId = "MAT400",
-                    SemesterId = 3
                 }
                 );
         }
