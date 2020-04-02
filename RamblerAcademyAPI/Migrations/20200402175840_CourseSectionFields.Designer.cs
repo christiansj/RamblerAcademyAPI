@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RamblerAcademyAPI.Data;
@@ -9,9 +10,10 @@ using RamblerAcademyAPI.Data;
 namespace RamblerAcademyAPI.Migrations
 {
     [DbContext(typeof(RamblerAcademyContext))]
-    partial class RamblerAcademyContextModelSnapshot : ModelSnapshot
+    [Migration("20200402175840_CourseSectionFields")]
+    partial class CourseSectionFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,32 +202,6 @@ namespace RamblerAcademyAPI.Migrations
                             SectionNumber = 1,
                             SemesterId = 2
                         });
-                });
-
-            modelBuilder.Entity("RamblerAcademyAPI.Models.CourseSectionTimeSlot", b =>
-                {
-                    b.Property<int>("CourseReferenceNumber")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("DayId")
-                        .HasColumnName("DayId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TimeSlotId")
-                        .HasColumnName("TimeSlotId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("DayTimeSlotDayId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("DayTimeSlotTimeSlotId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CourseReferenceNumber", "DayId", "TimeSlotId");
-
-                    b.HasIndex("DayTimeSlotDayId", "DayTimeSlotTimeSlotId");
-
-                    b.ToTable("CourseSectionTimeSlots");
                 });
 
             modelBuilder.Entity("RamblerAcademyAPI.Models.Day", b =>
@@ -495,19 +471,6 @@ namespace RamblerAcademyAPI.Migrations
                         .HasForeignKey("SemesterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RamblerAcademyAPI.Models.CourseSectionTimeSlot", b =>
-                {
-                    b.HasOne("RamblerAcademyAPI.Models.CourseSection", "CourseSection")
-                        .WithMany()
-                        .HasForeignKey("CourseReferenceNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RamblerAcademyAPI.Models.DayTimeSlot", "DayTimeSlot")
-                        .WithMany()
-                        .HasForeignKey("DayTimeSlotDayId", "DayTimeSlotTimeSlotId");
                 });
 
             modelBuilder.Entity("RamblerAcademyAPI.Models.DayTimeSlot", b =>
