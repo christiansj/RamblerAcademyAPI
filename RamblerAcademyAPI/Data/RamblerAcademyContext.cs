@@ -17,6 +17,7 @@ namespace RamblerAcademyAPI.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.RemovePluralTableNames();
             builder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
@@ -60,7 +61,7 @@ namespace RamblerAcademyAPI.Data
         public DbSet<Day> Days { get; set; }
         public DbSet<DayTimeSlot> DayTimeSlots { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
-        public DbSet<Role> Role { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Season> Seasons { get; set; }
         public DbSet<Semester> Semesters { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }

@@ -29,6 +29,16 @@
     <Compile Remove="Migrations\20200402211828_Test.Designer.cs" />
     <Compile Remove="Migrations\20200402211920_Test.cs" />
     <Compile Remove="Migrations\20200402211920_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200402214919_Test.cs" />
+    <Compile Remove="Migrations\20200402214919_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200402215020_Test.cs" />
+    <Compile Remove="Migrations\20200402215020_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200402215132_PluralizingTableNames.cs" />
+    <Compile Remove="Migrations\20200402215132_PluralizingTableNames.Designer.cs" />
+    <Compile Remove="Migrations\20200402215817_Test.cs" />
+    <Compile Remove="Migrations\20200402215817_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200402220014_Test.cs" />
+    <Compile Remove="Migrations\20200402220014_Test.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

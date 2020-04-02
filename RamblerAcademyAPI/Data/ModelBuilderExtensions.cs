@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using RamblerAcademyAPI.Data.Seed;
 using RamblerAcademyAPI.Data.Index;
+using Microsoft.EntityFrameworkCore.Metadata;
+
 namespace RamblerAcademyAPI.Data
 {
     public static class ModelBuilderExtensions
@@ -30,7 +32,13 @@ namespace RamblerAcademyAPI.Data
         {
             IndexUtil.CreateUniqueNameIndexes(builder);
         }
-
+        public static void RemovePluralTableNames(this ModelBuilder builder)
+        {
+            foreach(IMutableEntityType entity in builder.Model.GetEntityTypes())
+            {
+                entity.SetTableName(entity.DisplayName());
+            }
+        }
         private static void SeedSeasons(ModelBuilder builder)
         {
             builder.Entity<Season>().HasData(
