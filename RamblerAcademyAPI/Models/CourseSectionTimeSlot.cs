@@ -12,11 +12,9 @@ namespace RamblerAcademyAPI.Models
         public int CourseReferenceNumber { get; set; }
         public CourseSection CourseSection { get; set; }
 
-        [ForeignKey("DayTimeSlot_Day"), Column("DayId")]
+    
         public int DayId { get; set; }
         
-
-        [ForeignKey("DayTimeSlot_TimeSlot"), Column("TimeSlotId")]
         public int TimeSlotId { get; set; }
         public DayTimeSlot DayTimeSlot { get; set; }
     }

@@ -19,6 +19,12 @@
     <Compile Remove="Migrations\20200402043438_BuildingClassRoomSeeds.Designer.cs" />
     <Compile Remove="Migrations\20200402043457_BuildingClassRoomSeeds.cs" />
     <Compile Remove="Migrations\20200402043457_BuildingClassRoomSeeds.Designer.cs" />
+    <Compile Remove="Migrations\20200402175518_CourseSectionTimeSlot.cs" />
+    <Compile Remove="Migrations\20200402175518_CourseSectionTimeSlot.Designer.cs" />
+    <Compile Remove="Migrations\20200402175912_CourseSectionTimeSlot.cs" />
+    <Compile Remove="Migrations\20200402175912_CourseSectionTimeSlot.Designer.cs" />
+    <Compile Remove="Migrations\20200402200124_CourseSectionTimeSlotSeed.cs" />
+    <Compile Remove="Migrations\20200402200124_CourseSectionTimeSlotSeed.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

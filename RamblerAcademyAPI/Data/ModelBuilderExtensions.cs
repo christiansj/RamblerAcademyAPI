@@ -21,6 +21,7 @@ namespace RamblerAcademyAPI.Data
             BuildingSeed.Seed(builder);
             ClassroomSeed.Seed(builder);
             CourseSectionSeed.Seed(builder);
+            CourseSectionTimeSlotSeed.Seed(builder);
         }
 
         private static void SeedSeasons(ModelBuilder builder)

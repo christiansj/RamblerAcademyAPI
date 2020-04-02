@@ -17,5 +17,7 @@ namespace RamblerAcademyAPI.Models
         public int TimeSlotId { get; set; }
 
         public TimeSlot TimeSlot { get; set; }
+
+        public List<CourseSectionTimeSlot> CourseSectionTimeSlots { get; set; }
     }
 }

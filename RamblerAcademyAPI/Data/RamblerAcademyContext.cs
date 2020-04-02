@@ -55,6 +55,12 @@ namespace RamblerAcademyAPI.Data
 
             builder.Entity<CourseSectionTimeSlot>()
                 .HasKey(csts => new { csts.CourseReferenceNumber, csts.DayId, csts.TimeSlotId });
+
+            builder.Entity<CourseSectionTimeSlot>()
+                .HasOne(csts => csts.DayTimeSlot)
+                .WithMany(dts => dts.CourseSectionTimeSlots)
+                .HasForeignKey(csts => new { csts.DayId, csts.TimeSlotId });
+         
             builder.Seed();
         }
 
