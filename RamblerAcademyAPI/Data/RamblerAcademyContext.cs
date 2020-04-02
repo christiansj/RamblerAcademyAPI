@@ -21,6 +21,9 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(u => u.Email)
                 .IsUnique();
 
+            builder.Entity<Enrollment>()
+                .HasKey(e => new { e.CourseReferenceNumber, e.StudentId });
+
             builder.Entity<CourseSection>()
                 .HasIndex(cs => new { cs.CourseId, cs.SectionNumber, cs.SemesterId })
                 .IsUnique();
@@ -49,10 +52,18 @@ namespace RamblerAcademyAPI.Data
             builder.Seed();
         }
 
-       
-        public DbSet<User> Users { get; set; }
+        public DbSet<Building> Buildings { get; set; }
+        public DbSet<Classroom> Classrooms { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Day> Days { get; set; }
+        public DbSet<CourseSection> CourseSections { get; set; }
         public DbSet<CourseSectionTimeSlot> CourseSectionTimeSlots { get; set; }
+        public DbSet<Day> Days { get; set; }
+        public DbSet<DayTimeSlot> DayTimeSlots { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<Season> Seasons { get; set; }
+        public DbSet<Semester> Semesters { get; set; }
+        public DbSet<TimeSlot> TimeSlots { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
