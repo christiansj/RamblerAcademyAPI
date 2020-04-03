@@ -22,6 +22,10 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(u => u.Email)
                 .IsUnique();
 
+            builder.Entity<User>()
+                .Property(u => u.Id)
+                .HasMaxLength(6);
+
             builder.Entity<Enrollment>()
                 .HasKey(e => new { e.CourseReferenceNumber, e.StudentId });
 
