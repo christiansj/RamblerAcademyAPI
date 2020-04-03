@@ -39,6 +39,14 @@
     <Compile Remove="Migrations\20200402215817_Test.Designer.cs" />
     <Compile Remove="Migrations\20200402220014_Test.cs" />
     <Compile Remove="Migrations\20200402220014_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200403060913_Test.cs" />
+    <Compile Remove="Migrations\20200403060913_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200403060943_Test.cs" />
+    <Compile Remove="Migrations\20200403060943_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200403061107_Test.cs" />
+    <Compile Remove="Migrations\20200403061107_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200403061140_Test.cs" />
+    <Compile Remove="Migrations\20200403061140_Test.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
