@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RamblerAcademyAPI.Data;
@@ -9,9 +10,10 @@ using RamblerAcademyAPI.Data;
 namespace RamblerAcademyAPI.Migrations
 {
     [DbContext(typeof(RamblerAcademyContext))]
-    partial class RamblerAcademyContextModelSnapshot : ModelSnapshot
+    [Migration("20200403193533_TimeSlotSeeds")]
+    partial class TimeSlotSeeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,12 +52,7 @@ namespace RamblerAcademyAPI.Migrations
                         new
                         {
                             Id = 3,
-                            Name = "Welch Humanities"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Rodney Sciences"
+                            Name = "Welch Building"
                         });
                 });
 
@@ -103,54 +100,6 @@ namespace RamblerAcademyAPI.Migrations
                             Floor = 1,
                             HallwayNumber = 1,
                             RoomNumber = 14
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BuildingId = 4,
-                            Floor = 1,
-                            HallwayNumber = 1,
-                            RoomNumber = 10
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BuildingId = 4,
-                            Floor = 1,
-                            HallwayNumber = 1,
-                            RoomNumber = 20
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BuildingId = 4,
-                            Floor = 1,
-                            HallwayNumber = 2,
-                            RoomNumber = 32
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BuildingId = 4,
-                            Floor = 1,
-                            HallwayNumber = 2,
-                            RoomNumber = 43
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BuildingId = 2,
-                            Floor = 1,
-                            HallwayNumber = 1,
-                            RoomNumber = 2
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BuildingId = 2,
-                            Floor = 1,
-                            HallwayNumber = 1,
-                            RoomNumber = 7
                         });
                 });
 
@@ -267,24 +216,6 @@ namespace RamblerAcademyAPI.Migrations
                             FinalExamDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SectionNumber = 1,
                             SemesterId = 1
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 78934,
-                            ClassroomId = 7,
-                            CourseId = "HIS200",
-                            FinalExamDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SectionNumber = 1,
-                            SemesterId = 1
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 94583,
-                            ClassroomId = 8,
-                            CourseId = "HIS500",
-                            FinalExamDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SectionNumber = 1,
-                            SemesterId = 1
                         });
                 });
 
@@ -329,30 +260,6 @@ namespace RamblerAcademyAPI.Migrations
                             CourseReferenceNumber = 59256,
                             DayId = 5,
                             TimeSlotId = 3
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 78934,
-                            DayId = 3,
-                            TimeSlotId = 5
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 78934,
-                            DayId = 5,
-                            TimeSlotId = 5
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 94583,
-                            DayId = 3,
-                            TimeSlotId = 6
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 94583,
-                            DayId = 5,
-                            TimeSlotId = 6
                         });
                 });
 

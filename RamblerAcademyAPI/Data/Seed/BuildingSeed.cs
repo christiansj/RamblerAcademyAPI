@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RamblerAcademyAPI.Models;
 
-
 namespace RamblerAcademyAPI.Data.Seed
 {
     public class BuildingSeed
@@ -11,7 +10,8 @@ namespace RamblerAcademyAPI.Data.Seed
             builder.Entity<Building>().HasData(
                 new Building(1, "Main Building"),
                 new Building(2, "Johnson Arts Building"),
-                new Building(3, "Welch Building")
+                new Building(3, "Welch Humanities"),
+                new Building(4, "Rodney Sciences")
             );
         }
     }
