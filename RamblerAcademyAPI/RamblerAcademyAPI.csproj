@@ -49,6 +49,12 @@
     <Compile Remove="Migrations\20200403061140_Test.Designer.cs" />
     <Compile Remove="Migrations\20200403193452_Seeds.cs" />
     <Compile Remove="Migrations\20200403193452_Seeds.Designer.cs" />
+    <Compile Remove="Migrations\20200403235114_ModifiedUserId.cs" />
+    <Compile Remove="Migrations\20200403235114_ModifiedUserId.Designer.cs" />
+    <Compile Remove="Migrations\20200403235217_ModifiedUserId.cs" />
+    <Compile Remove="Migrations\20200403235217_ModifiedUserId.Designer.cs" />
+    <Compile Remove="Migrations\20200403235647_ModifiedUserId.cs" />
+    <Compile Remove="Migrations\20200403235647_ModifiedUserId.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

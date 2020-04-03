@@ -1,13 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace RamblerAcademyAPI.Models
 {
     public class User
     {
-        public User(string id, string firstName, string lastName, string email, string password, int roleId)
+        public User(int id, string abcId, string firstName, string lastName, string email, string password, int roleId)
         {
-            SetId(id);
+            Id = id;
+            SetId(abcId);
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -15,8 +17,10 @@ namespace RamblerAcademyAPI.Models
             RoleId = roleId;
         }
 
-        public string Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
+        public string AbcId { get; set; }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -49,7 +53,7 @@ namespace RamblerAcademyAPI.Models
                 IdAsciiCheck(asciiBytes[i], 48, 57);
             }
 
-            Id = id;
+            AbcId = id;
         }
 
         private void IdAsciiCheck(byte b, int min, int max)
