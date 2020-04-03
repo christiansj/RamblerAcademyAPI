@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RamblerAcademyAPI.Models
 {
@@ -10,14 +6,14 @@ namespace RamblerAcademyAPI.Models
     {
         public int Id { get; set; }
 
-        public String FirstName { get; set; }
+        public string FirstName { get; set; }
 
-        public String LastName { get; set; }
+        public string LastName { get; set; }
 
       
-        public String Email { get; set; }
+        public string Email { get; set; }
 
-        public String Password { get; set; }
+        public string Password { get; set; }
 
         [ForeignKey("Role")]
         public int RoleId { get; set; }

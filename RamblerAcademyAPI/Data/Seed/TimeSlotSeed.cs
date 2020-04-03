@@ -9,20 +9,9 @@ namespace RamblerAcademyAPI.Data.Seed
         public static void Seed(ModelBuilder builder)
         {
             builder.Entity<TimeSlot>().HasData(
-                new TimeSlot
-                {
-                    Id = 1,
-                    StartTime = new TimeSpan(7,30,0),
-                    EndTime = new TimeSpan(8, 45, 0)
-                },
-                new TimeSlot
-                {
-                    Id = 2,
-                    StartTime = new TimeSpan(11,30,0),
-                    EndTime = new TimeSpan(12,45,0)
-                }
-
-                );
+                new TimeSlot(1, new TimeSpan(7,30,0), new TimeSpan(8, 45, 0)),
+                new TimeSlot(2, new TimeSpan(11,30,0), new TimeSpan(12,45,0))
+            );
         }
     }
 }

@@ -9,22 +9,10 @@ namespace RamblerAcademyAPI.Data.Seed
         public static void Seed(ModelBuilder builder)
         {
             builder.Entity<Building>().HasData(
-                new Building
-                {
-                    Id = 1,
-                    Name = "Main Building"
-                },
-                new Building
-                {
-                    Id = 2,
-                    Name = "Johnson Arts"
-                },
-                new Building
-                {
-                    Id = 3,
-                    Name = "Welch Sciences"
-                }
-                );
+                new Building(1, "Main Building"),
+                new Building(2, "Johnson Arts Building"),
+                new Building(3, "Welch Building")
+            );
         }
     }
 }

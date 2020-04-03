@@ -1,19 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.Models
 {
     public class CourseSection
     {
+        public CourseSection(int courseReferenceNumber, int sectionNumber, string courseId, int semesterId, int classroomId)
+        {
+            CourseReferenceNumber = courseReferenceNumber;
+            SectionNumber = sectionNumber;
+            CourseId = courseId;
+            SemesterId = semesterId;
+            ClassroomId = classroomId;
+        }
         [Key]
         public int CourseReferenceNumber { get; set; }
 
         [ForeignKey("Course")]
-        public String CourseId { get; set; }
+        public string CourseId { get; set; }
         public Course Course { get; set; }
 
         [ForeignKey("Semester")]

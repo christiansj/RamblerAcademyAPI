@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.Models
 {
     public class TimeSlot
     {
+        public TimeSlot(int id, TimeSpan startTime, TimeSpan endTime)
+        {
+            Id = id;
+            StartTime = startTime;
+            EndTime = endTime;
+        }
+
         [Key]
         public int Id { get; set; }
         public TimeSpan StartTime { get; set; }

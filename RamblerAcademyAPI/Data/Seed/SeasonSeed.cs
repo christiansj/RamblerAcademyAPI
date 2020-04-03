@@ -8,19 +8,10 @@ namespace RamblerAcademyAPI.Data.Seed
         public static void Seed(ModelBuilder builder)
         {
             builder.Entity<Season>().HasData(
-                NewSeason(1, "Spring"),
-                NewSeason(2, "Summer"),
-                NewSeason(3, "Fall")
-                );
-        }
-
-        private static  Season NewSeason(int Id, string Name)
-        {
-            return new Season
-            {
-                Id = Id,
-                Name = Name
-            };
+                new Season(1, "Spring"),
+                new Season(2, "Summer"),
+                new Season(3, "Fall")
+            );
         }
     }
 }

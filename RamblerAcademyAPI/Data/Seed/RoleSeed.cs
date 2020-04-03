@@ -8,22 +8,10 @@ namespace RamblerAcademyAPI.Data.Seed
         public static void Seed(ModelBuilder builder)
         {
             builder.Entity<Role>().HasData(
-                new Role
-                {
-                    Id = 1,
-                    Name = "Normal"
-                },
-                new Role
-                {
-                    Id = 2,
-                    Name = "Admin"
-                },
-                new Role
-                {
-                    Id = 3,
-                    Name = "Super Admin"
-                }
-                );
+                new Role(1, "Normal"),
+                new Role(2, "Admin"),
+                new Role(3, "Super Admin")
+            );
         }
     }
 }

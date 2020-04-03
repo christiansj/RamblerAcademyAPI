@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RamblerAcademyAPI.Models
 {
     public class Day
     {
+        public Day(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
         [Key]
         public int Id { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 }

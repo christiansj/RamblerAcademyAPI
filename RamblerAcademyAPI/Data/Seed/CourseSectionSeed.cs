@@ -8,31 +8,10 @@ namespace RamblerAcademyAPI.Data.Seed
         public static void Seed(ModelBuilder builder)
         {
             builder.Entity<CourseSection>().HasData(
-                new CourseSection
-                {
-                    CourseReferenceNumber = 57494,
-                    CourseId = "MAT010",
-                    SemesterId = 1,
-                    SectionNumber = 1,
-                    ClassroomId = 1
-                },
-                new CourseSection
-                {
-                    CourseReferenceNumber = 59256,
-                    CourseId = "MAT100",
-                    SemesterId = 1,
-                    SectionNumber = 1,
-                    ClassroomId = 2
-                },
-                new CourseSection
-                {
-                    CourseReferenceNumber = 28539,
-                    CourseId = "MAT250",
-                    SemesterId = 2,
-                    SectionNumber = 1,
-                    ClassroomId = 1
-                }
-                );
+                new CourseSection(57494, 1, "MAT010", 1, 1),
+                new CourseSection(59256, 1, "MAT100", 1, 2),
+                new CourseSection(28539, 1, "MAT250", 1, 1)
+           );
         }
     }
 }

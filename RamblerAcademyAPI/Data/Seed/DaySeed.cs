@@ -8,42 +8,14 @@ namespace RamblerAcademyAPI.Data.Seed
         public static void Seed(ModelBuilder builder)
         {
             builder.Entity<Day>().HasData(
-                new Day
-                {
-                    Id = 1,
-                    Name = "Sunday"
-                },
-                new Day
-                {
-                    Id = 2,
-                    Name = "Monday"
-                },
-                new Day
-                {
-                    Id = 3,
-                    Name = "Tuesday"
-                },
-                new Day
-                {
-                    Id = 4,
-                    Name = "Wednesday"
-                },
-                new Day
-                {
-                    Id = 5,
-                    Name = "Thursday"
-                },
-                new Day
-                {
-                    Id = 6,
-                    Name = "Friday"
-                },
-                new Day
-                {
-                    Id = 7,
-                    Name = "Saturday"
-                }
-                );
+                new Day(1, "Sunday"),
+                new Day(2, "Monday"),
+                new Day(3, "Tuesday"),
+                new Day(4, "Wednesday"),
+                new Day(5, "Thursday"),
+                new Day(6, "Friday"),
+                new Day(7, "Saturday")
+            );
         }
     }
 }

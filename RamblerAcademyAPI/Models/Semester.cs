@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.Models
 {
     public class Semester
     {
+        public Semester(int id, int year, DateTime startDate, DateTime endDate, int seasonId)
+        {
+            Id = id;
+            Year = year;
+            StartDate = startDate;
+            EndDate = endDate;
+            SeasonId = seasonId;
+        }
+
         [Key]
         public int Id { get; set; }
         [ForeignKey("Season")]

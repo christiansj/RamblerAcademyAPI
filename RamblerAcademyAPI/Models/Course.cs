@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.Models
 {
     public class Course
     {
-        [Key]
-        public String Id { get; set; }
+        public Course(string id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
-        public String Name { get; set; }
+        [Key]
+        public string Id { get; set; }
+
+        public string Name { get; set; }
 
         public List<CourseSection> CourseSections { get; set; }
     }

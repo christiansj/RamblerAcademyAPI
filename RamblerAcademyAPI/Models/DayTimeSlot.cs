@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.Models
 {
     public class DayTimeSlot
     {
+        public DayTimeSlot(int dayId, int timeSlotId)
+        {
+            DayId = dayId;
+            TimeSlotId = timeSlotId;
+        }
+
         [ForeignKey("Day")]
         public int DayId { get; set; }
 
