@@ -55,6 +55,10 @@
     <Compile Remove="Migrations\20200403235217_ModifiedUserId.Designer.cs" />
     <Compile Remove="Migrations\20200403235647_ModifiedUserId.cs" />
     <Compile Remove="Migrations\20200403235647_ModifiedUserId.Designer.cs" />
+    <Compile Remove="Migrations\20200404000545_ChangedUserIdType.cs" />
+    <Compile Remove="Migrations\20200404000545_ChangedUserIdType.Designer.cs" />
+    <Compile Remove="Migrations\20200404000749_ChangedUserIdType.cs" />
+    <Compile Remove="Migrations\20200404000749_ChangedUserIdType.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

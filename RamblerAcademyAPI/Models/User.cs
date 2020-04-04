@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace RamblerAcademyAPI.Models
 {
     public class User
     {
-        public User(int id, string abcId, string firstName, string lastName, string email, string password, int roleId)
+        public User(long id, string abcId, string firstName, string lastName, string email, string password, int roleId)
         {
             Id = id;
             SetId(abcId);
@@ -18,8 +19,9 @@ namespace RamblerAcademyAPI.Models
         }
 
         [Key]
-        public int Id { get; set; }
-
+        public long Id { get; set; }
+       
+        [MaxLength(6)]
         public string AbcId { get; set; }
         public string FirstName { get; set; }
 

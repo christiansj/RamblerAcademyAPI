@@ -4,7 +4,7 @@ namespace RamblerAcademyAPI.Models
 {
     public class Enrollment
     {
-        public Enrollment(int courseReferenceNumber, int studentId)
+        public Enrollment(int courseReferenceNumber, long studentId)
         {
             CourseReferenceNumber = courseReferenceNumber;
             StudentId = studentId;
@@ -15,7 +15,7 @@ namespace RamblerAcademyAPI.Models
         public CourseSection CourseSection { get; set; }
 
         [ForeignKey("User")]
-        public int StudentId { get; set; }
+        public long StudentId { get; set; }
         public User Student { get; set; }
     }
 }
