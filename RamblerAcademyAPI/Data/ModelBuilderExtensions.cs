@@ -15,6 +15,7 @@ namespace RamblerAcademyAPI.Data
         public static void Seed(this ModelBuilder builder)
         {
             RoleSeed.Seed(builder);
+            UserSeed.Seed(builder);
             //User Seed
 
             SeasonSeed.Seed(builder);

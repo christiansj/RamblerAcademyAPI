@@ -41,28 +41,30 @@ namespace RamblerAcademyAPI.Models
         {
             if (id.Length != 6)
             {
-                throw new System.FormatException("Invalid User Id Length");
+                string err = string.Format("Invalid User Id of {0} '{1}'", id.Length, id);
+                throw new System.FormatException(err);
             }
 
             byte[] asciiBytes = Encoding.ASCII.GetBytes(id);
             for (int i = 0; i < 3; i++)
             {
-                IdAsciiCheck(asciiBytes[i], 97, 122);
+                IdAsciiCheck(asciiBytes[i], 97, 122, id);
             }
 
             for (int i = 3; i < asciiBytes.Length; i++)
             {
-                IdAsciiCheck(asciiBytes[i], 48, 57);
+                IdAsciiCheck(asciiBytes[i], 48, 57, id);
             }
 
             AbcId = id;
         }
 
-        private void IdAsciiCheck(byte b, int min, int max)
+        private void IdAsciiCheck(byte b, int min, int max, string id)
         {
             if (b < min || b > max)
             {
-                throw new System.FormatException("Invalid User Id");
+                string err = string.Format("Invalid User Id '{0}'", id);
+                throw new System.FormatException(err);
             }
         }
     }
