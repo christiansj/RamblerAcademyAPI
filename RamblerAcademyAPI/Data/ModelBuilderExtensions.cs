@@ -20,6 +20,7 @@ namespace RamblerAcademyAPI.Data
 
             SeasonSeed.Seed(builder);
             SemesterSeed.Seed(builder);
+            SubjectSeed.Seed(builder);
             CourseSeed.Seed(builder);
             
             DaySeed.Seed(builder);

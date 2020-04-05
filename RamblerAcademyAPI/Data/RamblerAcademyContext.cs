@@ -35,9 +35,13 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(u => u.AbcId)
                 .IsUnique();
 
+            
             builder.Entity<Subject>()
                 .HasIndex(s => s.Abbreviation)
                 .IsUnique();
+
+            //builder.Entity<Course>()
+               // .HasKey(c => new { c.SubjectId, c.CourseNumber });
 
             builder.Entity<Enrollment>()
                 .HasKey(e => new { e.CourseReferenceNumber, e.StudentId });
@@ -58,6 +62,11 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(cs => new { cs.Floor, cs.HallwayNumber, cs.RoomNumber, cs.BuildingId })
                 .IsUnique();
 
+            builder.Entity<Course>()
+                .HasOne(c => c.Subject)
+                .WithMany(s => s.Courses)
+                .HasForeignKey(c => c.SubjectAbbreviation)
+                .HasPrincipalKey(s=>s.Abbreviation);
 
             builder.Entity<CourseSectionTimeSlot>()
                 .HasKey(csts => new { csts.CourseReferenceNumber, csts.DayId, csts.TimeSlotId });
