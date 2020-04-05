@@ -32,6 +32,33 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                         return repository.UpdateBuilding(dbBuilding, building);
                     }
              );
+
+            Field<BuildingType>(
+                "createBuilding",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<BuildingInputType>> { Name = "building" }),
+                resolve: context =>
+                {
+                    var building = context.GetArgument<Building>("building");
+                    return repository.CreateBuilding(building);
+                }
+            );
+
+            Field<StringGraphType>(
+                "delteBuilding",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "buildingId"}),
+                resolve: context =>
+                {
+                    var buildingId = context.GetArgument<int>("buildingId");
+                    var building = repository.GetBuildingById(buildingId);
+                    if(building == null)
+                    {
+                        context.Errors.Add(new ExecutionError("Couldn't find building in db."));
+                    }
+                    repository.DeleteBuilding(building);
+                    return $"The building with id: {buildingId} has been successfully deleted";
+                }
+
+            );
                     
 
 

@@ -28,5 +28,19 @@ namespace RamblerAcademyAPI.Repository
             _context.SaveChanges();
             return dbBuilding;
         }
+
+        public Building CreateBuilding(Building building)
+        {
+            building.Id = _context.Buildings.Max(b => b.Id) + 1;
+            _context.Add(building);
+            _context.SaveChanges();
+            return building;
+        }
+
+        public void DeleteBuilding(Building building)
+        {
+            _context.Remove(building);
+            _context.SaveChanges();
+        }
     }
 }
