@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RamblerAcademyAPI.Contracts;
+using RamblerAcademyAPI.GraphQL.GraphQLMutations;
 using RamblerAcademyAPI.GraphQL.GraphQLQueries;
 using RamblerAcademyAPI.Repository;
 using System;
@@ -21,6 +22,11 @@ namespace RamblerAcademyAPI.Extensions
         {
             services.AddScoped<IGraphQLQuery, SubjectQuery>();
             services.AddScoped<IGraphQLQuery, BuildingQuery>();
+        }
+
+        public static void AddGraphQLMutationServices(this IServiceCollection services)
+        {
+            services.AddScoped<IGraphQLMutation, BuildingMutation>();
         }
     }
 }

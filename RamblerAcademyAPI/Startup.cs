@@ -9,13 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RamblerAcademyAPI.Contracts;
+
 using RamblerAcademyAPI.Data;
-using RamblerAcademyAPI.GraphQL.GraphQLQueries;
 using RamblerAcademyAPI.GraphQL.GraphQlSchema;
-using RamblerAcademyAPI.Repository;
-using RamblerAcademyAPI.GraphQL.GraphQLTypes;
-using GraphQL.Client;
+
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using RamblerAcademyAPI.Extensions;
 
@@ -31,6 +28,7 @@ namespace RamblerAcademyAPI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [System.Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RamblerAcademyContext>(options =>
@@ -40,15 +38,15 @@ namespace RamblerAcademyAPI
  
             services.AddRespositoryServices();
             services.AddGraphQLQueryServices();
+            services.AddGraphQLMutationServices();
 
             services.AddGraphQL(o => { o.ExposeExceptions = true; })
                 .AddGraphTypes(ServiceLifetime.Scoped);
 
             services.AddScoped<AppSchema>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddControllers();
-
-
 
             services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
@@ -67,6 +65,7 @@ namespace RamblerAcademyAPI
             
             app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
             app.UseGraphQL<AppSchema>();
+
            /* app.UseRouting();
 
             app.UseAuthorization();
