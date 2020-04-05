@@ -1,5 +1,6 @@
 ﻿using GraphQL;
 using GraphQL.Types;
+using RamblerAcademyAPI.GraphQL.GraphQLMutations;
 using RamblerAcademyAPI.GraphQL.GraphQLQueries;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQlSchema
             : base(resolver)
         {
             Query = resolver.Resolve<BuildingQuery>();
+            Mutation = resolver.Resolve<BuildingMutation>();
         }
     }
 }

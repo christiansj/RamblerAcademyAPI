@@ -12,11 +12,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
     {
         public BuildingQuery(IBuildingRepository repository)
         {
+            // buildings()
             Field<ListGraphType<BuildingType>>(
                 "buildings",
                 resolve: context => repository.GetAll()
             );
 
+            // building(id)
             Field<BuildingType>
                 ("building",
                 arguments: new QueryArguments(new
@@ -25,7 +27,6 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
                 resolve:
                     context => repository.GetBuildingById(context.GetArgument<int>("id"))
                 );
-        }
-     
+        }     
     }
 }

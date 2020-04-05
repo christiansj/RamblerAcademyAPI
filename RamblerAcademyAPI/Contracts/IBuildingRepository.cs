@@ -7,5 +7,6 @@ namespace RamblerAcademyAPI.Contracts
     {
         IEnumerable<Building> GetAll();
         Building GetBuildingById(int id);
+        public Building UpdateBuilding(Building dbBuilding, Building building);
     }
 }

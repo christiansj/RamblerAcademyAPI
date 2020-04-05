@@ -3,6 +3,7 @@ namespace RamblerAcademyAPI.Models
 {
     public class Building
     {
+        public Building() { }
         public Building(int id, string name)
         {
             Id = id;
