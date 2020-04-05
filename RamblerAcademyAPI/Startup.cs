@@ -40,13 +40,13 @@ namespace RamblerAcademyAPI
 
             services.AddTransient<IBuildingRepository, BuildingRepository>();
             services.AddScoped<AppSchema>();
-            services.AddScoped<BuildingQuery>();
+           // services.AddScoped<BuildingQuery>();
             services.AddScoped<BuildingType>();
             services.AddGraphQL(o => { o.ExposeExceptions = true; })
                 .AddGraphTypes(ServiceLifetime.Scoped);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddControllers();
-
+            services.AddScoped< IGraphQLQuery, BuildingQuery >();
             services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
         }

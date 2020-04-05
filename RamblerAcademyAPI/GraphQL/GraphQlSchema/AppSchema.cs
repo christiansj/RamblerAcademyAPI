@@ -14,7 +14,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQlSchema
         public AppSchema(IDependencyResolver resolver)
             : base(resolver)
         {
-            Query = resolver.Resolve<BuildingQuery>();
+            Query = resolver.Resolve<CompositeQuery>();
             Mutation = resolver.Resolve<BuildingMutation>();
         }
     }

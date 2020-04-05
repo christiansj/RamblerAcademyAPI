@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
 {
-    public class BuildingQuery : ObjectGraphType
+    public class BuildingQuery : ObjectGraphType, IGraphQLQuery
     {
         public BuildingQuery(IBuildingRepository repository)
         {
