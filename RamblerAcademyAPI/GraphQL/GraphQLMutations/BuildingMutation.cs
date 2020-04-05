@@ -33,6 +33,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     }
              );
 
+            // createBuilding(building, buildingId)
             Field<BuildingType>(
                 "createBuilding",
                 arguments: new QueryArguments(new QueryArgument<NonNullGraphType<BuildingInputType>> { Name = "building" }),
@@ -43,6 +44,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                 }
             );
 
+            // deleteBuilding(buildingId)
             Field<StringGraphType>(
                 "delteBuilding",
                 arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "buildingId"}),
@@ -53,17 +55,12 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     if(building == null)
                     {
                         context.Errors.Add(new ExecutionError("Couldn't find building in db."));
+                        return null;
                     }
                     repository.DeleteBuilding(building);
                     return $"The building with id: {buildingId} has been successfully deleted";
                 }
-
             );
-                    
-
-
-
         }
-      
     }
 }
