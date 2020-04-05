@@ -7,8 +7,9 @@ namespace RamblerAcademyAPI.Data.Index
     {
         public static void CreateUniqueNameIndexes(ModelBuilder builder)
         {
-            builder.Entity<Role>()
-                .HasIndex(r => r.Id)
+        
+            builder.Entity<Subject>()
+                .HasIndex(s => s.Name)
                 .IsUnique();
 
             builder.Entity<Course>()

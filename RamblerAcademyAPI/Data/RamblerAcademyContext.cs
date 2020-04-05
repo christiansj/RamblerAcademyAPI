@@ -18,6 +18,11 @@ namespace RamblerAcademyAPI.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.RemovePluralTableNames();
+
+            builder.Entity<Role>()
+                .HasIndex(r => r.Id)
+                .IsUnique();
+
             builder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
@@ -28,6 +33,10 @@ namespace RamblerAcademyAPI.Data
 
             builder.Entity<User>()
                 .HasIndex(u => u.AbcId)
+                .IsUnique();
+
+            builder.Entity<Subject>()
+                .HasIndex(s => s.Abbreviation)
                 .IsUnique();
 
             builder.Entity<Enrollment>()
@@ -49,6 +58,7 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(cs => new { cs.Floor, cs.HallwayNumber, cs.RoomNumber, cs.BuildingId })
                 .IsUnique();
 
+
             builder.Entity<CourseSectionTimeSlot>()
                 .HasKey(csts => new { csts.CourseReferenceNumber, csts.DayId, csts.TimeSlotId });
 
@@ -56,7 +66,7 @@ namespace RamblerAcademyAPI.Data
                 .HasOne(csts => csts.DayTimeSlot)
                 .WithMany(dts => dts.CourseSectionTimeSlots)
                 .HasForeignKey(csts => new { csts.DayId, csts.TimeSlotId });
-
+           
             builder.CreateIndexes();
             builder.Seed();
         }
@@ -72,6 +82,7 @@ namespace RamblerAcademyAPI.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<Season> Seasons { get; set; }
         public DbSet<Semester> Semesters { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
         public DbSet<User> Users { get; set; }
     }
