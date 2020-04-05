@@ -27,6 +27,7 @@ namespace RamblerAcademyAPI.Extensions
         public static void AddGraphQLMutationServices(this IServiceCollection services)
         {
             services.AddScoped<IGraphQLMutation, BuildingMutation>();
+            services.AddScoped<IGraphQLMutation, SubjectMutation>();
         }
     }
 }

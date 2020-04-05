@@ -13,6 +13,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
         {
             Field(s => s.Id, type: typeof(IdGraphType)).Description("ID property from the Subject object");
             Field(s => s.Name).Description("Name property from the Subject object");
+            Field(s => s.Abbreviation).Description("Abbreviation property from the Subject object. MAXLENGTH of '3'");
         }
     }
 }
