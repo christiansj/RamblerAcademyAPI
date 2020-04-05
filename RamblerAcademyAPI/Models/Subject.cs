@@ -6,6 +6,11 @@ namespace RamblerAcademyAPI.Models
 {
     public class Subject
     {
+        public Subject()
+        {
+
+        }
+
         public Subject(int id, string name, string abbreviation)
         {
             Id = id;
