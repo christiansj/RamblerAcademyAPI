@@ -8,7 +8,7 @@ using System;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
 {
-    public class BuildingMutation : ObjectGraphType
+    public class BuildingMutation : ObjectGraphType, IGraphQLMutation
     {
         public BuildingMutation(IBuildingRepository repository)
         {
