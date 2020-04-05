@@ -1,10 +1,7 @@
 ﻿using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
 {

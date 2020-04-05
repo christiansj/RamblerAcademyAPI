@@ -17,6 +17,7 @@ using RamblerAcademyAPI.Repository;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
 using GraphQL.Client;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using RamblerAcademyAPI.Extensions;
 
 namespace RamblerAcademyAPI
 {
@@ -36,17 +37,19 @@ namespace RamblerAcademyAPI
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
-            //services.AddCors();
+ 
+            services.AddRespositoryServices();
+            services.AddGraphQLQueryServices();
 
-            services.AddTransient<IBuildingRepository, BuildingRepository>();
-            services.AddScoped<AppSchema>();
-           // services.AddScoped<BuildingQuery>();
-            services.AddScoped<BuildingType>();
             services.AddGraphQL(o => { o.ExposeExceptions = true; })
                 .AddGraphTypes(ServiceLifetime.Scoped);
+
+            services.AddScoped<AppSchema>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddControllers();
-            services.AddScoped< IGraphQLQuery, BuildingQuery >();
+
+
+
             services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
         }
