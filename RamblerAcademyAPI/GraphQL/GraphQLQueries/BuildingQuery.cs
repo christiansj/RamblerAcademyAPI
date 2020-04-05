@@ -16,6 +16,15 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
                 "buildings",
                 resolve: context => repository.GetAll()
             );
+
+            Field<BuildingType>
+                ("building",
+                arguments: new QueryArguments(new
+                    QueryArgument<IntGraphType>
+                { Name = "id" }),
+                resolve:
+                    context => repository.GetBuildingById(context.GetArgument<int>("id"))
+                );
         }
      
     }

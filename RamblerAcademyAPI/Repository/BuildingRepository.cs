@@ -18,5 +18,7 @@ namespace RamblerAcademyAPI.Repository
         }
 
         public IEnumerable<Building> GetAll() => _context.Buildings.ToList();
+
+        public Building GetBuildingById(int id) => _context.Buildings.FirstOrDefault(b => b.Id == id);
     }
 }

@@ -6,5 +6,6 @@ namespace RamblerAcademyAPI.Contracts
     public interface IBuildingRepository
     {
         IEnumerable<Building> GetAll();
+        Building GetBuildingById(int id);
     }
 }
