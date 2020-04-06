@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RamblerAcademyAPI.Models
 {
     public class Season
     {
+        public Season() { }
+
         public Season(int id, string name)
         {
             Id = id;
@@ -14,6 +15,6 @@ namespace RamblerAcademyAPI.Models
 
         public string Name { get; set; }
 
-        public List<Semester> Semesters { get; set; }
+        public IEnumerable<Semester> Semesters { get; set; }
     }
 }
