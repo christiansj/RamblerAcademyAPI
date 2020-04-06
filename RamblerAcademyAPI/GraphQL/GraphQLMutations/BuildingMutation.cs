@@ -46,7 +46,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
 
             // deleteBuilding(buildingId)
             Field<StringGraphType>(
-                "delteBuilding",
+                "deleteBuilding",
                 arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "buildingId"}),
                 resolve: context =>
                 {

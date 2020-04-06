@@ -4,6 +4,11 @@ namespace RamblerAcademyAPI.Models
 {
     public class Classroom
     {
+        public Classroom()
+        {
+
+        }
+
         public Classroom(int id, int floor, int hallwayNumber, int roomNumber, int buildingId)
         {
             Id = id;
