@@ -27,6 +27,10 @@ namespace RamblerAcademyAPI.Data.Index
             builder.Entity<Building>()
                .HasIndex(b => b.Name)
                .IsUnique();
+
+            builder.Entity<Role>()
+                .HasIndex(r => r.Name)
+                .IsUnique();
         }
     }
 }
