@@ -1,7 +1,6 @@
 ﻿using GraphQL.Types;
 using RamblerAcademyAPI.Models;
 
-
 namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 {
     public class BuildingType : ObjectGraphType<Building>

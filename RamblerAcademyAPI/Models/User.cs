@@ -7,10 +7,12 @@ namespace RamblerAcademyAPI.Models
 {
     public class User
     {
+        public User() { }
+
         public User(long id, string abcId, string firstName, string lastName, string email, string password, int roleId)
         {
             Id = id;
-            SetId(abcId);
+            SetAbcId(abcId);
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -37,7 +39,7 @@ namespace RamblerAcademyAPI.Models
         public Role Role { get; set; }
 
 
-        private void SetId(string id)
+        private void SetAbcId(string id)
         {
             if (id.Length != 6)
             {
