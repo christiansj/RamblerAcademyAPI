@@ -4,6 +4,7 @@ namespace RamblerAcademyAPI.Models
 {
     public class Day
     {
+        public Day() { }
         public Day(int id, string name)
         {
             Id = id;

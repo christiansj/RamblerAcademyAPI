@@ -2,7 +2,6 @@
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
 
-
 namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
 {
     public class BuildingQuery : ObjectGraphType, IGraphQLQuery
