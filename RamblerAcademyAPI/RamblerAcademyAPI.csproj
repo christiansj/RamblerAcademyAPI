@@ -59,6 +59,12 @@
     <Compile Remove="Migrations\20200404000545_ChangedUserIdType.Designer.cs" />
     <Compile Remove="Migrations\20200404000749_ChangedUserIdType.cs" />
     <Compile Remove="Migrations\20200404000749_ChangedUserIdType.Designer.cs" />
+    <Compile Remove="Migrations\20200406065750_CourseSeed.cs" />
+    <Compile Remove="Migrations\20200406065750_CourseSeed.Designer.cs" />
+    <Compile Remove="Migrations\20200406070635_CourseSeed.cs" />
+    <Compile Remove="Migrations\20200406070635_CourseSeed.Designer.cs" />
+    <Compile Remove="Migrations\20200406071150_CourseSeed.cs" />
+    <Compile Remove="Migrations\20200406071150_CourseSeed.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

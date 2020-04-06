@@ -6,7 +6,7 @@ namespace RamblerAcademyAPI.Models
 {
     public class CourseSection
     {
-        public CourseSection(int courseReferenceNumber, int sectionNumber, string courseId, int semesterId, int classroomId)
+        public CourseSection(int courseReferenceNumber, int sectionNumber, int courseId, int semesterId, int classroomId)
         {
             CourseReferenceNumber = courseReferenceNumber;
             SectionNumber = sectionNumber;
@@ -14,11 +14,12 @@ namespace RamblerAcademyAPI.Models
             SemesterId = semesterId;
             ClassroomId = classroomId;
         }
+
         [Key]
         public int CourseReferenceNumber { get; set; }
 
         [ForeignKey("Course")]
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public Course Course { get; set; }
 
         [ForeignKey("Semester")]

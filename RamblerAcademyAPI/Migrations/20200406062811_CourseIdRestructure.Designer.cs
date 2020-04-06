@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RamblerAcademyAPI.Data;
@@ -9,9 +10,10 @@ using RamblerAcademyAPI.Data;
 namespace RamblerAcademyAPI.Migrations
 {
     [DbContext(typeof(RamblerAcademyContext))]
-    partial class RamblerAcademyContextModelSnapshot : ModelSnapshot
+    [Migration("20200406062811_CourseIdRestructure")]
+    partial class CourseIdRestructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,6 +169,9 @@ namespace RamblerAcademyAPI.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("SubjectAbbreviation")
+                        .HasColumnType("character varying(3)");
+
                     b.Property<int>("SubjectId")
                         .HasColumnType("integer");
 
@@ -175,7 +180,7 @@ namespace RamblerAcademyAPI.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.HasIndex("SubjectId");
+                    b.HasIndex("SubjectAbbreviation");
 
                     b.ToTable("Course");
 
@@ -185,49 +190,49 @@ namespace RamblerAcademyAPI.Migrations
                             Id = 1,
                             CourseNumber = 10,
                             Name = "College Algebra",
-                            SubjectId = 1
+                            SubjectId = 0
                         },
                         new
                         {
                             Id = 2,
                             CourseNumber = 100,
                             Name = "Pre-Calculus",
-                            SubjectId = 1
+                            SubjectId = 0
                         },
                         new
                         {
                             Id = 3,
                             CourseNumber = 400,
                             Name = "Calculus I",
-                            SubjectId = 1
+                            SubjectId = 0
                         },
                         new
                         {
                             Id = 4,
                             CourseNumber = 250,
                             Name = "Summer Math Camp",
-                            SubjectId = 1
+                            SubjectId = 0
                         },
                         new
                         {
                             Id = 5,
                             CourseNumber = 200,
                             Name = "Early Civilizations",
-                            SubjectId = 2
+                            SubjectId = 0
                         },
                         new
                         {
                             Id = 6,
                             CourseNumber = 500,
                             Name = "American History - Pre Civil War",
-                            SubjectId = 2
+                            SubjectId = 0
                         },
                         new
                         {
                             Id = 7,
                             CourseNumber = 600,
                             Name = "American History - Post Civil War",
-                            SubjectId = 2
+                            SubjectId = 0
                         });
                 });
 
@@ -812,6 +817,7 @@ namespace RamblerAcademyAPI.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Abbreviation")
+                        .IsRequired()
                         .HasColumnType("character varying(3)")
                         .HasMaxLength(3);
 
@@ -1062,9 +1068,8 @@ namespace RamblerAcademyAPI.Migrations
                 {
                     b.HasOne("RamblerAcademyAPI.Models.Subject", "Subject")
                         .WithMany("Courses")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubjectAbbreviation")
+                        .HasPrincipalKey("Abbreviation");
                 });
 
             modelBuilder.Entity("RamblerAcademyAPI.Models.CourseSection", b =>

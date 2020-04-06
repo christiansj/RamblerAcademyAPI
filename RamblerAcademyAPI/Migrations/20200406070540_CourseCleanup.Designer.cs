@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RamblerAcademyAPI.Data;
@@ -9,9 +10,10 @@ using RamblerAcademyAPI.Data;
 namespace RamblerAcademyAPI.Migrations
 {
     [DbContext(typeof(RamblerAcademyContext))]
-    partial class RamblerAcademyContextModelSnapshot : ModelSnapshot
+    [Migration("20200406070540_CourseCleanup")]
+    partial class CourseCleanup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,57 +180,6 @@ namespace RamblerAcademyAPI.Migrations
                     b.HasIndex("SubjectId");
 
                     b.ToTable("Course");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CourseNumber = 10,
-                            Name = "College Algebra",
-                            SubjectId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CourseNumber = 100,
-                            Name = "Pre-Calculus",
-                            SubjectId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CourseNumber = 400,
-                            Name = "Calculus I",
-                            SubjectId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CourseNumber = 250,
-                            Name = "Summer Math Camp",
-                            SubjectId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CourseNumber = 200,
-                            Name = "Early Civilizations",
-                            SubjectId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CourseNumber = 500,
-                            Name = "American History - Pre Civil War",
-                            SubjectId = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CourseNumber = 600,
-                            Name = "American History - Post Civil War",
-                            SubjectId = 2
-                        });
                 });
 
             modelBuilder.Entity("RamblerAcademyAPI.Models.CourseSection", b =>
@@ -263,53 +214,6 @@ namespace RamblerAcademyAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("CourseSection");
-
-                    b.HasData(
-                        new
-                        {
-                            CourseReferenceNumber = 57494,
-                            ClassroomId = 1,
-                            CourseId = 1,
-                            FinalExamDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SectionNumber = 1,
-                            SemesterId = 1
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 59256,
-                            ClassroomId = 2,
-                            CourseId = 2,
-                            FinalExamDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SectionNumber = 1,
-                            SemesterId = 1
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 28539,
-                            ClassroomId = 1,
-                            CourseId = 4,
-                            FinalExamDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SectionNumber = 1,
-                            SemesterId = 1
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 78934,
-                            ClassroomId = 7,
-                            CourseId = 5,
-                            FinalExamDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SectionNumber = 1,
-                            SemesterId = 1
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 94583,
-                            ClassroomId = 8,
-                            CourseId = 6,
-                            FinalExamDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SectionNumber = 1,
-                            SemesterId = 1
-                        });
                 });
 
             modelBuilder.Entity("RamblerAcademyAPI.Models.CourseSectionTimeSlot", b =>
@@ -328,56 +232,6 @@ namespace RamblerAcademyAPI.Migrations
                     b.HasIndex("DayId", "TimeSlotId");
 
                     b.ToTable("CourseSectionTimeSlot");
-
-                    b.HasData(
-                        new
-                        {
-                            CourseReferenceNumber = 57494,
-                            DayId = 3,
-                            TimeSlotId = 2
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 57494,
-                            DayId = 5,
-                            TimeSlotId = 2
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 59256,
-                            DayId = 3,
-                            TimeSlotId = 3
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 59256,
-                            DayId = 5,
-                            TimeSlotId = 3
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 78934,
-                            DayId = 3,
-                            TimeSlotId = 5
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 78934,
-                            DayId = 5,
-                            TimeSlotId = 5
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 94583,
-                            DayId = 3,
-                            TimeSlotId = 6
-                        },
-                        new
-                        {
-                            CourseReferenceNumber = 94583,
-                            DayId = 5,
-                            TimeSlotId = 6
-                        });
                 });
 
             modelBuilder.Entity("RamblerAcademyAPI.Models.Day", b =>
