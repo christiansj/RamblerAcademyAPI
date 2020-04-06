@@ -40,8 +40,9 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(s => s.Abbreviation)
                 .IsUnique();
 
-            //builder.Entity<Course>()
-               // .HasKey(c => new { c.SubjectId, c.CourseNumber });
+            builder.Entity<Course>()
+                .HasIndex(c => new { c.SubjectId, c.CourseNumber })
+                .IsUnique();
 
             builder.Entity<Enrollment>()
                 .HasKey(e => new { e.CourseReferenceNumber, e.StudentId });

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RamblerAcademyAPI.Data;
@@ -9,9 +10,10 @@ using RamblerAcademyAPI.Data;
 namespace RamblerAcademyAPI.Migrations
 {
     [DbContext(typeof(RamblerAcademyContext))]
-    partial class RamblerAcademyContextModelSnapshot : ModelSnapshot
+    [Migration("20200406071707_CourseUniqueIndex")]
+    partial class CourseUniqueIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
