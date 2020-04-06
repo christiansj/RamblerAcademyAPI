@@ -6,6 +6,8 @@ namespace RamblerAcademyAPI.Models
 {
     public class CourseSection
     {
+        public CourseSection() { }
+
         public CourseSection(int courseReferenceNumber, int sectionNumber, int courseId, int semesterId, int classroomId)
         {
             CourseReferenceNumber = courseReferenceNumber;
