@@ -7,6 +7,7 @@ namespace RamblerAcademyAPI.Models
 {
     public class Semester
     {
+        public Semester() { }
         public Semester(int id, int year, DateTime startDate, DateTime endDate, int seasonId)
         {
             Id = id;
