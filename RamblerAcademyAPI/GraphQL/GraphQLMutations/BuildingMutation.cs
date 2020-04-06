@@ -4,7 +4,7 @@ using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
 using RamblerAcademyAPI.Models;
-using System;
+
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
 {

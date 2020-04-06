@@ -20,6 +20,7 @@ namespace RamblerAcademyAPI.Extensions
         {
             services.AddScoped<IGraphQLQuery, BuildingQuery>();
             services.AddScoped<IGraphQLQuery, ClassroomQuery>();
+            services.AddScoped<IGraphQLQuery, CourseQuery>();
             services.AddScoped<IGraphQLQuery, SubjectQuery>();
            
         }
@@ -28,6 +29,7 @@ namespace RamblerAcademyAPI.Extensions
         {
             services.AddScoped<IGraphQLMutation, BuildingMutation>();
             services.AddScoped<IGraphQLMutation, ClassroomMutation>();
+            services.AddScoped<IGraphQLMutation, CourseMutation>();
             services.AddScoped<IGraphQLMutation, SubjectMutation>();
         }
     }

@@ -6,6 +6,8 @@ namespace RamblerAcademyAPI.Models
 {
     public class Course
     {
+        public Course() { }
+
         public Course(int id, int courseNumber, string name, int subjectId)
         {
             Id = id;
