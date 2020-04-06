@@ -1,11 +1,12 @@
 ﻿using GraphQL.Types;
+using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.Models;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 {
     public class ClassroomType : ObjectGraphType<Classroom>
     {
-        public ClassroomType()
+        public ClassroomType(IBuildingRepository buildingRepository)
         {
             Field(c => c.Id, type: typeof(IdGraphType))
                 .Description("Id property of the Classroom object");
@@ -21,6 +22,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 
             Field(c => c.BuildingId, type: typeof(IntGraphType))
                 .Description("BuildingId property of the Classroom object. References the Id property of a Building object");
+
+            Field<BuildingType>(
+                "building",
+                resolve: context => buildingRepository.GetBuildingById(context.Source.BuildingId)
+            );
         }
     }
 }
