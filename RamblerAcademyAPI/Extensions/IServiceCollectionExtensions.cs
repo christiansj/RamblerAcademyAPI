@@ -3,10 +3,6 @@ using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLMutations;
 using RamblerAcademyAPI.GraphQL.GraphQLQueries;
 using RamblerAcademyAPI.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.Extensions
 {
@@ -16,6 +12,7 @@ namespace RamblerAcademyAPI.Extensions
         {
             services.AddTransient<IBuildingRepository, BuildingRepository>();
             services.AddTransient<IClassroomRepository, ClassroomRepository>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
             services.AddTransient<ISubjectRepository, SubjectRepository>();
         }
 

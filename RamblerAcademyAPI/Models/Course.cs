@@ -14,15 +14,6 @@ namespace RamblerAcademyAPI.Models
             SubjectId = subjectId;
         }
 
-        private string courseNumberString(int courseNumber)
-        {
-            string courseNumberString = "";
-            if(courseNumber < 100)
-            {
-                courseNumberString = "0";
-            }
-            return courseNumberString += courseNumber.ToString();
-        }
 
         [Key]
         public int Id { get; set; }
@@ -33,7 +24,6 @@ namespace RamblerAcademyAPI.Models
         public int SubjectId { get; set; }
 
         public Subject Subject { get; set; }
-
         public List<CourseSection> CourseSections { get; set; }
     }
 }
