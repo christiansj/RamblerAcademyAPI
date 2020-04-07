@@ -6,7 +6,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 {
     public class CourseType : ObjectGraphType<Course>
     {
-        public CourseType(ISubjectRepository subjectRepository)
+        public CourseType(ISubjectRepository subjectRepository, ICourseSectionRepository courseSectionRepository)
         {
             Field(c => c.Id, type: typeof(IdGraphType))
                 .Description("Id property of the Course object. Primary Key");
@@ -23,6 +23,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
             Field<SubjectType>(
                 "subject",
                 resolve: context => subjectRepository.GetSubjectById(context.Source.SubjectId)
+            );
+
+            Field<ListGraphType<CourseSectionType>>(
+                "courseSections",
+                resolve: context => courseSectionRepository.GetAllCourseSectionsPerCourse(context.Source.Id)
             );
         }
     }

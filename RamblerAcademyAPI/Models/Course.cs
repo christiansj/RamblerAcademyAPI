@@ -26,6 +26,6 @@ namespace RamblerAcademyAPI.Models
         public int SubjectId { get; set; }
 
         public Subject Subject { get; set; }
-        public List<CourseSection> CourseSections { get; set; }
+        public IEnumerable<CourseSection> CourseSections { get; set; }
     }
 }
