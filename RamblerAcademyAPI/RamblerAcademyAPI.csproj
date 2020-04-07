@@ -71,6 +71,8 @@
     <Compile Remove="Migrations\20200406204219_Test.Designer.cs" />
     <Compile Remove="Migrations\20200407042510_EnrollmentSeed.cs" />
     <Compile Remove="Migrations\20200407042510_EnrollmentSeed.Designer.cs" />
+    <Compile Remove="Migrations\20200407203534_Test.cs" />
+    <Compile Remove="Migrations\20200407203534_Test.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

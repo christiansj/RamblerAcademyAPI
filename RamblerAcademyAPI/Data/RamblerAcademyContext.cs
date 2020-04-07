@@ -79,7 +79,7 @@ namespace RamblerAcademyAPI.Data
         public DbSet<Classroom> Classrooms { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseSection> CourseSections { get; set; }
-        public DbSet<CourseSectionDayTimeSlot> CourseSectionTimeSlots { get; set; }
+        public DbSet<CourseSectionDayTimeSlot> CourseSectionDayTimeSlots { get; set; }
         public DbSet<Day> Days { get; set; }
         public DbSet<DayTimeSlot> DayTimeSlots { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
