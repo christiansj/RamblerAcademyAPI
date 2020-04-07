@@ -18,6 +18,20 @@ namespace RamblerAcademyAPI.Repository
 
         public IEnumerable<Enrollment> GetAll() => _context.Enrollments.ToList();
 
+        public IEnumerable<Enrollment> GetAllEnrollmentsPerUser(long studentId)
+        {
+            return _context.Enrollments
+                .Where(e => e.StudentId == studentId)
+                .ToList();
+        }
+
+        public IEnumerable<Enrollment> GetAllEnrollmentsPerCourseSection(int courseReferenceNumber)
+        {
+            return _context.Enrollments
+                .Where(e => e.CourseReferenceNumber == courseReferenceNumber)
+                .ToList();
+        }
+
         public Enrollment GetEnrollmentByIds(long studentId, int courseReferenceNumber)
         {
             return _context.Enrollments.FirstOrDefault(e => e.StudentId == studentId && e.CourseReferenceNumber == courseReferenceNumber);

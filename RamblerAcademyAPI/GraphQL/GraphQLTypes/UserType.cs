@@ -6,7 +6,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 {
     public class UserType : ObjectGraphType<User>
     {
-        public UserType(IRoleRepository roleRepository)
+        public UserType(IRoleRepository roleRepository, IEnrollmentRepository enrollmentRepository)
         {
             Field(u => u.Id, type: typeof(IdGraphType))
                 .Description("Id property of the User object. Primary Key");
@@ -33,6 +33,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
                 "role",
                 resolve: context=>roleRepository.GetRoleById(context.Source.RoleId)
             );
+
+            Field<ListGraphType<EnrollmentType>>(
+                "enrollments",
+                resolve: context => enrollmentRepository.GetAllEnrollmentsPerUser(context.Source.Id)
+            ) ;
         }
     }
 }

@@ -35,5 +35,7 @@ namespace RamblerAcademyAPI.Models
         public Classroom Classroom { get; set; }
 
         public DateTime FinalExamDate { get; set; }
+
+        public IEnumerable<Enrollment> Enrollments { get; set; }
     }
 }
