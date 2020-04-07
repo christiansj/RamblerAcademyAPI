@@ -2,9 +2,9 @@
 
 namespace RamblerAcademyAPI.Models
 {
-    public class CourseSectionTimeSlot
+    public class CourseSectionDayTimeSlot
     {
-        public CourseSectionTimeSlot(int courseReferenceNumber, int dayId, int timeSlotId)
+        public CourseSectionDayTimeSlot(int courseReferenceNumber, int dayId, int timeSlotId)
         {
             CourseReferenceNumber = courseReferenceNumber;
             DayId = dayId;

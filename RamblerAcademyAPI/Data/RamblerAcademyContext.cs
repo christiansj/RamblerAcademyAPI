@@ -63,10 +63,10 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(cs => new { cs.Floor, cs.HallwayNumber, cs.RoomNumber, cs.BuildingId })
                 .IsUnique();
 
-            builder.Entity<CourseSectionTimeSlot>()
+            builder.Entity<CourseSectionDayTimeSlot>()
                 .HasKey(csts => new { csts.CourseReferenceNumber, csts.DayId, csts.TimeSlotId });
 
-            builder.Entity<CourseSectionTimeSlot>()
+            builder.Entity<CourseSectionDayTimeSlot>()
                 .HasOne(csts => csts.DayTimeSlot)
                 .WithMany(dts => dts.CourseSectionTimeSlots)
                 .HasForeignKey(csts => new { csts.DayId, csts.TimeSlotId });
@@ -79,7 +79,7 @@ namespace RamblerAcademyAPI.Data
         public DbSet<Classroom> Classrooms { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseSection> CourseSections { get; set; }
-        public DbSet<CourseSectionTimeSlot> CourseSectionTimeSlots { get; set; }
+        public DbSet<CourseSectionDayTimeSlot> CourseSectionTimeSlots { get; set; }
         public DbSet<Day> Days { get; set; }
         public DbSet<DayTimeSlot> DayTimeSlots { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
