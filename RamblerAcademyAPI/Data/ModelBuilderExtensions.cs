@@ -32,7 +32,8 @@ namespace RamblerAcademyAPI.Data
 
             CourseSectionSeed.Seed(builder);
             CourseSectionTimeSlotSeed.Seed(builder);
-           
+
+            EnrollmentSeed.Seed(builder);
         }
 
         public static void CreateIndexes(this ModelBuilder builder)
