@@ -15,6 +15,7 @@ namespace RamblerAcademyAPI.Extensions
             services.AddTransient<ICourseRepository, CourseRepository>();
             services.AddTransient<ICourseSectionRepository, CourseSectionRepository>();
             services.AddTransient<IDayRepository, DayRepository>();
+            services.AddTransient<IEnrollmentRepository, EnrollmentRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<ISeasonRepository, SeasonRepository>();
             services.AddTransient<ISemesterRepository, SemesterRepository>();
@@ -30,6 +31,7 @@ namespace RamblerAcademyAPI.Extensions
             services.AddScoped<IGraphQLQuery, CourseQuery>();
             services.AddScoped<IGraphQLQuery, CourseSectionQuery>();
             services.AddScoped<IGraphQLQuery, DayQuery>();
+            services.AddScoped<IGraphQLQuery, EnrollmentQuery>();
             services.AddScoped<IGraphQLQuery, RoleQuery>();
             services.AddScoped<IGraphQLQuery, SeasonQuery>();
             services.AddScoped<IGraphQLQuery, SemesterQuery>();
@@ -45,6 +47,7 @@ namespace RamblerAcademyAPI.Extensions
             services.AddScoped<IGraphQLMutation, ClassroomMutation>();
             services.AddScoped<IGraphQLMutation, CourseMutation>();
             services.AddScoped<IGraphQLMutation, CourseSectionMutation>();
+            services.AddScoped<IGraphQLMutation, EnrollmentMutation>();
             services.AddScoped<IGraphQLMutation, RoleMutation>();
             services.AddScoped<IGraphQLMutation, SeasonMutation>();
             services.AddScoped<IGraphQLMutation, SemesterMutation>();

@@ -6,7 +6,7 @@ namespace RamblerAcademyAPI.Contracts
     public interface IUserRepository
     {
         IEnumerable<User> GetAll();
-        User GetUserById(int id);
+        User GetUserById(long id);
         User CreateUser(User user);
         User UpdateUser(User dbUser, User user);
         void DeleteUser(User user);

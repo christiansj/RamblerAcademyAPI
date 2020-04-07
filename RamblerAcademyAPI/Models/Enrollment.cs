@@ -4,6 +4,8 @@ namespace RamblerAcademyAPI.Models
 {
     public class Enrollment
     {
+        public Enrollment() { }
+
         public Enrollment(int courseReferenceNumber, long studentId)
         {
             CourseReferenceNumber = courseReferenceNumber;

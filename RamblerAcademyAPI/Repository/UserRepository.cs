@@ -17,7 +17,7 @@ namespace RamblerAcademyAPI.Repository
 
         public IEnumerable<User> GetAll() => _context.Users.ToList();
 
-        public User GetUserById(int id) => _context.Users.FirstOrDefault(u => u.Id == id);
+        public User GetUserById(long id) => _context.Users.FirstOrDefault(u => u.Id == id);
 
         public User CreateUser(User user)
         {
