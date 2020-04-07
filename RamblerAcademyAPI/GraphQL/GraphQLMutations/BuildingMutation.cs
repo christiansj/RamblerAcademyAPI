@@ -5,7 +5,6 @@ using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
 using RamblerAcademyAPI.Models;
 
-
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
 {
     public class BuildingMutation : ObjectGraphType, IGraphQLMutation

@@ -19,6 +19,7 @@ namespace RamblerAcademyAPI.Extensions
             services.AddTransient<ISeasonRepository, SeasonRepository>();
             services.AddTransient<ISemesterRepository, SemesterRepository>();
             services.AddTransient<ISubjectRepository, SubjectRepository>();
+            services.AddTransient<ITimeSlotRepository, TimeSlotRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
         }
 
@@ -33,6 +34,7 @@ namespace RamblerAcademyAPI.Extensions
             services.AddScoped<IGraphQLQuery, SeasonQuery>();
             services.AddScoped<IGraphQLQuery, SemesterQuery>();
             services.AddScoped<IGraphQLQuery, SubjectQuery>();
+            services.AddScoped<IGraphQLQuery, TimeSlotQuery>();
             services.AddScoped<IGraphQLQuery, UserQuery>();
            
         }
@@ -47,6 +49,7 @@ namespace RamblerAcademyAPI.Extensions
             services.AddScoped<IGraphQLMutation, SeasonMutation>();
             services.AddScoped<IGraphQLMutation, SemesterMutation>();
             services.AddScoped<IGraphQLMutation, SubjectMutation>();
+            services.AddScoped<IGraphQLMutation, TimeSlotMutation>();
             services.AddScoped<IGraphQLMutation, UserMutation>();
         }
     }
