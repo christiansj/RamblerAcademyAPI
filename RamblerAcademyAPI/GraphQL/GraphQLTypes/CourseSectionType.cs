@@ -6,7 +6,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 {
     public class CourseSectionType : ObjectGraphType<CourseSection>
     {
-        public CourseSectionType(ICourseRepository courseRepository, ISemesterRepository semesterRepository, IClassroomRepository classroomRepository, IEnrollmentRepository enrollmentRepository)
+        public CourseSectionType(ICourseRepository courseRepository, ISemesterRepository semesterRepository, 
+            IClassroomRepository classroomRepository, IEnrollmentRepository enrollmentRepository,
+            ICourseSectionDayTimeSlotRepository courseSectionDayTimeSlotRepository)
         {
             Field(cs => cs.CourseReferenceNumber, type: typeof(IdGraphType))
                 .Name("crn")
@@ -42,6 +44,12 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
             Field<ListGraphType<EnrollmentType>>(
                 "enrollments",
                 resolve: context => enrollmentRepository.GetAllEnrollmentsPerCourseSection(context.Source.CourseReferenceNumber)
+            );
+
+            Field<ListGraphType<CourseSectionDayTimeSlotType>>(
+                "courseSectionDayTimeSlots",
+                resolve: context => courseSectionDayTimeSlotRepository
+                                        .GetAllCourseSectionDayTimeSlotsPerCourseSection(context.Source.CourseReferenceNumber)
             );
         }
     }
