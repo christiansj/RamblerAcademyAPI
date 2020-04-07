@@ -5,6 +5,8 @@ namespace RamblerAcademyAPI.Models
 {
     public class DayTimeSlot
     {
+        public DayTimeSlot() { }
+
         public DayTimeSlot(int dayId, int timeSlotId)
         {
             DayId = dayId;
