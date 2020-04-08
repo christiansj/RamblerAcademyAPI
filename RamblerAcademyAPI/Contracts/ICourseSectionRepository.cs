@@ -7,6 +7,7 @@ namespace RamblerAcademyAPI.Contracts
     {
         IEnumerable<CourseSection> GetAll();
         IEnumerable<CourseSection> GetAllCourseSectionsPerCourse(int courseId);
+        IEnumerable<CourseSection> GetAllCourseSectionsPerClassroom(int classroomId);
         CourseSection GetCourseSectionByCrn(int crn);
         CourseSection CreateCourseSection(CourseSection courseSection);
         CourseSection UpdateCourseSection(CourseSection dbCourseSection, CourseSection courseSection);

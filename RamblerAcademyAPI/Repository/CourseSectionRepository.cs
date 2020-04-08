@@ -23,6 +23,13 @@ namespace RamblerAcademyAPI.Repository
                 .ToList();
         }
 
+        public IEnumerable<CourseSection> GetAllCourseSectionsPerClassroom(int classroomId)
+        {
+            return _context.CourseSections
+                .Where(cs => cs.ClassroomId == classroomId)
+                .ToList();
+        }
+
         public CourseSection GetCourseSectionByCrn(int crn) => _context.CourseSections.FirstOrDefault(cs => cs.CourseReferenceNumber == crn);
 
         public CourseSection CreateCourseSection(CourseSection courseSection)

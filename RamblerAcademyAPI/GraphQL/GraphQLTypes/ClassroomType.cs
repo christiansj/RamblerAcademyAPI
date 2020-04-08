@@ -6,7 +6,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 {
     public class ClassroomType : ObjectGraphType<Classroom>
     {
-        public ClassroomType(IBuildingRepository buildingRepository)
+        public ClassroomType(IBuildingRepository buildingRepository, ICourseSectionRepository courseSectionRepository)
         {
             Field(c => c.Id, type: typeof(IdGraphType))
                 .Description("Id property of the Classroom object");
@@ -26,6 +26,14 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
             Field<BuildingType>(
                 "building",
                 resolve: context => buildingRepository.GetBuildingById(context.Source.BuildingId)
+            );
+
+            Field<ListGraphType<CourseSectionType>>(
+                "courseSections",
+                resolve: context =>
+                {
+                    return courseSectionRepository.GetAllCourseSectionsPerClassroom(context.Source.Id);
+                }
             );
         }
     }
