@@ -16,6 +16,13 @@ namespace RamblerAcademyAPI.Repository
 
         public IEnumerable<Classroom> GetAll() => _context.Classrooms.ToList();
 
+        public IEnumerable<Classroom> GetAllClassroomsPerBuilding(int buildingId)
+        {
+            return _context.Classrooms
+                .Where(c => c.BuildingId == buildingId)
+                .ToList();
+        }
+
         public Classroom GetClassroomById(int id) => _context.Classrooms.FirstOrDefault(c=>c.Id == id);
 
         public Classroom CreateClassroom(Classroom classroom)
