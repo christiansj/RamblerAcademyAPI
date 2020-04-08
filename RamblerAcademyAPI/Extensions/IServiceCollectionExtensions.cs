@@ -3,6 +3,8 @@ using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLMutations;
 using RamblerAcademyAPI.GraphQL.GraphQLQueries;
 using RamblerAcademyAPI.Repository;
+using GraphQL.Client;
+using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
 
 namespace RamblerAcademyAPI.Extensions
 {
@@ -59,6 +61,11 @@ namespace RamblerAcademyAPI.Extensions
             services.AddScoped<IGraphQLMutation, SubjectMutation>();
             services.AddScoped<IGraphQLMutation, TimeSlotMutation>();
             services.AddScoped<IGraphQLMutation, UserMutation>();
+        }
+
+        public static void AddGraphQLConsumerServices(this IServiceCollection services)
+        {
+            services.AddScoped<BuildingConsumer>();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace RamblerAcademyAPI.Models
 {
     public class Building
@@ -12,5 +14,7 @@ namespace RamblerAcademyAPI.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public IEnumerable<Classroom> Classrooms { get; set; }
     }
 }

@@ -15,7 +15,11 @@ using RamblerAcademyAPI.GraphQL.GraphQlSchema;
 
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using RamblerAcademyAPI.Extensions;
+using RamblerAcademyAPI.GraphQL.Client;
+using System.Net.Http;
 
+using GraphQL.Client.Http;
+using Newtonsoft.Json;
 namespace RamblerAcademyAPI
 {
     public class Startup
@@ -39,12 +43,13 @@ namespace RamblerAcademyAPI
             services.AddRespositoryServices();
             services.AddGraphQLQueryServices();
             services.AddGraphQLMutationServices();
+            services.AddGraphQLConsumerServices();
 
             services.AddGraphQL(o => { o.ExposeExceptions = true; })
                 .AddGraphTypes(ServiceLifetime.Scoped);
 
             services.AddScoped<AppSchema>();
-
+            services.AddScoped(x => new GraphQLClient(new HttpClient()));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddControllers();
 
@@ -65,8 +70,8 @@ namespace RamblerAcademyAPI
             
             app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
             app.UseGraphQL<AppSchema>();
-
-           /* app.UseRouting();
+            
+           app.UseRouting();
 
             app.UseAuthorization();
 
@@ -75,7 +80,7 @@ namespace RamblerAcademyAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });*/
+            });
         }
     }
 }
