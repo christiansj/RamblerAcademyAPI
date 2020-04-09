@@ -3,6 +3,7 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
@@ -25,7 +26,8 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                         var dbBuilding = repository.GetBuildingById(buildingId);
                         if(dbBuilding == null)
                         {
-                            context.Errors.Add(new ExecutionError("Couldn't find building in db"));
+                          
+                            context.Errors.Add(NotFoundError());
                             return null;
                         }
                         return repository.UpdateBuilding(dbBuilding, building);
@@ -53,13 +55,18 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var building = repository.GetBuildingById(buildingId);
                     if(building == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find building in db."));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
                     repository.DeleteBuilding(building);
                     return $"The building with id: {buildingId} has been successfully deleted";
                 }
             );
+        }
+
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("Building"));
         }
     }
 }

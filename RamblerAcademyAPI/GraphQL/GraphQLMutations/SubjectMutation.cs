@@ -3,6 +3,7 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
@@ -39,7 +40,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var dbSubject = repository.GetSubjectById(subjectId);
                     if(dbSubject == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find the subject in the db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
                     return repository.UpdateSubject(dbSubject, subject);
@@ -59,13 +60,18 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var subject = repository.GetSubjectById(subjectId);
                     if(subject == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find subject in db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
                     repository.DeleteSubject(subject);
                     return $"Subject with id {subjectId} was succesfully deleted";
                 }
             );
+        }
+
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("Subject"));
         }
     }
 }

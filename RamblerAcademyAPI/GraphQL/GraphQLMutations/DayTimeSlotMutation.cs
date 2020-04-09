@@ -3,6 +3,7 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
@@ -40,7 +41,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                    var dayTimeSlot = repository.GetDayTimeSlotByIds(dayId, timeSlotId);
                    if(dayTimeSlot == null)
                    {
-                       context.Errors.Add(new ExecutionError("Couldn't find DayTimeSlot in db"));
+                       context.Errors.Add(NotFoundError());
                        return null;
                    }
                    repository.DeleteDayTimeSlot(dayTimeSlot);
@@ -49,6 +50,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                }
 
            );
+        }
+
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("DayTimeSlot"));
         }
     }
 }

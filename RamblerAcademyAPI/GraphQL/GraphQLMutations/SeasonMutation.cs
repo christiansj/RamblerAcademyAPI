@@ -3,6 +3,7 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
@@ -39,7 +40,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var dbSeason = repository.GetSeasonById(seasonId);
                     if (dbSeason == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find season in db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -60,7 +61,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
 
                     if(season == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find season in db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -68,6 +69,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     return $"The season with the id {seasonId} has been successfully deleted";
                 }
             );
+        }
+
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("Season"));
         }
     }
 }

@@ -3,6 +3,7 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 using System;
 
@@ -43,7 +44,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var dbTimeSlot = repository.GetTimeSlotById(timeSlotId);
                     if(dbTimeSlot == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find TimeSlot in the db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -64,7 +65,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var timeSlot = repository.GetTimeSlotById(timeSlotId);
                     if(timeSlot == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find TimeSlot in the db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -72,6 +73,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     return $"The TimeSlot with the id {timeSlotId} was succesfully deleted";
                 }
             );
+        }
+
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("TimeSlot"));
         }
     }
 }

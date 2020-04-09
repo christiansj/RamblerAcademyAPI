@@ -3,6 +3,7 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
@@ -39,7 +40,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var dbSemester = repository.GetSemesterById(semesterId);
                     if (dbSemester == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find semester in db."));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
                     return repository.UpdateSemester(dbSemester, semester);
@@ -59,7 +60,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var semester = repository.GetSemesterById(semesterId);
                     if(semester == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find semester in db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -67,6 +68,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     return $"The semester with the id {semesterId} has been successfully deleted";
                 }
             );
+        }
+
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("Semester"));
         }
     }
 }

@@ -3,6 +3,7 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 
 
@@ -40,7 +41,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var dbCourseSection = repository.GetCourseSectionByCrn(crn);
                     if(dbCourseSection == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find CourseSection in the db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
                     return repository.UpdateCourseSection(dbCourseSection, courseSection);
@@ -60,7 +61,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var courseSection = repository.GetCourseSectionByCrn(crn);
                     if(courseSection == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find CourseSection in db."));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -69,6 +70,10 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
 
                 }
             );
+        }
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("CourseSection"));
         }
     }
 }

@@ -3,14 +3,17 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
 {
     public class UserMutation : ObjectGraphType, IGraphQLMutation
     {
+      
         public UserMutation(IUserRepository repository)
         {
+           
             // createUser(user)
             Field<UserType>(
                 "createUser",
@@ -39,7 +42,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var dbUser = repository.GetUserById(userId);
                     if(dbUser == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find User in db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
                     return repository.UpdateUser(dbUser, user);
@@ -58,7 +61,8 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var user = repository.GetUserById(userId);
                     if(user == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find the User in the db"));
+                 
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -66,6 +70,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     return $"The user with the id {userId} has been successfully deleted";
                 }
             );
+        }
+ 
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("User"));
         }
     }
 }

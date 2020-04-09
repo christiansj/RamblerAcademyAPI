@@ -3,6 +3,7 @@ using GraphQL.Types;
 using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using RamblerAcademyAPI.GraphQL.GraphQLTypes;
+using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
@@ -39,7 +40,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var enrollment = repository.GetEnrollmentByIds(studentId, crn);
                     if(enrollment == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find Enrollment in db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -47,6 +48,11 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     return $"The Enrollment with the studentId {studentId} and courseReferenceNumber {crn} has been successfully deleted";
                 }
             );
+        }
+
+        private ExecutionError NotFoundError()
+        {
+            return new ExecutionError(GraphQLUserError.NotFoundString("Enrollment"));
         }
     }
 }
