@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json.Linq;
-using System;
+using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -34,10 +34,31 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }
                 }";
 
-            string result = await _client.Query(query);
-            Console.WriteLine(result);
-            var parsedResult = JObject.Parse(result)["data"]["buildings"].ToString();
-            return JsonConvert.DeserializeObject<List<Building>>(parsedResult);
+            string resultString = await _client.Query(query);
+            var data = DataParser.ParseDataFromString(resultString, "buildings");
+            return JsonConvert.DeserializeObject<List<Building>>(data);
+        }
+
+        public async Task<Building> CreateBuilding(Building building)
+        {
+            string inStr = @"
+                mutation{{
+                    createBuilding(building: {0}){{
+                        id
+                        name
+                    }}
+                }}    
+            ";
+
+            string mutation = string.Format(inStr, buildingInput(building));
+            string resultString = await _client.Query(mutation);
+            var data = DataParser.ParseDataFromString(resultString, "createBuilding");
+            return JsonConvert.DeserializeObject<Building>(data);
+        }
+
+        private string buildingInput(Building building)
+        {
+            return string.Format("{{ name: \"{0}\" }}", building.Name);
         }
     }
 }

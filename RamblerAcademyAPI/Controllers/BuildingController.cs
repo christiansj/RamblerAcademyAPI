@@ -38,8 +38,11 @@ namespace RamblerAcademyAPI.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<ActionResult<Building>> Post(Building building)
         {
+            
+            Building newBuilding = await _consumer.CreateBuilding(building);
+            return newBuilding;
         }
 
         // PUT api/<controller>/5
