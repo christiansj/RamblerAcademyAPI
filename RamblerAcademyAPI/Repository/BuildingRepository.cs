@@ -15,7 +15,13 @@ namespace RamblerAcademyAPI.Repository
             _context = context;
         }
 
-        public IEnumerable<Building> GetAll() => _context.Buildings.ToList();
+        public IEnumerable<Building> GetAll()
+        {
+            List<Building> buildings = _context.Buildings.ToList();
+            buildings.Sort((x, y) => x.Id.CompareTo(y.Id));
+            return buildings;
+        }
+            
 
         public Building GetBuildingById(int id) => _context.Buildings.FirstOrDefault(b => b.Id == id);
 
