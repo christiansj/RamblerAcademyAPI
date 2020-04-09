@@ -24,9 +24,10 @@ namespace RamblerAcademyAPI.Util
                 FieldType fieldType = fields.FirstOrDefault(f => f.Name == fieldName);
                 if (fieldType != null)
                 {
+                    Console.WriteLine($"Found {fieldName} with value: {value}");
                     if (inputString == "")
                     {
-                        inputString = "{{";
+                        inputString = "{";
                     }
                     else
                     {
@@ -39,9 +40,9 @@ namespace RamblerAcademyAPI.Util
 
             if(inputString != "")
             {
-                inputString += "}}";
+                inputString += "}";
             }
-
+            Console.WriteLine($"inputCourse: {inputString}");
             return inputString;
         }
         private static string lowerCaseFirstLetter(string str)

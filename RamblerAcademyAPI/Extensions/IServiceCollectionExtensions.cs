@@ -66,6 +66,7 @@ namespace RamblerAcademyAPI.Extensions
         public static void AddGraphQLConsumerServices(this IServiceCollection services)
         {
             services.AddScoped<BuildingConsumer>();
+            services.AddScoped<CourseConsumer>();
         }
     }
 }

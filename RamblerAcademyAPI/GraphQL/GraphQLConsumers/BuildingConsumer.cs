@@ -4,11 +4,7 @@ using RamblerAcademyAPI.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Newtonsoft.Json.Linq;
 using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
-using System;
-using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
-using GraphQL;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
