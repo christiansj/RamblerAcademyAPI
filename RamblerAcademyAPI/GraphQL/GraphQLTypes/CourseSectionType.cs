@@ -11,7 +11,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
             ICourseSectionDayTimeSlotRepository courseSectionDayTimeSlotRepository)
         {
             Field(cs => cs.CourseReferenceNumber, type: typeof(IdGraphType))
-                .Name("crn")
+                .Name("courseReferenceNumber")
                 .Description("The CourseReferenceNumber (CRN) property of the CourseSection. Primary Key");
 
             Field(cs => cs.SectionNumber, type: typeof(IntGraphType))

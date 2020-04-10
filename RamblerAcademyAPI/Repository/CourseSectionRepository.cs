@@ -46,6 +46,7 @@ namespace RamblerAcademyAPI.Repository
             dbCourseSection.ClassroomId = courseSection.ClassroomId;
             dbCourseSection.SemesterId = courseSection.SemesterId;
             dbCourseSection.FinalExamDate = courseSection.FinalExamDate;
+            dbCourseSection.SectionNumber = courseSection.SectionNumber;
 
             _context.SaveChanges();
             return dbCourseSection;
