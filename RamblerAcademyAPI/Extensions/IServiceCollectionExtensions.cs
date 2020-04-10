@@ -68,6 +68,7 @@ namespace RamblerAcademyAPI.Extensions
         {
             services.AddScoped<BuildingConsumer>();
             services.AddScoped<CourseConsumer>();
+            services.AddScoped<SeasonConsumer>();
             services.AddScoped<SemesterConsumer>();
             services.AddScoped<SubjectConsumer>();
         }

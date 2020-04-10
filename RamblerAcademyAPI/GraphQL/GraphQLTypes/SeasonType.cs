@@ -14,7 +14,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
             Field(s => s.Name, type: typeof(StringGraphType))
                 .Description("Name property of the Season object. Unique Index");
 
-            Field<SemesterType>(
+            Field<ListGraphType<SemesterType>>(
                 "semesters",
                 resolve: context=>semesterRepository.GetAllSemestersPerSeason(context.Source.Id)
             );
