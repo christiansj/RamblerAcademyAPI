@@ -55,7 +55,7 @@ namespace RamblerAcademyAPI.Util
             string fieldTypeString = fieldType.Type.ToString();
             
             string valueString = value.ToString();
-            if (fieldTypeString.Contains("StringGraphType"))
+            if (fieldTypeString.Contains("StringGraphType") || fieldTypeString.Contains("DateTimeGraphType"))
             {
                 valueString = $"\"{valueString}\"";
             }
