@@ -31,8 +31,9 @@ namespace RamblerAcademyAPI.Repository
         public Subject UpdateSubject(Subject dbSubject, Subject subject)
         {
             dbSubject.Name = subject.Name;
-           
-            _context.SaveChanges();
+            dbSubject.Abbreviation = subject.Abbreviation;
+            
+            _context.SaveChangesAsync();
             return dbSubject;
         }
 

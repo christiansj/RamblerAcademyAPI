@@ -5,6 +5,7 @@ using RamblerAcademyAPI.GraphQL.GraphQLQueries;
 using RamblerAcademyAPI.Repository;
 using GraphQL.Client;
 using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
+using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
 
 namespace RamblerAcademyAPI.Extensions
 {
@@ -67,6 +68,7 @@ namespace RamblerAcademyAPI.Extensions
         {
             services.AddScoped<BuildingConsumer>();
             services.AddScoped<CourseConsumer>();
+            services.AddScoped<SubjectConsumer>();
         }
     }
 }
