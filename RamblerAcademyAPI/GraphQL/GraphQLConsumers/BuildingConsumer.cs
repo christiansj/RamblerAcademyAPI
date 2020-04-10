@@ -59,15 +59,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Building> CreateBuilding(Building building)
         {
             string mutation = string.Format(@"
-                mutation{{
                     createBuilding(building: {0}){{
                         id
                         name
                     }}
-                }}    
             ", buildingInput(building));
 
-            string resultString = await _client.Query(mutation);
+            string resultString = await _client.Mutation(mutation);
             var data = DataParser.ParseDataFromString(resultString, "createBuilding");
             return JsonConvert.DeserializeObject<Building>(data);
         }
@@ -75,27 +73,19 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Building> UpdateBuilding(int buildingId, Building building)
         {
             string mutation = string.Format(@"
-                mutation{{
                     updateBuilding(buildingId: {0}, building: {1}){{
                         {2}
                     }}
-                }}
             ", buildingId, buildingInput(building), buildingFragment);
 
-            string resultString = await _client.Query(mutation);
+            string resultString = await _client.Mutation(mutation);
             var data = DataParser.ParseDataFromString(resultString, "updateBuilding");
             return JsonConvert.DeserializeObject<Building>(data);
         }
 
         public async Task<bool> DeleteBuilding(int buildingId)
         {
-            string mutation = string.Format(@"
-                mutation{{
-                    deleteBuilding(buildingId: {0})
-                }}
-            ", buildingId);
-
-            await _client.Query(mutation);
+            await _client.Mutation($"deleteBuilding(buildingId: {buildingId})");
             return true;
         }
 

@@ -62,14 +62,12 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Semester> CreateSemesterAsync(Semester semester)
         {
             string mutation = string.Format(@"
-                mutation{{
-                    createSemester(semester: {0}){{
-                        {1}
-                    }}
+                createSemester(semester: {0}){{
+                   {1}
                 }}
             ", semesterInput(semester), semesterFragment);
 
-            string resultString = await _client.Query(mutation);
+            string resultString = await _client.Mutation(mutation);
             var data = DataParser.ParseDataFromString(resultString, "createSemester");
             return JsonConvert.DeserializeObject<Semester>(data);
         }
@@ -77,26 +75,19 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Semester> UpdateSemesterAsync(int semesterId, Semester semester)
         {
             string mutation = string.Format(@"
-                mutation{{
-                    updateSemester(semesterId: {0}, semester: {1}){{
-                        {2}
-                    }}
+                updateSemester(semesterId: {0}, semester: {1}){{
+                     {2}
                 }}
             ", semesterId, semesterInput(semester), semesterFragment);
 
-            string resultString = await _client.Query(mutation);
+            string resultString = await _client.Mutation(mutation);
             var data = DataParser.ParseDataFromString(resultString, "updateSemester");
             return JsonConvert.DeserializeObject<Semester>(data);
         }
 
         public async Task<bool> DeleteSemesterAsync(int semesterId)
         {
-            string mutation = string.Format(@"
-                mutation{{
-                    deleteSemester(semesterId: {0})
-                }}
-            ", semesterId);
-            await _client.Query(mutation);
+            await _client.Mutation($"deleteSemester(semesterId: {semesterId})");
             return true;
         }
 
@@ -104,8 +95,8 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         {
             var fields = new SemesterInputType().Fields;
             JObject jObject = JObject.FromObject(semester);
-            return GraphQLInputString.Create(fields, jObject);
 
+            return GraphQLInputString.Create(fields, jObject);
         }
     }
 }

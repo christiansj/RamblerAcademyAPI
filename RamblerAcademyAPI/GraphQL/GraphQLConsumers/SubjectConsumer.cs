@@ -63,14 +63,12 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
         public async Task<Subject> CreateSubjectAsync(Subject subject)
         {
             string mutation = string.Format(@"
-                mutation{{
                     createSubject(subject: {0}){{
                         {1}
                     }}
-                }}
             ", subjectInput(subject), subjectFragment);
 
-            string resultString = await _client.Query(mutation);
+            string resultString = await _client.Mutation(mutation);
             var data = DataParser.ParseDataFromString(resultString, "createSubject");
             return JsonConvert.DeserializeObject<Subject>(data);
         }
@@ -78,27 +76,19 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
         public async Task<Subject> UpdateSubjectAsync(int subjectId, Subject subject)
         {
             string mutation = string.Format(@"
-                mutation{{
                     updateSubject(subjectId: {0}, subject: {1}){{
                         {2}
                     }}
-                }}
             ", subjectId, subjectInput(subject), subjectFragment);
 
-            string resultString = await _client.Query(mutation);
+            string resultString = await _client.Mutation(mutation);
             var data = DataParser.ParseDataFromString(resultString, "updateSubject");
             return JsonConvert.DeserializeObject<Subject>(data);
         }
 
         public async Task<bool> DeleteSubjectAsync(int subjectId)
         {
-            var mutation = string.Format(@"
-                mutation{{
-                    deleteSubject(subjectId: {0})
-                }}
-            ", subjectId);
-
-            string resultString = await _client.Query(mutation);
+           await _client.Mutation($"deleteSubject(subjectId: {subjectId})");
             return true;
         }
 

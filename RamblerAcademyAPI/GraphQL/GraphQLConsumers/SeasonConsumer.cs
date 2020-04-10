@@ -60,14 +60,12 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Season> CreateSeasonAsync(Season season)
         {
             string mutation = string.Format(@"
-                mutation{{
                     createSeason(season: {0}){{
                         {1}
                     }}
-                }}
             ", seasonInput(season), seasonFragment);
 
-            string resultString = await _client.Query(mutation);
+            string resultString = await _client.Mutation(mutation);
             var data = DataParser.ParseDataFromString(resultString, "createSeason");
             return JsonConvert.DeserializeObject<Season>(data);
         }
@@ -75,27 +73,19 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Season> UpdateSeasonAsync(int seasonId, Season season)
         {
             string mutation = string.Format(@"
-                mutation{{
                     updateSeason(seasonId: {0}, season: {1}){{
                         {2}
                     }}
-                }}
             ", seasonId, seasonInput(season), seasonFragment);
 
-            string resultString = await _client.Query(mutation);
+            string resultString = await _client.Mutation(mutation);
             var data = DataParser.ParseDataFromString(resultString, "updateSeason");
             return JsonConvert.DeserializeObject<Season>(data);
         }
 
         public async Task<bool> DeleteSeasonAsync(int seasonId)
         {
-            string mutation = string.Format(@"
-                mutation{{
-                    deleteSeason(seasonId: {0})
-                }}
-            ", seasonId);
-
-            await _client.Query(mutation);
+            await _client.Mutation($"deleteSeason(seasonId: {seasonId})");
             return true;
         }
 

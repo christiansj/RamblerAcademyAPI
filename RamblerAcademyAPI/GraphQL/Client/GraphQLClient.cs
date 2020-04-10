@@ -20,7 +20,28 @@ namespace RamblerAcademyAPI.GraphQL.Client
 
         public async Task<string> Query(string query)
         {
+
             var response = await _client.GetAsync($"{GraphqlAddress}?query={query}");
+            string contentString = await response.Content.ReadAsStringAsync();
+            var errors = JObject.Parse(contentString)["errors"];
+            if (errors != null)
+            {
+                string error = errors[0]["message"].ToString();
+                throw new Exception(error);
+            }
+            return contentString;
+        }
+
+
+        public async Task<string> Mutation(string mutation)
+        {
+            mutation = string.Format("mutation{{ {0} }}", mutation);
+            return await Request(mutation);
+        }
+
+        private async Task<string> Request(string requestString)
+        {
+            var response = await _client.GetAsync($"{GraphqlAddress}?query={requestString}");
             string contentString = await response.Content.ReadAsStringAsync();
             var errors = JObject.Parse(contentString)["errors"];
             if (errors != null)
