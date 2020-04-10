@@ -17,8 +17,16 @@ namespace RamblerAcademyAPI.Repository
 
         public IEnumerable<Semester> GetAll() => _context.Semesters.ToList();
 
+        public IEnumerable<Semester> GetAllSemestersPerSeason(int seasonId)
+        {
+            return _context.Semesters
+               .Where(s => s.SeasonId == seasonId)
+               .ToList();
+        }
+
         public Semester GetSemesterById(int id) => _context.Semesters.FirstOrDefault(s => s.Id == id);
 
+        
         public Semester CreateSemester(Semester semester)
         {
             semester.Id = _context.Semesters.Max(s => s.Id)+1;
