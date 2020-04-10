@@ -16,6 +16,13 @@ namespace RamblerAcademyAPI.Repository
 
         public IEnumerable<Course> GetAll() => _context.Courses.ToList();
 
+        public IEnumerable<Course> GetAllCoursesPerSubject(int subjectId)
+        {
+            return _context.Courses
+                .Where(c => c.SubjectId == subjectId)
+                .ToList();
+        }
+
         public Course GetCourseById(int id) => _context.Courses.FirstOrDefault(c=>c.Id==id);
 
         public Course CreateCourse(Course course)
