@@ -1,14 +1,11 @@
 ﻿using RamblerAcademyAPI.GraphQL.Client;
 using RamblerAcademyAPI.Models;
-using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System;
 using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
-using Newtonsoft.Json.Linq;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
