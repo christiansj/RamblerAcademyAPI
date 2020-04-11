@@ -7,8 +7,8 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLInputTypes
         public TimeSlotInputType()
         {
             Name = "timeSlotInput";
-            Field<NonNullGraphType<IntGraphType>>("startTime");
-            Field<NonNullGraphType<IntGraphType>>("endTime");
+            Field<NonNullGraphType<TimeSpanSecondsGraphType>>("startTime");
+            Field<NonNullGraphType<TimeSpanSecondsGraphType>>("endTime");
         }
     }
 }

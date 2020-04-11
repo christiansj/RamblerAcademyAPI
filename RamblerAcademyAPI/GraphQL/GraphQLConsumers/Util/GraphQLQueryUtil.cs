@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -59,6 +60,10 @@ namespace RamblerAcademyAPI.Util
             if (fieldTypeString.Contains("StringGraphType") || fieldTypeString.Contains("DateTimeGraphType"))
             {
                 valueString = $"\"{valueString}\"";
+            }else if (fieldTypeString.Contains("TimeSpanSecondsGraphType"))
+            {
+                TimeSpan timespan = TimeSpan.ParseExact(valueString, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+                valueString = timespan.TotalSeconds.ToString();
             }
             return $"{fieldName}: {valueString}";
         }
