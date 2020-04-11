@@ -34,8 +34,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         {
             string query = string.Format("semesters{{ {0} }}", semesterFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "semesters");
+            string data = await _client.Query(query, "semesters");
             return JsonConvert.DeserializeObject<List<Semester>>(data);
         }
 
@@ -47,8 +46,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
                 ", semesterId, semesterFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "semester");
+            string data = await _client.Query(query, "semester");
             return JsonConvert.DeserializeObject<Semester>(data);
         }
 
@@ -60,8 +58,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                 }}
             ", semesterInput(semester), semesterFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "createSemester");
+            string data = await _client.Mutation(mutation, "createSemester");
             return JsonConvert.DeserializeObject<Semester>(data);
         }
 
@@ -73,14 +70,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                 }}
             ", semesterId, semesterInput(semester), semesterFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "updateSemester");
+            string data = await _client.Mutation(mutation, "updateSemester");
             return JsonConvert.DeserializeObject<Semester>(data);
         }
 
         public async Task<bool> DeleteSemesterAsync(int semesterId)
         {
-            await _client.Mutation($"deleteSemester(semesterId: {semesterId})");
+            await _client.Mutation($"deleteSemester(semesterId: {semesterId})", "deleteSemester");
             return true;
         }
 

@@ -12,7 +12,6 @@ using Newtonsoft.Json.Linq;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
-    
     public class CourseConsumer
     {
         private readonly GraphQLClient _client;
@@ -47,8 +46,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         {
             string query = string.Format("courses{{ {0} }}", courseFragment);
          
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "courses");
+            string data = await _client.Query(query, "courses");
             return JsonConvert.DeserializeObject<List<Course>>(data);
         }
 
@@ -60,9 +58,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", courseId, courseFragment);
             
-            string resultString = await _client.Query(query);
-            Console.WriteLine(resultString);
-            var data = DataParser.ParseDataFromString(resultString, "course");
+            string data = await _client.Query(query, "course");
             return JsonConvert.DeserializeObject<Course>(data);
         }
 
@@ -74,8 +70,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", courseInput(course), courseFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "createCourse");
+            string data = await _client.Mutation(mutation, "createCourse");
             return JsonConvert.DeserializeObject<Course>(data);
         }
 
@@ -87,14 +82,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", id, courseInput(course), courseFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "updateCourse");
+            string data = await _client.Mutation(mutation, "updateCourse");
             return JsonConvert.DeserializeObject<Course>(data);
         }
 
         public async Task<bool> DeleteCourseAsync(int id)
         {
-            await _client.Mutation($"deleteCourse(courseId: {id})");
+            await _client.Mutation($"deleteCourse(courseId: {id})", "deleteCourse");
             return true;
         }
 

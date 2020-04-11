@@ -24,8 +24,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         {
             string query = string.Format("days{{ {0} }}", dayFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "days");
+            string data = await _client.Query(query, "days");
             return JsonConvert.DeserializeObject<IEnumerable<Day>>(data);
         }
 
@@ -37,8 +36,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", dayId, dayFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "day");
+            string data = await _client.Query(query, "day");
             return JsonConvert.DeserializeObject<Day>(data);
         }
     }

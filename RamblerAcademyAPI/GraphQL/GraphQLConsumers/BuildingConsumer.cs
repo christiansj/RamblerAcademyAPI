@@ -31,8 +31,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         {
             string query = string.Format("buildings{{ {0} }} ", buildingFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "buildings");
+            var data = await _client.Query(query, "buildings");
             return JsonConvert.DeserializeObject<List<Building>>(data);
         }
 
@@ -44,8 +43,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", buildingId, buildingFragment);
          
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "building");
+            string data = await _client.Query(query, "building");
             return JsonConvert.DeserializeObject<Building>(data);
         }
 
@@ -58,8 +56,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", buildingInput(building));
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "createBuilding");
+            string data = await _client.Mutation(mutation, "createBuilding");
             return JsonConvert.DeserializeObject<Building>(data);
         }
 
@@ -71,14 +68,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", buildingId, buildingInput(building), buildingFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "updateBuilding");
+            string data = await _client.Mutation(mutation, "updateBuilding");
             return JsonConvert.DeserializeObject<Building>(data);
         }
 
         public async Task<bool> DeleteBuilding(int buildingId)
         {
-            await _client.Mutation($"deleteBuilding(buildingId: {buildingId})");
+            await _client.Mutation($"deleteBuilding(buildingId: {buildingId})", "deleteBuilding");
             return true;
         }
 

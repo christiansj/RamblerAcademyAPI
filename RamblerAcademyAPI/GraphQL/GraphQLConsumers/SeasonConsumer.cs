@@ -32,8 +32,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             string query = string.Format("seasons{{ {0} }}", 
                             seasonFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "seasons");
+            string data = await _client.Query(query, "seasons");
             return JsonConvert.DeserializeObject<IEnumerable<Season>>(data);
         }
 
@@ -45,8 +44,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", seasonId, seasonFragment);
         
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "season");
+            string data = await _client.Query(query, "season");
             return JsonConvert.DeserializeObject<Season>(data);
         }
 
@@ -58,8 +56,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", seasonInput(season), seasonFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "createSeason");
+            string data = await _client.Mutation(mutation, "createSeason");
             return JsonConvert.DeserializeObject<Season>(data);
         }
 
@@ -71,14 +68,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", seasonId, seasonInput(season), seasonFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "updateSeason");
+            string data = await _client.Mutation(mutation, "updateSeason");
             return JsonConvert.DeserializeObject<Season>(data);
         }
 
         public async Task<bool> DeleteSeasonAsync(int seasonId)
         {
-            await _client.Mutation($"deleteSeason(seasonId: {seasonId})");
+            await _client.Mutation($"deleteSeason(seasonId: {seasonId})", "deleteSeason");
             return true;
         }
 

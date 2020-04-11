@@ -1,14 +1,14 @@
 ﻿using RamblerAcademyAPI.GraphQL.Client;
 using RamblerAcademyAPI.Models;
-using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
+
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System;
+
 using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
-using Newtonsoft.Json.Linq;
+
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
 {
@@ -34,8 +34,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
         {
             string query = string.Format("subjects{{ {0} }}", subjectFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "subjects");
+            string data = await _client.Query(query, "subjects");
             return JsonConvert.DeserializeObject<List<Subject>>(data);
         }
 
@@ -47,8 +46,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
                     }}
             ", id, subjectFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "subject");
+            string data = await _client.Query(query, "subject");
             return JsonConvert.DeserializeObject<Subject>(data);
         }
 
@@ -60,8 +58,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
                     }}
             ", subjectInput(subject), subjectFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "createSubject");
+            string data = await _client.Mutation(mutation, "createSubject");
             return JsonConvert.DeserializeObject<Subject>(data);
         }
 
@@ -73,14 +70,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
                     }}
             ", subjectId, subjectInput(subject), subjectFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "updateSubject");
+            string data = await _client.Mutation(mutation, "updateSubject");
             return JsonConvert.DeserializeObject<Subject>(data);
         }
 
         public async Task<bool> DeleteSubjectAsync(int subjectId)
         {
-           await _client.Mutation($"deleteSubject(subjectId: {subjectId})");
+           await _client.Mutation($"deleteSubject(subjectId: {subjectId})", "deleteSubject");
             return true;
         }
 

@@ -16,30 +16,32 @@ namespace RamblerAcademyAPI.GraphQL.Client
             _client = httpClient;
         }
 
-        public async Task<string> Query(string query)
+        public async Task<string> Query(string query, string queryName)
         {
             query = string.Format("{{ {0} }}", query);
-            return await Request(query);
+            return await Request(query, queryName);
         }
 
 
-        public async Task<string> Mutation(string mutation)
+        public async Task<string> Mutation(string mutation, string mutationName)
         {
             mutation = string.Format("mutation{{ {0} }}", mutation);
-            return await Request(mutation);
+            return await Request(mutation, mutationName);
         }
 
-        private async Task<string> Request(string requestString)
+        private async Task<string> Request(string requestString, string requestName)
         {
             var response = await _client.GetAsync($"{GraphqlAddress}?query={requestString}");
             string contentString = await response.Content.ReadAsStringAsync();
+
             var errors = JObject.Parse(contentString)["errors"];
             if (errors != null)
             {
                 string error = errors[0]["message"].ToString();
                 throw new Exception(error);
             }
-            return contentString;
+            return JObject.Parse(contentString)["data"][requestName].ToString();
+            
         }
     }
 }

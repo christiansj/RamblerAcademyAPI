@@ -39,8 +39,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             string query = string.Format("coursesSections{{ {0} }}", 
                                 courseSectionFragment);
           
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "courseSections");
+            string data = await _client.Query(query, "courseSections");
             return JsonConvert.DeserializeObject<IEnumerable<CourseSection>>(data);
         }
 
@@ -52,8 +51,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", crn, courseSectionFragment);
 
-            string resultString = await _client.Query(query);
-            var data = DataParser.ParseDataFromString(resultString, "courseSection");
+            string data = await _client.Query(query, "courseSection");
             return JsonConvert.DeserializeObject<CourseSection>(data);
         }
 
@@ -65,8 +63,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     }}
             ", courseSectionInput(courseSection), courseSectionFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "createCourseSection");
+            string data = await _client.Mutation(mutation, "createCourseSection");
             return JsonConvert.DeserializeObject<CourseSection>(data);
         }
 
@@ -78,14 +75,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                 }}
             ", crn, courseSectionInput(courseSection), courseSectionFragment);
 
-            string resultString = await _client.Mutation(mutation);
-            var data = DataParser.ParseDataFromString(resultString, "updateCourseSection");
+            string data = await _client.Mutation(mutation, "updateCourseSection");
             return JsonConvert.DeserializeObject<CourseSection>(data);
         }
 
         public async Task<bool> DeleteCourseSectionAsync(int crn)
         {
-            await _client.Mutation($"deleteCourseSection(crn: {crn})");
+            await _client.Mutation($"deleteCourseSection(crn: {crn})", "deleteCourseSection");
             return true;
         }
 
