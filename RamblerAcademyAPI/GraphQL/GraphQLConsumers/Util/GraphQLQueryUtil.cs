@@ -9,7 +9,7 @@ namespace RamblerAcademyAPI.Util
 {
     public class GraphQLQueryUtil
     {
-        public static string InputObject(IEnumerable<FieldType> fields, Object obj)
+        public static string InputObject(IEnumerable<FieldType> fields, object obj)
         {
             JObject jObject = JObject.FromObject(obj);
             var properties = jObject.Properties();

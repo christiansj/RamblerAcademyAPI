@@ -32,7 +32,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
         public async Task<IEnumerable<Semester>> GetAllSemestersAsync()
         {
-            string query = string.Format("semesters{{ {0} }}");
+            string query = string.Format("semesters{{ {0} }}", semesterFragment);
 
             string resultString = await _client.Query(query);
             var data = DataParser.ParseDataFromString(resultString, "semesters");
@@ -42,11 +42,10 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Semester> GetSemesterByIdAsync(int semesterId)
         {
             string query = string.Format(@"
-                {{
                     semester(id: {0}){{
                         {1}
                     }}
-                }}", semesterId, semesterFragment);
+                ", semesterId, semesterFragment);
 
             string resultString = await _client.Query(query);
             var data = DataParser.ParseDataFromString(resultString, "semester");
