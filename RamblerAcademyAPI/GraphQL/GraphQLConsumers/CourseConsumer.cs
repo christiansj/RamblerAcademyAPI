@@ -109,8 +109,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         private string courseInput(Course course)
         {
             var fields = new CourseInputType().Fields;
-            JObject jObject = JObject.FromObject(course);
-            return GraphQLInputString.Create(fields, jObject);
+            return GraphQLQueryUtil.InputObject(fields, course);
         }
     }
 }

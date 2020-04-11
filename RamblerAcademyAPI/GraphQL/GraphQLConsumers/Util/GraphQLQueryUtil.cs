@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.Util
 {
-    public class GraphQLInputString
+    public class GraphQLQueryUtil
     {
-        public static string Create(IEnumerable<FieldType> fields, JObject jObject)
+        public static string InputObject(IEnumerable<FieldType> fields, Object obj)
         {
+            JObject jObject = JObject.FromObject(obj);
             var properties = jObject.Properties();
             string inputString = "";
 

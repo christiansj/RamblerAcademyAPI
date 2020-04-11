@@ -94,9 +94,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         private string semesterInput(Semester semester)
         {
             var fields = new SemesterInputType().Fields;
-            JObject jObject = JObject.FromObject(semester);
-
-            return GraphQLInputString.Create(fields, jObject);
+            return GraphQLQueryUtil.InputObject(fields, semester);
         }
     }
 }
