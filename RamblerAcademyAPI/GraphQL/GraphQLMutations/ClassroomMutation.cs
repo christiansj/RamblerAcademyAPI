@@ -40,7 +40,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
                     var dbClassroom = repository.GetClassroomById(classroomId);
                     if(dbClassroom == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find classroomm in db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
@@ -61,7 +61,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLMutations
 
                     if(classroom == null)
                     {
-                        context.Errors.Add(new ExecutionError("Couldn't find classroom in db"));
+                        context.Errors.Add(NotFoundError());
                         return null;
                     }
 
