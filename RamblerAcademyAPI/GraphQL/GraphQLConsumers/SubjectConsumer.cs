@@ -32,13 +32,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
 
         public async Task<List<Subject>> GetAllSubjectsAsync()
         {
-            string query = string.Format(@"
-                {{
-                    subjects{{
-                        {0}
-                    }}
-                }}
-            ", subjectFragment);
+            string query = string.Format("subjects{{ {0} }}", subjectFragment);
 
             string resultString = await _client.Query(query);
             var data = DataParser.ParseDataFromString(resultString, "subjects");
@@ -48,11 +42,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
         public async Task<Subject> GetSubjectByIdAsync(int id)
         {
             string query = string.Format(@"
-                {{
-                    subject(id: {0}){{  
+                   subject(id: {0}){{  
                         {1}
                     }}
-                }}
             ", id, subjectFragment);
 
             string resultString = await _client.Query(query);

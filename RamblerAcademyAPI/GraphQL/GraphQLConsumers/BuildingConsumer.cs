@@ -29,12 +29,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
         public async Task<List<Building>> GetAllBuildings()
         {
-            string query = string.Format(@"
-                {{
-                    buildings{{
-                        {0}
-                    }}
-                }}", buildingFragment);
+            string query = string.Format("buildings{{ {0} }} ", buildingFragment);
 
             string resultString = await _client.Query(query);
             var data = DataParser.ParseDataFromString(resultString, "buildings");
@@ -44,11 +39,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Building> GetBuildingById(int buildingId)
         {
             string query = string.Format(@"
-                {{
                     building(id: {0}){{
                         {1}
                     }}
-                }} 
             ", buildingId, buildingFragment);
          
             string resultString = await _client.Query(query);

@@ -29,13 +29,8 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
         public async Task<IEnumerable<Season>> GetAllSeasonsAsync()
         {
-            string query = string.Format(@"
-                {{
-                    seasons{{
-                        {0}
-                    }}
-                }}
-            ", seasonFragment);
+            string query = string.Format("seasons{{ {0} }}", 
+                            seasonFragment);
 
             string resultString = await _client.Query(query);
             var data = DataParser.ParseDataFromString(resultString, "seasons");
@@ -45,11 +40,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Season> GetSeasonByIdAsync(int seasonId)
         {
             string query = string.Format(@"
-                {{
                     season(id: {0}){{
                         {1}
                     }}
-                }}
             ", seasonId, seasonFragment);
         
             string resultString = await _client.Query(query);

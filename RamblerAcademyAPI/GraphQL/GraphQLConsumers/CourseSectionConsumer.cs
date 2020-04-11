@@ -5,11 +5,9 @@ using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System;
+
 using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
-using Newtonsoft.Json.Linq;
-
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -38,14 +36,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
         public async Task<IEnumerable<CourseSection>> GetAllCourseSectionsAsync()
         {
-            string query = string.Format(@"
-                {{
-                    courseSections{{
-                        {0}
-                    }}
-                }}
-            ", courseSectionFragment);
-
+            string query = string.Format("coursesSections{{ {0} }}", 
+                                courseSectionFragment);
+          
             string resultString = await _client.Query(query);
             var data = DataParser.ParseDataFromString(resultString, "courseSections");
             return JsonConvert.DeserializeObject<IEnumerable<CourseSection>>(data);
@@ -54,11 +47,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<CourseSection> GetCourseSectionByIdAsync(int crn)
         {
             string query = string.Format(@"
-                {{
                     courseSection(crn: {0}){{
                         {1}
                     }}
-                }}
             ", crn, courseSectionFragment);
 
             string resultString = await _client.Query(query);

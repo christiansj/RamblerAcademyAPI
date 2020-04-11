@@ -31,7 +31,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                 name
             }
             courseSections{
-                crn
+                courseReferenceNumber
                 semester{
                     id
                     year
@@ -45,14 +45,8 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
         public async Task<List<Course>> GetAllCoursesAsync()
         {
-            string query = string.Format(@"
-                {{
-                    courses{{
-                        {0}
-                    }}
-                }}
-            ", courseFragment);
-
+            string query = string.Format("courses{{ {0} }}", courseFragment);
+         
             string resultString = await _client.Query(query);
             var data = DataParser.ParseDataFromString(resultString, "courses");
             return JsonConvert.DeserializeObject<List<Course>>(data);
@@ -61,11 +55,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Course> GetCourseByIdAsync(int courseId)
         {
             string query = string.Format(@"
-                {{
                     course(id: {0}){{
                         {1}
                     }}
-                }}
             ", courseId, courseFragment);
             
             string resultString = await _client.Query(query);
