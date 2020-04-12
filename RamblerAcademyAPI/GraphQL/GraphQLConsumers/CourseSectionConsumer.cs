@@ -36,7 +36,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
         public async Task<IEnumerable<CourseSection>> GetAllCourseSectionsAsync()
         {
-            string query = string.Format("coursesSections{{ {0} }}", 
+            string query = string.Format("courseSections{{ {0} }}", 
                                 courseSectionFragment);
           
             string data = await _client.Query(query, "courseSections");
