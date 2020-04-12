@@ -17,6 +17,20 @@ namespace RamblerAcademyAPI.Repository
 
         public IEnumerable<DayTimeSlot> GetAll() => _context.DayTimeSlots.ToList();
 
+        public IEnumerable<DayTimeSlot> GetAllDayTimeSlotsPerDay(int dayId)
+        {
+            return _context.DayTimeSlots
+                .Where(dts => dts.DayId == dayId)
+                .ToList();
+        }
+
+        public IEnumerable<DayTimeSlot> GetAllDayTimeSlotsPerTimeSlot(int timeSlotId)
+        {
+            return _context.DayTimeSlots
+                .Where(dts => dts.TimeSlotId == timeSlotId)
+                .ToList();
+        }
+
         public DayTimeSlot GetDayTimeSlotByIds(int dayId, int timeSlotId)
         {
             return _context.DayTimeSlots.FirstOrDefault(dts => dts.DayId == dayId && dts.TimeSlotId == timeSlotId);
