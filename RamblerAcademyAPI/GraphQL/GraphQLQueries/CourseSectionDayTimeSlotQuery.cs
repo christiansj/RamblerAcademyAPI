@@ -14,6 +14,32 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
                 resolve: context => repository.GetAll()
             );
 
+            // courseSectionDayTimeSlotsPerDay(dayId)
+            Field<ListGraphType<CourseSectionDayTimeSlotType>>(
+                "courseSectionDayTimeSlotsPerDay",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "dayId" }
+                ),
+                resolve: context =>
+                {
+                    int dayId = context.GetArgument<int>("dayId");
+                    return repository.GetAllCourseSectionDayTimeSlotsPerDay(dayId);
+                }
+            );
+
+            // courseSectionDayTimeSlot(crn)
+            Field <ListGraphType<CourseSectionDayTimeSlotType>>(
+                "courseSectionDayTimeSlotsPerCourseSection",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "crn"}
+                ),
+                resolve: context =>
+                {
+                    int crn = context.GetArgument<int>("crn");
+                    return repository.GetAllCourseSectionDayTimeSlotsPerCourseSection(crn);
+                }
+            );
+
             // courseSectionDayTimeSlot(crn, dayId, timeSlotId)
             Field<CourseSectionDayTimeSlotType>(
                 "courseSectionDayTimeSlot",

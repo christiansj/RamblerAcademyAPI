@@ -29,6 +29,13 @@ namespace RamblerAcademyAPI.Repository
                 .Where(csdt => csdt.CourseReferenceNumber == crn)
                 .ToList();
         }
+
+        public IEnumerable<CourseSectionDayTimeSlot> GetAllCourseSectionDayTimeSlotsPerDay(int dayId)
+        {
+            return _context.CourseSectionDayTimeSlots
+                .Where(csdt => csdt.DayId == dayId)
+                .ToList();
+        }
         public CourseSectionDayTimeSlot CreateCourseSectionDayTimeSlot(CourseSectionDayTimeSlot courseSectionDayTimeSlot)
         {
             _context.Add(courseSectionDayTimeSlot);
