@@ -17,6 +17,13 @@ namespace RamblerAcademyAPI.Repository
 
         public IEnumerable<User> GetAll() => _context.Users.ToList();
 
+        public IEnumerable<User> GetAllUsersPerRole(int roleId)
+        {
+            return _context.Users
+                .Where(u => u.RoleId == roleId)
+                .ToList();
+        }
+
         public User GetUserById(long id) => _context.Users.FirstOrDefault(u => u.Id == id);
 
         public User CreateUser(User user)
