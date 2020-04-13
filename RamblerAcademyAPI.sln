@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RamblerAcademyAPI", "RamblerAcademyAPI\RamblerAcademyAPI.csproj", "{4A0EBDD0-F69A-42D4-B076-B6D5DB4A40CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RamblerAcademyAPI", "RamblerAcademyAPI\RamblerAcademyAPI.csproj", "{4A0EBDD0-F69A-42D4-B076-B6D5DB4A40CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RamblerAcademyAPI-Test", "RamberAcademyAPI-Test\RamblerAcademyAPI-Test.csproj", "{B4C0AF74-5959-43B5-8F9D-7F5977D85A9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4A0EBDD0-F69A-42D4-B076-B6D5DB4A40CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A0EBDD0-F69A-42D4-B076-B6D5DB4A40CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A0EBDD0-F69A-42D4-B076-B6D5DB4A40CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C0AF74-5959-43B5-8F9D-7F5977D85A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C0AF74-5959-43B5-8F9D-7F5977D85A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C0AF74-5959-43B5-8F9D-7F5977D85A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C0AF74-5959-43B5-8F9D-7F5977D85A9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
