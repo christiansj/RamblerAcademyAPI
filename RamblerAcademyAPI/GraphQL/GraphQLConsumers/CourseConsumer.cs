@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
-
+using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -14,9 +14,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
     {
         private readonly GraphQLClient _client;
 
-        public CourseConsumer(GraphQLClient client)
+        public CourseConsumer(IHttpClientFactory factory)
         {
-            _client = client;
+            _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
         }
 
         private const string courseFragment = @"

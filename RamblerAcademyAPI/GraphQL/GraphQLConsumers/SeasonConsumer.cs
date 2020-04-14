@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
 using System;
+using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -22,9 +23,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                 endDate
             }
         ";
-        public SeasonConsumer(GraphQLClient client)
+        public SeasonConsumer(IHttpClientFactory factory)
         {
-            _client = client;
+            _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
         }
 
         public async Task<IEnumerable<Season>> GetAllSeasonsAsync()

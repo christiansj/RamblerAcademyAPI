@@ -8,6 +8,7 @@ using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using Newtonsoft.Json.Linq;
 using RamblerAcademyAPI.Util;
+using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -25,9 +26,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             }
         ";
     
-        public SemesterConsumer(GraphQLClient client)
+        public SemesterConsumer(IHttpClientFactory factory)
         {
-            _client = client;
+            _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
         }
 
         public async Task<IEnumerable<Semester>> GetAllSemestersAsync()

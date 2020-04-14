@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
-
+using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
 {
@@ -25,9 +25,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
                 name
             }
         ";
-        public SubjectConsumer(GraphQLClient client)
+        public SubjectConsumer(IHttpClientFactory factory)
         {
-            _client = client;
+            _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
         }
 
         public async Task<List<Subject>> GetAllSubjectsAsync()

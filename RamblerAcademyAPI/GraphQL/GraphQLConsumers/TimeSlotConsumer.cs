@@ -8,6 +8,7 @@ using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using System;
 using Newtonsoft.Json.Converters;
+using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -18,9 +19,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             id startTime endTime  
         ";
         private readonly JsonSerializerSettings jsonSerializerSettings;
-        public TimeSlotConsumer(GraphQLClient client)
+        public TimeSlotConsumer(IHttpClientFactory factory)
         {
-            _client = client;
+            _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
             jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.Converters.Add(new IsoDateTimeConverter());
         }

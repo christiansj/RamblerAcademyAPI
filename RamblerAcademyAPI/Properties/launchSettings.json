@@ -20,7 +20,7 @@
     "RamblerAcademyAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "ui/playground",
+      "launchUrl": "api/building",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

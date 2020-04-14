@@ -47,7 +47,7 @@ namespace RamblerAcademyAPI
 
             services.AddGraphQL(o => { o.ExposeExceptions = true; })
                 .AddGraphTypes(ServiceLifetime.Scoped);
-
+            services.AddHttpClient("graphQLClient", hc => { hc.BaseAddress = new System.Uri("https://localhost:5001/graphql"); });
             services.AddScoped<AppSchema>();
             services.AddScoped(x => new GraphQLClient(new HttpClient()));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

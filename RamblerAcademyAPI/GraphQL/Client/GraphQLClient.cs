@@ -31,7 +31,7 @@ namespace RamblerAcademyAPI.GraphQL.Client
 
         private async Task<string> Request(string requestString, string requestName)
         {
-            var response = await _client.GetAsync($"{GraphqlAddress}?query={requestString}");
+            var response = await _client.GetAsync($"?query={requestString}");
             string contentString = await response.Content.ReadAsStringAsync();
 
             var errors = JObject.Parse(contentString)["errors"];

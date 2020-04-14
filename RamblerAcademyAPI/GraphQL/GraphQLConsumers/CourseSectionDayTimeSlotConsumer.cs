@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
+using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -15,9 +16,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         private readonly string fragment = @"
                 courseReferenceNumber day { id name } courseSection{ course { name } }
             ";
-        public CourseSectionDayTimeSlotConsumer(GraphQLClient client)
+        public CourseSectionDayTimeSlotConsumer(IHttpClientFactory factory)
         {
-            _client = client;
+            _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
         }
 
         public async Task<IEnumerable<CourseSectionDayTimeSlot>> GetAllPerCourseSectionAsync(int crn)

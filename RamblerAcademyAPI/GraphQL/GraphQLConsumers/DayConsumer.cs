@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
+using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -15,9 +16,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             id
             name
         ";
-        public DayConsumer(GraphQLClient client)
+        public DayConsumer(IHttpClientFactory factory)
         {
-            _client = client;
+            _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
         }
 
         public async Task<IEnumerable<Day>> GetAllDaysAsync()

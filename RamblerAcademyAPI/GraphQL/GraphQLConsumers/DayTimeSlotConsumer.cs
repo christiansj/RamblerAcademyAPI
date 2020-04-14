@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
-
+using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
@@ -16,9 +16,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         private readonly string dayTimeSlotFragment = @"
             day { id name } timeSlot{ id startTime endTime }
         ";
-        public DayTimeSlotConsumer(GraphQLClient client)
+        public DayTimeSlotConsumer(IHttpClientFactory factory)
         {
-            _client = client;
+            _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
         }
 
         // GET dayTimeSlots/dayId/{dayId}
