@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using RamberAcademyAPI_Test.Data;
 using RamblerAcademyAPI.Models;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace RamberAcademyAPI_Test
 {
     public class BuildingGraphQLTests : GraphQLIntegrationTest<Building>
     {
-        private readonly ITestOutputHelper output;
+        
         private readonly int _TestDataCnt;
 
         public BuildingGraphQLTests(ITestOutputHelper output) :base(output)
@@ -49,13 +50,16 @@ namespace RamberAcademyAPI_Test
             int expectedBuildingCnt = _TestDataCnt + 1;
             Building expectedNewBuilding = new Building(expectedBuildingCnt, "New Test Building");
 
-            string data = await MutationRequest(mutation, "createBuilding");
-            Building newBuilding = JsonConvert.DeserializeObject<Building>(data);
+            Task<Building> newBuilding = MutationRequest(mutation, "createBuilding");
 
-            AssertObjectsAreEqual(newBuilding, expectedNewBuilding);
-            AssertObjectsAreEqual(await GetBuildingRequestAsync(expectedBuildingCnt), expectedNewBuilding);
-            await AssertBuildingCntAsync(expectedBuildingCnt);
+            if (newBuilding.IsCompleted)
+            {
+                AssertObjectsAreEqual(expectedNewBuilding, newBuilding.Result);
+                await AssertBuildingCntAsync(_TestDataCnt + 1);
+            }
+           
         }
+
 
         // updateBuilding(buildingId, building)
         [Fact]
@@ -65,26 +69,26 @@ namespace RamberAcademyAPI_Test
             const string buildingInput = "{name: \"Updated Test Building 2\"}";
             string mutation = @$"updateBuilding(buildingId: {buildingId}, building: {buildingInput})
                                 {{id name}}";
-            Building expectedNewBuilding = new Building(2, "Updated Test Building 2");
 
-            string data = await MutationRequest(mutation, "updateBuilding");
-            Building newBuilding = JsonConvert.DeserializeObject<Building>(data);
+            Building expectedNewBuilding = new Building(2, "Updated Test Building 2");
+            Building newBuilding = await MutationRequest(mutation, "updateBuilding");
 
             AssertObjectsAreEqual(newBuilding, expectedNewBuilding);
-            await AssertBuildingCntAsync(_TestDataCnt);
         }
 
         // deleteBuilding(buildingId)
         [Fact]
-        public async void buildingDeleteMutationTest()
+        public async void BuildingDeleteMutationTest()
         {
             const int buildingId = 1;
-            string mutation = $"deleteBuilding(buildingId: {buildingId})";
+            string mutation = $"mutation{{deleteBuilding(buildingId: {buildingId})}}";
 
-            string data = await MutationRequest(mutation, "deleteBuilding");
+            Task deleteRequest =  GraphQLRequest(mutation, "deleteBuilding");
 
-            await AssertBuildingCntAsync(_TestDataCnt-1);
-            Assert.Null(await GetBuildingRequestAsync(buildingId));
+            if (deleteRequest.IsCompleted)
+            {
+                await AssertBuildingCntAsync(_TestDataCnt - 1);
+            }
         }
 
         private async Task<Building> GetBuildingRequestAsync(int buildingId)

@@ -94,16 +94,17 @@ namespace RamberAcademyAPI_Test
             return JsonConvert.DeserializeObject<List<T>>(data);
         }
 
-        protected async Task<string> MutationRequest(string mutation, string mutationName)
+        protected async Task<T> MutationRequest(string mutation, string mutationName)
         {
-            return await GraphQLRequest($"mutation{{{mutation}}}", mutationName);
+            string data = await GraphQLRequest($"mutation{{{mutation}}}", mutationName);
+            return JsonConvert.DeserializeObject<T>(data);
         }
 
-        private async Task<string> GraphQLRequest(string requestString, string requestName)
+        protected async Task<string> GraphQLRequest(string requestString, string requestName)
         {
             var response = await _client.GetAsync($"/graphql?query={requestString}");
             string data = await ParseData(response, requestName);
-            _output.WriteLine($"{requestName} resulsts:\n{data}");
+            _output.WriteLine($"{requestName} results:\n{data}");
             return data;
         }
         private async Task<string> ParseData(HttpResponseMessage message, string requestName)
