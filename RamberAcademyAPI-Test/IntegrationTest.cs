@@ -21,6 +21,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RamberAcademyAPI_Test
 {
@@ -80,9 +81,29 @@ namespace RamberAcademyAPI_Test
             
         }   
 
-        protected async Task<HttpResponseMessage> QueryRequest(string query)
+        protected async Task<string> QueryRequest(string query, string queryName)
         {
-            return await _client.GetAsync($"/graphql?query={{{query}}}");
+            var response = await _client.GetAsync($"/graphql?query={{{query}}}");
+            
+            return await ParseData(response, queryName);
+        }
+
+        protected async Task<string> MutationRequest(string mutation, string mutationName)
+        {
+            var response = await _client.GetAsync($"/graphql?query=mutation{{{mutation}}}");
+            return await ParseData(response, mutationName);
+        }
+
+        protected async Task<string> ParseData(HttpResponseMessage message, string requestName)
+        {
+            string contentString = await message.Content.ReadAsStringAsync();
+            var errors = JObject.Parse(contentString)["errors"];
+            if (errors != null)
+            {
+                string error = errors[0]["message"].ToString();
+                Assert.True(false, error);
+            }
+            return JObject.Parse(contentString)["data"][requestName].ToString();
         }
 
         protected static void AssertObjectsAreEqual(object obj1, object obj2)
