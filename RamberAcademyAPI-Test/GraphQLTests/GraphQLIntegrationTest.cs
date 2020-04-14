@@ -22,14 +22,15 @@ using System.Threading.Tasks;
 using Xunit;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace RamberAcademyAPI_Test
 {
-    public class IntegrationTest
+    public class GraphQLIntegrationTest<T>
     {
         protected HttpClient _client;
         
-        protected IntegrationTest()
+        protected GraphQLIntegrationTest()
         {
 
             var appFactory = new WebApplicationFactory<Startup>()
@@ -81,11 +82,18 @@ namespace RamberAcademyAPI_Test
             
         }   
 
-        protected async Task<string> QueryRequest(string query, string queryName)
+        protected async Task<T> SingleQueryRequest(string query, string queryName)
         {
             var response = await _client.GetAsync($"/graphql?query={{{query}}}");
-            
-            return await ParseData(response, queryName);
+            string data = await ParseData(response, queryName);
+            return JsonConvert.DeserializeObject<T>(data);
+        }
+
+        protected async Task<List<T>> ListQueryRequest(string query, string queryName)
+        {
+            var response = await _client.GetAsync($"/graphql?query={{{query}}}");
+            string data = await ParseData(response, queryName);
+            return JsonConvert.DeserializeObject<List<T>>(data);
         }
 
         protected async Task<string> MutationRequest(string mutation, string mutationName)

@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test
 {
-    public class BuildingQueryTests : IntegrationTest
+    public class BuildingQueryTests : GraphQLIntegrationTest<Building>
     {
         private readonly ITestOutputHelper output;
         private readonly int _TestDataCnt;
@@ -19,15 +19,17 @@ namespace RamberAcademyAPI_Test
             _TestDataCnt = TestData.Buildings().Count;
         }
         
+        // buildings
         [Fact]
         public async void BuildingsQueryTest()
         { 
-            List<Building> buildings = await GetBuildingsRequestAsync();
+            List<Building> buildings = await ListQueryRequest("buildings{id name}", "buildings");
             Assert.Equal(TestData.Buildings().Count, buildings.Count);
 
             AssertObjectsAreEqual(TestData.Buildings(), buildings);
         }
 
+        // building(id)
         [Fact]
         public async void BuildingQueryTest()
         {
@@ -39,6 +41,7 @@ namespace RamberAcademyAPI_Test
             AssertObjectsAreEqual(building, expectedBuilding);
         }
 
+        // createBuilding(building)
         [Fact]
         public async void BuildingCreateMutationTest()
         {
@@ -55,6 +58,7 @@ namespace RamberAcademyAPI_Test
             await AssertBuildingCntAsync(expectedBuildingCnt);
         }
 
+        // updateBuilding(buildingId, building)
         [Fact]
         public async void BuilidingUpdateMutationTest()
         {
@@ -71,6 +75,7 @@ namespace RamberAcademyAPI_Test
             await AssertBuildingCntAsync(_TestDataCnt);
         }
 
+        // deleteBuilding(buildingId)
         [Fact]
         public async void buildingDeleteMutationTest()
         {
@@ -83,22 +88,15 @@ namespace RamberAcademyAPI_Test
             Assert.Null(await GetBuildingRequestAsync(buildingId));
         }
 
-        private async Task<List<Building>> GetBuildingsRequestAsync()
-        {
-            string data = await QueryRequest("buildings{id name}", "buildings");
-            output.WriteLine(data);
-            return JsonConvert.DeserializeObject<List<Building>>(data);
-        }
-
         private async Task<Building> GetBuildingRequestAsync(int buildingId)
         {
-            string data = await QueryRequest($"building(id: {buildingId}){{id name}}", "building");
-            return JsonConvert.DeserializeObject<Building>(data);
+            return await SingleQueryRequest($"building(id: {buildingId}){{id name}}", "building");
         }
 
+        // assert: building count in db == {expectedCnt}
         private async Task<string> AssertBuildingCntAsync(int expectedCnt)
         {
-            List<Building> buildings = await GetBuildingsRequestAsync();
+            List<Building> buildings = await ListQueryRequest("buildings{id name}", "buildings");
             Assert.Equal(expectedCnt, buildings.Count);
             return null;
         }
