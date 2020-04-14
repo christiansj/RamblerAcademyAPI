@@ -50,14 +50,14 @@ namespace RamberAcademyAPI_Test
             int expectedBuildingCnt = _TestDataCnt + 1;
             Building expectedNewBuilding = new Building(expectedBuildingCnt, "New Test Building");
 
-            Task<Building> newBuilding = MutationRequest(mutation, "createBuilding");
+            var createTask =  MutationRequest(mutation, "createBuilding");
+            await createTask;
 
-            if (newBuilding.IsCompleted)
+            if (createTask.IsCompleted)
             {
-                AssertObjectsAreEqual(expectedNewBuilding, newBuilding.Result);
-                await AssertBuildingCntAsync(_TestDataCnt + 1);
+                AssertObjectsAreEqual(expectedNewBuilding, createTask.Result);
+                await AssertBuildingCntAsync(_TestDataCnt+1);
             }
-           
         }
 
 
@@ -83,11 +83,11 @@ namespace RamberAcademyAPI_Test
             const int buildingId = 1;
             string mutation = $"mutation{{deleteBuilding(buildingId: {buildingId})}}";
 
-            Task deleteRequest =  GraphQLRequest(mutation, "deleteBuilding");
-
-            if (deleteRequest.IsCompleted)
+            var deleteTask =  GraphQLRequest(mutation, "deleteBuilding");
+            await deleteTask;
+            if (deleteTask.IsCompleted)
             {
-                await AssertBuildingCntAsync(_TestDataCnt - 1);
+                await AssertBuildingCntAsync(_TestDataCnt-1);
             }
         }
 
