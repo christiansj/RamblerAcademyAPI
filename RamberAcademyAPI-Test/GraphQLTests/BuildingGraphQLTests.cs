@@ -8,14 +8,13 @@ using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test
 {
-    public class BuildingQueryTests : GraphQLIntegrationTest<Building>
+    public class BuildingGraphQLTests : GraphQLIntegrationTest<Building>
     {
         private readonly ITestOutputHelper output;
         private readonly int _TestDataCnt;
 
-        public BuildingQueryTests(ITestOutputHelper output)
+        public BuildingGraphQLTests(ITestOutputHelper output) :base(output)
         {
-            this.output = output;
             _TestDataCnt = TestData.Buildings().Count;
         }
         

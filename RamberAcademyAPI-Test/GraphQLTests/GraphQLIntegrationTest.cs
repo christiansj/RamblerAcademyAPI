@@ -23,16 +23,17 @@ using Xunit;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test
 {
     public class GraphQLIntegrationTest<T>
     {
         protected HttpClient _client;
-        
-        protected GraphQLIntegrationTest()
+        protected ITestOutputHelper _output;
+        protected GraphQLIntegrationTest(ITestOutputHelper output)
         {
-
+            _output = output;
             var appFactory = new WebApplicationFactory<Startup>()
                 .WithWebHostBuilder(builder =>
                 {
@@ -72,7 +73,6 @@ namespace RamberAcademyAPI_Test
                             }
                         }
                     });
-                    //
                 });
 
            _client = appFactory.CreateClient(new WebApplicationFactoryClientOptions
@@ -84,25 +84,29 @@ namespace RamberAcademyAPI_Test
 
         protected async Task<T> SingleQueryRequest(string query, string queryName)
         {
-            var response = await _client.GetAsync($"/graphql?query={{{query}}}");
-            string data = await ParseData(response, queryName);
+            string data = await GraphQLRequest($"{{{query}}}", queryName);
             return JsonConvert.DeserializeObject<T>(data);
         }
 
         protected async Task<List<T>> ListQueryRequest(string query, string queryName)
         {
-            var response = await _client.GetAsync($"/graphql?query={{{query}}}");
-            string data = await ParseData(response, queryName);
+            string data = await GraphQLRequest($"{{{query}}}", queryName);
             return JsonConvert.DeserializeObject<List<T>>(data);
         }
 
         protected async Task<string> MutationRequest(string mutation, string mutationName)
         {
-            var response = await _client.GetAsync($"/graphql?query=mutation{{{mutation}}}");
-            return await ParseData(response, mutationName);
+            return await GraphQLRequest($"mutation{{{mutation}}}", mutationName);
         }
 
-        protected async Task<string> ParseData(HttpResponseMessage message, string requestName)
+        private async Task<string> GraphQLRequest(string requestString, string requestName)
+        {
+            var response = await _client.GetAsync($"/graphql?query={requestString}");
+            string data = await ParseData(response, requestName);
+            _output.WriteLine($"{requestName} resulsts:\n{data}");
+            return data;
+        }
+        private async Task<string> ParseData(HttpResponseMessage message, string requestName)
         {
             string contentString = await message.Content.ReadAsStringAsync();
             var errors = JObject.Parse(contentString)["errors"];
