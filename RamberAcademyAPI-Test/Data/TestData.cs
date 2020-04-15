@@ -37,5 +37,14 @@ namespace RamberAcademyAPI_Test.Data
                 new Course(4, 200, "Test English Course 2", 2)
             };
         }
+
+        public static List<Season> Seasons()
+        {
+            return new List<Season>
+            {
+                new Season(1, "Test Season 1"),
+                new Season(2, "Test Season 2")
+            };
+        }
     }
 }
