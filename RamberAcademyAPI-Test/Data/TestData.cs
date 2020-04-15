@@ -89,5 +89,16 @@ namespace RamberAcademyAPI_Test.Data
                 new Role(2, "Test Role 2")
             };
         }
+
+        public static List<User> Users()
+        {
+            return new List<User>
+            {
+                new User(1, "ajf134", "Test", "User", "testUser@example.com", "password", 1),
+                new User(2, "exc144", "Rest", "Wser", "testUser2@example.com", "password", 1),
+                new User(3, "foe344", "Test", "User", "testUser3@example.com", "password", 1),
+                new User(4, "fje894", "Test f", "User z", "testUser4@example.com", "password", 1),
+            };
+        }
     }
 }

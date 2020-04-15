@@ -39,6 +39,9 @@ namespace RamberAcademyAPI_Test
             db.Roles.RemoveRange(db.Roles);
             db.Roles.AddRange(TestData.Roles());
 
+            db.Users.RemoveRange(db.Users);
+            db.Users.AddRange(TestData.Users());
+
             db.SaveChanges();
         }
 
