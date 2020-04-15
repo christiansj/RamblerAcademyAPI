@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
+
 namespace RamberAcademyAPI_Test
 {
+    [Collection("Building GraphQL Tests")]
     public class BuildingGraphQLTests : GraphQLIntegrationTest<Building>
     {
         
@@ -51,13 +53,10 @@ namespace RamberAcademyAPI_Test
             Building expectedNewBuilding = new Building(expectedBuildingCnt, "New Test Building");
 
             var createTask =  MutationRequest(mutation, "createBuilding");
-            await createTask;
-
-            if (createTask.IsCompleted)
-            {
-                AssertObjectsAreEqual(expectedNewBuilding, createTask.Result);
-                await AssertBuildingCntAsync(_TestDataCnt+1);
-            }
+            createTask.Wait();
+          
+            AssertObjectsAreEqual(expectedNewBuilding, createTask.Result);
+            await AssertBuildingCntAsync(_TestDataCnt + 1);
         }
 
 
@@ -97,11 +96,10 @@ namespace RamberAcademyAPI_Test
         }
 
         // assert: building count in db == {expectedCnt}
-        private async Task<string> AssertBuildingCntAsync(int expectedCnt)
+        private async Task AssertBuildingCntAsync(int expectedCnt)
         {
             List<Building> buildings = await ListQueryRequest("buildings{id name}", "buildings");
             Assert.Equal(expectedCnt, buildings.Count);
-            return null;
         }
     }
 }

@@ -25,8 +25,10 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using Xunit.Abstractions;
 
+[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
 namespace RamberAcademyAPI_Test
 {
+   
     public class GraphQLIntegrationTest<T>
     {
         protected HttpClient _client;
