@@ -56,5 +56,19 @@ namespace RamberAcademyAPI_Test.Data
                 new Semester(3, 2018, new DateTime(2018, 8, 26), new DateTime(2018, 12, 18), 3)
             };
         }
+
+        public static List<Classroom> Classrooms()
+        {
+            return new List<Classroom>
+            {
+                new Classroom(1, 1, 2, 11, 1),
+                new Classroom(2, 1, 3, 22, 1),
+                new Classroom(3, 1, 4, 32, 1),
+
+                new Classroom(4, 1, 1, 1, 2),
+                new Classroom(5, 1, 2, 24, 2),
+                new Classroom(6, 1, 3, 34, 2),
+            };
+        }
     }
 }
