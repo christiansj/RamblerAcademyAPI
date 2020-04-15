@@ -25,5 +25,17 @@ namespace RamberAcademyAPI_Test.Data
                 new Subject(3, "Test History", "HIS")
             };
         }
+
+        public static List<Course> Courses()
+        {
+            return new List<Course>
+            {
+                new Course(1, 100, "Test Math Course 1", 1),
+                new Course(2, 200, "Test Math Course 2", 1),
+
+                new Course(3, 100, "Test English Course 1", 2),
+                new Course(4, 200, "Test English Course 2", 2)
+            };
+        }
     }
 }
