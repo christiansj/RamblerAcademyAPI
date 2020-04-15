@@ -46,5 +46,15 @@ namespace RamberAcademyAPI_Test.Data
                 new Season(2, "Test Season 2")
             };
         }
+
+        public static List<Semester> Semesters()
+        {
+            return new List<Semester>
+            {
+                new Semester(1, 2018, new DateTime(2018, 1, 8), new DateTime(2018, 5, 11), 1),
+                new Semester(2, 2018, new DateTime(2018, 5, 16), new DateTime(2018, 8, 19), 2),
+                new Semester(3, 2018, new DateTime(2018, 8, 26), new DateTime(2018, 12, 18), 3)
+            };
+        }
     }
 }
