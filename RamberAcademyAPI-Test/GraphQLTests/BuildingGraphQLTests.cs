@@ -83,11 +83,9 @@ namespace RamberAcademyAPI_Test
             string mutation = $"mutation{{deleteBuilding(buildingId: {buildingId})}}";
 
             var deleteTask =  GraphQLRequest(mutation, "deleteBuilding");
-            await deleteTask;
-            if (deleteTask.IsCompleted)
-            {
-                await AssertBuildingCntAsync(_TestDataCnt-1);
-            }
+            deleteTask.Wait();
+
+            await AssertBuildingCntAsync(_TestDataCnt - 1);
         }
 
         private async Task<Building> GetBuildingRequestAsync(int buildingId)

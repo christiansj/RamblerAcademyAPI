@@ -15,5 +15,15 @@ namespace RamberAcademyAPI_Test.Data
                 new Building(2, "Test Building 2")
             };
         }
+
+        public static List<Subject> Subjects()
+        {
+            return new List<Subject>
+            {
+                new Subject(1, "Test Math", "MAT"),
+                new Subject(2, "Test English", "ENG"),
+                new Subject(3, "Test History", "HIS")
+            };
+        }
     }
 }
