@@ -80,5 +80,14 @@ namespace RamberAcademyAPI_Test.Data
                 new Classroom(6, 1, 3, 34, 2),
             };
         }
+
+        public static List<Role> Roles()
+        {
+            return new List<Role>
+            {
+                new Role(1, "Test Role 1"),
+                new Role(2, "Test Role 2")
+            };
+        }
     }
 }
