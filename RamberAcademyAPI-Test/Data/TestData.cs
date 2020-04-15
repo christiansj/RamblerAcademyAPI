@@ -47,6 +47,16 @@ namespace RamberAcademyAPI_Test.Data
             };
         }
 
+        public static List<Day> Days()
+        {
+            return new List<Day>
+            {
+                new Day(1, "Test Day 1"),
+                new Day(2, "Test Day 2"),
+                new Day(3, "Test Day 3")
+            };
+        }
+
         public static List<Semester> Semesters()
         {
             return new List<Semester>

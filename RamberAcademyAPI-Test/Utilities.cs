@@ -21,6 +21,9 @@ namespace RamberAcademyAPI_Test
             db.Classrooms.RemoveRange(db.Classrooms);
             db.Classrooms.AddRange(TestData.Classrooms());
 
+            db.Days.RemoveRange(db.Days);
+            db.Days.AddRange(TestData.Days());
+
             db.Seasons.RemoveRange(db.Seasons);
             db.Seasons.AddRange(TestData.Seasons());
 
