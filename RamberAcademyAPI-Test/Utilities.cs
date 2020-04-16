@@ -44,8 +44,6 @@ namespace RamberAcademyAPI_Test
             db.Users.RemoveRange(db.Users);
             db.Users.AddRange(TestData.Users());
 
-           
-
             await db.SaveChangesAsync();
         }
 
@@ -63,6 +61,10 @@ namespace RamberAcademyAPI_Test
 
             db.DayTimeSlots.RemoveRange(db.DayTimeSlots);
             db.DayTimeSlots.AddRange(TestData.DayTimeSlots());
+
+            await db.SaveChangesAsync();
+            db.CourseSectionDayTimeSlots.RemoveRange(db.CourseSectionDayTimeSlots);
+            db.CourseSectionDayTimeSlots.AddRange(TestData.CourseSectionDayTimeSlots());
 
             await db.SaveChangesAsync();
         }

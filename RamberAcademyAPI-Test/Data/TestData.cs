@@ -143,5 +143,15 @@ namespace RamberAcademyAPI_Test.Data
                 new DayTimeSlot(3, 2)
             };
         }
+
+        public static List<CourseSectionDayTimeSlot> CourseSectionDayTimeSlots()
+        {
+            return new List<CourseSectionDayTimeSlot>
+            {
+                new CourseSectionDayTimeSlot(57894, 1, 1),
+                new CourseSectionDayTimeSlot(47593, 3, 2),
+                new CourseSectionDayTimeSlot(54758, 2, 3)
+            };
+        }
     }
 }
