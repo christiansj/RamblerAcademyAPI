@@ -41,7 +41,7 @@ namespace RamberAcademyAPI_Test
                 {
                     //builder.UseUrls("http://localhost:8000/");
                     builder.UseEnvironment("Test");
-                    builder.ConfigureServices(services =>
+                    builder.ConfigureServices(async services =>
                     {
                         var descriptor = services.SingleOrDefault(
                             d=> d.ServiceType == typeof(DbContextOptions<RamblerAcademyContext>));
@@ -67,7 +67,8 @@ namespace RamberAcademyAPI_Test
 
                             try
                             {
-                                Utilities.IntializeDbForTests(db);
+                                await Utilities.IntializeDbForTests(db);
+                                await Utilities.AddMoreData(db);
                             } catch (Exception ex)
                             {
                                 logger.LogError(ex, "An Error ocurred seeding the the" +
@@ -121,9 +122,16 @@ namespace RamberAcademyAPI_Test
             return JObject.Parse(contentString)["data"][requestName].ToString();
         }
 
-        protected static void AssertObjectsAreEqual(object obj1, object obj2)
+        protected void AssertObjectsAreEqual(object obj1, object obj2)
         {
             Assert.Equal(JsonConvert.SerializeObject(obj1), JsonConvert.SerializeObject(obj2));
+        }
+
+        protected async Task AssertRecordCount(int expectedCount, string queryName, string fragment)
+        {
+            List<T> records = await ListQueryRequest($"{queryName}{{{fragment}}}", queryName);
+
+            Assert.Equal(expectedCount, records.Count);
         }
     }
 }
