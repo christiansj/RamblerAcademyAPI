@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UserDefinedExecptions\**" />
+    <Content Remove="UserDefinedExecptions\**" />
+    <EmbeddedResource Remove="UserDefinedExecptions\**" />
+    <None Remove="UserDefinedExecptions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="GraphQL\Client\RestSharpClient.cs" />
     <Compile Remove="Migrations\20200401231906_Test.cs" />
     <Compile Remove="Migrations\20200401231906_Test.Designer.cs" />
     <Compile Remove="Migrations\20200401232913_Test.cs" />
