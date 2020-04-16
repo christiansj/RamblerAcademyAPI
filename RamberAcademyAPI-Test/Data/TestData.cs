@@ -110,5 +110,16 @@ namespace RamberAcademyAPI_Test.Data
                 new CourseSection(47593, 1, 1, 1, 2)
             };
         }
+
+        public static List<Enrollment> Enrollments()
+        {
+            return new List<Enrollment>
+            {
+                new Enrollment(57894, 1),
+                new Enrollment(47593, 1),
+
+                new Enrollment(54758, 2)
+            };
+        }
     }
 }
