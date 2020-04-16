@@ -131,5 +131,17 @@ namespace RamberAcademyAPI_Test.Data
                 new TimeSlot(3, new TimeSpan(11, 0, 0), new TimeSpan(11, 50, 0))
             };
         }
+
+        public static List<DayTimeSlot> DayTimeSlots()
+        {
+            return new List<DayTimeSlot>
+            {
+                new DayTimeSlot(1,1),
+                
+                new DayTimeSlot(2,3),
+
+                new DayTimeSlot(3, 2)
+            };
+        }
     }
 }

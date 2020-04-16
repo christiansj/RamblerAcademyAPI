@@ -61,6 +61,9 @@ namespace RamberAcademyAPI_Test
             db.TimeSlots.RemoveRange(db.TimeSlots);
             db.TimeSlots.AddRange(TestData.TimeSlots());
 
+            db.DayTimeSlots.RemoveRange(db.DayTimeSlots);
+            db.DayTimeSlots.AddRange(TestData.DayTimeSlots());
+
             await db.SaveChangesAsync();
         }
 

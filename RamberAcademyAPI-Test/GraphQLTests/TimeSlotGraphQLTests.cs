@@ -11,6 +11,7 @@ using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test.GraphQLTests
 {
+    [Collection("TimeSlot GraphQL Tests")]
     public class TimeSlotGraphQLTests : GraphQLIntegrationTest<TimeSlot>
     {
         private readonly int _TestDataCnt;
