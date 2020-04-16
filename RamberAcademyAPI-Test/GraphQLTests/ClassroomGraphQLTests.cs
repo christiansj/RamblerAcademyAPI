@@ -51,7 +51,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             var createTask = MutationRequest(mutation, "createClassroom");
             createTask.Wait();
 
-            await AssertClassromCountAsync(_TestDataCnt + 1);
+            await AssertRecordCount(_TestDataCnt + 1, "classrooms", fragment);
             AssertObjectsAreEqual(expectedClassroom, createTask.Result);
             AssertObjectsAreEqual(expectedClassroom, await GetClassroomAsync(expectedClassroom.Id));
         }
@@ -80,7 +80,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             var deleteTask = GraphQLRequest(mutation, "deleteClassroom");
             deleteTask.Wait();
 
-            await AssertClassromCountAsync(_TestDataCnt - 1);
+            await AssertRecordCount(_TestDataCnt - 1, "classrooms", fragment);
             Assert.Null(await GetClassroomAsync(classroomId));
         }
 
@@ -94,12 +94,6 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         {
             var fields = new ClassroomInputType().Fields;
             return GraphQLQueryUtil.InputObject(fields, classroom);
-        }
-
-        private async Task AssertClassromCountAsync(int expectedCnt)
-        {
-            List<Classroom> classrooms = await ListQueryRequest($"classrooms{{{fragment}}}", "classrooms");
-            Assert.Equal(expectedCnt, classrooms.Count);
         }
     }
 }

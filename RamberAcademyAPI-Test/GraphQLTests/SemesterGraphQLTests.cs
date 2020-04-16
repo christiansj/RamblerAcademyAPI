@@ -55,7 +55,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             createTask.Wait();
 
 
-            await AssertSemesterCntAsync(_TestDataCnt + 1);
+            await AssertRecordCount(_TestDataCnt + 1, "semesters", fragment);
             AssertEqualSemesters(expectedSemester, await GetSemesterAsync(_TestDataCnt + 1));
             AssertEqualSemesters(expectedSemester, createTask.Result);
         }
@@ -71,7 +71,6 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             Semester newSemester = await MutationRequest(mutation, "updateSemester");
 
             AssertEqualSemesters(expectedSemester, newSemester);
-           
         }
 
         [Fact]
@@ -83,7 +82,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             var deleteTask = GraphQLRequest(mutation, "deleteSemester");
             deleteTask.Wait();
 
-            await AssertSemesterCntAsync(_TestDataCnt - 1);
+            await AssertRecordCount(_TestDataCnt - 1, "semesters", fragment);
             Assert.Null(await GetSemesterAsync(semesterId));
         }
      
@@ -106,13 +105,6 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             Assert.Equal(expectedSemester.Year, semester.Year);
             Assert.Equal(expectedSemester.StartDate, semester.StartDate);
             Assert.Equal(expectedSemester.EndDate, semester.EndDate);
-        }
-
-        private async Task AssertSemesterCntAsync(int expectedCnt)
-        {
-            List<Semester> semesters = await ListQueryRequest($"semesters{{{fragment}}}", "semesters");
-
-            Assert.Equal(expectedCnt, semesters.Count);
         }
     }
 }

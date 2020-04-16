@@ -50,7 +50,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
 
             AssertObjectsAreEqual(expectedRole, createTask.Result);
             AssertObjectsAreEqual(expectedRole, await GetRoleAsync(expectedRole.Id));
-            await AssertRoleCountAsync(_TestDataCnt + 1);
+            await AssertRecordCount(_TestDataCnt + 1, "roles", fragment);
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             var deleteTask = GraphQLRequest(mutation, "deleteRole");
             deleteTask.Wait();
 
-            await AssertRoleCountAsync(_TestDataCnt - 1);
+            await AssertRecordCount(_TestDataCnt - 1, "roles", fragment);
             Assert.Null(await GetRoleAsync(RoleId));
         }
 
@@ -88,12 +88,6 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         {
             string query = $"role(id: {roleId}){{{fragment}}}";
             return await SingleQueryRequest(query, "role");
-        }
-
-        private async Task AssertRoleCountAsync(int expectedCnt)
-        {
-            List<Role> roles = await ListQueryRequest($"roles{{{fragment}}}", "roles");
-            Assert.Equal(expectedCnt, roles.Count);
         }
     }
 }

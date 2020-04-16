@@ -53,7 +53,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
 
             AssertObjectsAreEqual(expectedSeason, createTask.Result);
             AssertObjectsAreEqual(expectedSeason, await GetSeasonAsync(expectedSeasonId));
-            await AssertSeasonCountAsync(expectedSeasonId);
+            await AssertRecordCount(_TestDataCnt+1, "seasons", fragment);
         }
 
         [Fact]
@@ -78,7 +78,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             var deleteTask = GraphQLRequest(mutation, "deleteSeason");
             deleteTask.Wait();
 
-            await AssertSeasonCountAsync(_TestDataCnt - 1);
+            await AssertRecordCount(_TestDataCnt - 1, "seasons", fragment);
             Assert.Null(await GetSeasonAsync(seasonId));
         }
 
@@ -92,12 +92,6 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         {
             string query = $"season(id: {seasonId}){{{fragment}}}";
             return await SingleQueryRequest(query, "season");
-        }
-
-        private async Task AssertSeasonCountAsync(int expectedCnt)
-        {
-            List<Season> seasons = await ListQueryRequest($"seasons{{{fragment}}}", "seasons");
-            Assert.Equal(expectedCnt, seasons.Count);
         }
     }
 }

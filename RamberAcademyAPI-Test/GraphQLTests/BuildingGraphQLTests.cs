@@ -15,7 +15,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
     {
         
         private readonly int _TestDataCnt;
-
+        private const string fragment = "id name";
         public BuildingGraphQLTests(ITestOutputHelper output) :base(output)
         {
             _TestDataCnt = TestData.Buildings().Count;
@@ -56,7 +56,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             createTask.Wait();
           
             AssertObjectsAreEqual(expectedNewBuilding, createTask.Result);
-            await AssertBuildingCntAsync(_TestDataCnt + 1);
+            await AssertRecordCount(_TestDataCnt + 1, "buildings", fragment);
         }
 
 
@@ -85,19 +85,12 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             var deleteTask =  GraphQLRequest(mutation, "deleteBuilding");
             deleteTask.Wait();
 
-            await AssertBuildingCntAsync(_TestDataCnt - 1);
+            await AssertRecordCount(_TestDataCnt - 1, "buildings", fragment);
         }
 
         private async Task<Building> GetBuildingRequestAsync(int buildingId)
         {
             return await SingleQueryRequest($"building(id: {buildingId}){{id name}}", "building");
-        }
-
-        // assert: building count in db == {expectedCnt}
-        private async Task AssertBuildingCntAsync(int expectedCnt)
-        {
-            List<Building> buildings = await ListQueryRequest("buildings{id name}", "buildings");
-            Assert.Equal(expectedCnt, buildings.Count);
         }
     }
 }

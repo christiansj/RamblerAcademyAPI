@@ -51,7 +51,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
 
 
             AssertObjectsAreEqual(expectedCourse, createTask.Result);
-            await AssertCourseCountAsync(_TestDataCnt + 1);
+            await AssertRecordCount(_TestDataCnt + 1, "courses", fragment);
         }
 
         [Fact]
@@ -66,7 +66,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             updateTask.Wait();
 
             AssertObjectsAreEqual(expectedCourse, updateTask.Result);
-            await AssertCourseCountAsync(_TestDataCnt);
+            await AssertRecordCount(_TestDataCnt, "courses", fragment);
         }
 
         [Fact]
@@ -82,18 +82,13 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             string query = $"course(id: {courseId}){{{fragment}}}";
 
             Assert.Null(await GetCourseAsync(courseId));
-            await AssertCourseCountAsync(_TestDataCnt - 1);
+            await AssertRecordCount(_TestDataCnt - 1, "courses", fragment);
         }
 
         private async Task<Course> GetCourseAsync(int courseId)
         {
             string query = $"course(id: {courseId}){{{fragment}}}";
             return await SingleQueryRequest(query, "course");
-        }
-        private async Task AssertCourseCountAsync(int expectedCnt)
-        {
-            List<Course> courses = await ListQueryRequest($"courses{{{fragment}}}", "courses");
-            Assert.Equal(expectedCnt, courses.Count);
         }
 
         private string CourseInput(Course course)

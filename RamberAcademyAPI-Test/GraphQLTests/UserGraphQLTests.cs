@@ -49,8 +49,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             createTask.Wait();
 
             AssertObjectsAreEqual(expectedUser, createTask.Result);
-            AssertObjectsAreEqual(expectedUser, await GetUserAsync(expectedUser.Id));
-            await AssertUserCountAsync(_TestDataCnt + 1);
+            await AssertRecordCount(_TestDataCnt + 1, "users", fragment);
         } 
 
         [Fact]
@@ -75,7 +74,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             var deleteTask = GraphQLRequest(mutation, "deleteUser");
             deleteTask.Wait();
 
-            await AssertUserCountAsync(_TestDataCnt - 1);
+            await AssertRecordCount(_TestDataCnt - 1, "users", fragment);
             Assert.Null(await GetUserAsync(userId));
         }
 
@@ -90,12 +89,6 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         {
             var fields = new UserInputType().Fields;
             return GraphQLQueryUtil.InputObject(fields, user);
-        }
-
-        private async Task AssertUserCountAsync(int expectedCnt)
-        {
-            List<User> users = await ListQueryRequest($"users{{{fragment}}}", "users");
-            Assert.Equal(expectedCnt, users.Count);
         }
     }
 }

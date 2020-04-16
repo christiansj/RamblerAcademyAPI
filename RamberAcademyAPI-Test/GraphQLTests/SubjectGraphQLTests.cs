@@ -56,8 +56,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             
             AssertObjectsAreEqual(expectedSubject, createTask.Result);
 
-            _output.WriteLine("after the fact");
-            await AssertSubjectCntAsync(_TestDataCnt + 1);               
+            await AssertRecordCount(_TestDataCnt + 1, "subjects", fragment);               
         }
 
         [Fact]
@@ -81,19 +80,13 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             var deleteTask = GraphQLRequest(mutation, "deleteSubject");
             deleteTask.Wait();
 
-            await AssertSubjectCntAsync(_TestDataCnt - 1);
+            await AssertRecordCount(_TestDataCnt - 1, "subjects", fragment);
         }
 
         private string subjectInput(Subject subject)
         {
             var fields = new SubjectInputType().Fields;
             return GraphQLQueryUtil.InputObject(fields, subject);
-        }
-
-        private async Task AssertSubjectCntAsync(int expectedCnt)
-        {
-            List<Subject> subjects = await ListQueryRequest($"subjects{{id}}", "subjects");      
-            Assert.Equal(expectedCnt, subjects.Count);
         }
     }
 }
