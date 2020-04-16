@@ -100,5 +100,15 @@ namespace RamberAcademyAPI_Test.Data
                 new User(4, "fje894", "Test f", "User z", "testUser4@example.com", "password", 1),
             };
         }
+
+        public static List<CourseSection> CourseSections()
+        {
+            return new List<CourseSection>
+            {
+                new CourseSection(57894, 1, 2, 1, 3),
+                new CourseSection(54758, 1, 3, 1, 1),
+                new CourseSection(47593, 1, 1, 1, 2)
+            };
+        }
     }
 }

@@ -8,7 +8,7 @@ using Xunit;
 using Xunit.Abstractions;
 
 
-namespace RamberAcademyAPI_Test
+namespace RamberAcademyAPI_Test.GraphQLTests
 {
     [Collection("Building GraphQL Tests")]
     public class BuildingGraphQLTests : GraphQLIntegrationTest<Building>

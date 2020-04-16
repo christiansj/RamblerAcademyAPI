@@ -8,12 +8,13 @@ using Xunit.Abstractions;
 using Xunit;
 using RamberAcademyAPI_Test.Data;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace RamberAcademyAPI_Test
 {
     public class Utilities
     {
-        public static void IntializeDbForTests(RamblerAcademyContext db)
+        public async static Task IntializeDbForTests(RamblerAcademyContext db)
         {
             db.Buildings.RemoveRange(db.Buildings);
             db.Buildings.AddRange(TestData.Buildings());
@@ -30,6 +31,7 @@ namespace RamberAcademyAPI_Test
             db.Semesters.RemoveRange(db.Semesters);
             db.Semesters.AddRange(TestData.Semesters());
 
+
             db.Subjects.RemoveRange(db.Subjects);
             db.Subjects.AddRange(TestData.Subjects());
 
@@ -42,7 +44,17 @@ namespace RamberAcademyAPI_Test
             db.Users.RemoveRange(db.Users);
             db.Users.AddRange(TestData.Users());
 
-            db.SaveChanges();
+           
+
+            await db.SaveChangesAsync();
+        }
+
+        public async static Task AddMoreData(RamblerAcademyContext db)
+        {
+
+            db.CourseSections.RemoveRange(db.CourseSections);
+            db.CourseSections.AddRange(TestData.CourseSections());
+            await db.SaveChangesAsync();
         }
 
         public static string ParseData(string contentString, string requestName)
