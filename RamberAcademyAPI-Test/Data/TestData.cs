@@ -121,5 +121,15 @@ namespace RamberAcademyAPI_Test.Data
                 new Enrollment(54758, 2)
             };
         }
+
+        public static List<TimeSlot> TimeSlots()
+        {
+            return new List<TimeSlot>
+            {
+                new TimeSlot(1, new TimeSpan(9, 0, 0), new TimeSpan(9, 50, 0)),
+                new TimeSlot(2, new TimeSpan(10, 0, 0), new TimeSpan(10, 50, 0)),
+                new TimeSlot(3, new TimeSpan(11, 0, 0), new TimeSpan(11, 50, 0))
+            };
+        }
     }
 }

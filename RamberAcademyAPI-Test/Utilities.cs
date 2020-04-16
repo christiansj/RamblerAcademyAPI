@@ -57,6 +57,10 @@ namespace RamberAcademyAPI_Test
 
             db.Enrollments.RemoveRange(db.Enrollments);
             db.Enrollments.AddRange(TestData.Enrollments());
+
+            db.TimeSlots.RemoveRange(db.TimeSlots);
+            db.TimeSlots.AddRange(TestData.TimeSlots());
+
             await db.SaveChangesAsync();
         }
 
