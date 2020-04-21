@@ -79,7 +79,5 @@ namespace RamberAcademyAPI_Test
             }
             return JObject.Parse(contentString)["data"][requestName].ToString();
         }
-
-       
     }
 }

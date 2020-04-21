@@ -36,53 +36,7 @@ namespace RamberAcademyAPI_Test
         protected GraphQLIntegrationTest(ITestOutputHelper output)
         {
             _output = output;
-            var appFactory = new WebApplicationFactory<Startup>()
-                .WithWebHostBuilder(builder =>
-                {
-                    //builder.UseUrls("http://localhost:8000/");
-                    builder.UseEnvironment("Test");
-                    builder.ConfigureServices(async services =>
-                    {
-                        var descriptor = services.SingleOrDefault(
-                            d=> d.ServiceType == typeof(DbContextOptions<RamblerAcademyContext>));
-                        if(descriptor != null && descriptor.ServiceType == typeof(DbContextOptions<RamblerAcademyContext>))
-                        {
-                            services.Remove(descriptor);
-                        }
-                        else
-                        {
-                            throw new Exception("couldn't find db context");
-                        }
-                        
-                        services.AddDbContext<RamblerAcademyContext>(options => { options.UseInMemoryDatabase("testDb"); });
-                       
-                        var sp = services.BuildServiceProvider();
-
-                        using (var scope = sp.CreateScope())
-                        {
-                            var scopedServices = scope.ServiceProvider;
-                            var db = scopedServices.GetRequiredService<RamblerAcademyContext>();
-                            var logger = scopedServices.GetRequiredService<ILogger<WebApplicationFactory<Startup>>>();
-                            db.Database.EnsureCreated();
-
-                            try
-                            {
-                                await Utilities.IntializeDbForTests(db);
-                                await Utilities.AddMoreData(db);
-                            } catch (Exception ex)
-                            {
-                                logger.LogError(ex, "An Error ocurred seeding the the" +
-                                    "database with test messages. Error: {Message}", ex.Message);
-                            }
-                        }
-                    });
-                });
-
-           _client = appFactory.CreateClient(new WebApplicationFactoryClientOptions
-           {
-               AllowAutoRedirect = false
-           });
-            
+            _client = TestClientFactory.CreateClient();
         }   
 
         protected async Task<T> SingleQueryRequest(string query, string queryName)
