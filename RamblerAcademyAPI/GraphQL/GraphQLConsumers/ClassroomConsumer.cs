@@ -18,6 +18,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             floor
             hallwayNumber
             roomNumber
+            buildingId
             building{
                 name
             }

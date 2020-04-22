@@ -1,6 +1,8 @@
 ﻿using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RamblerAcademyAPI.Controllers;
+using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +19,12 @@ namespace RamberAcademyAPI_Test.APITests
         protected HttpClient _client;
         protected ITestOutputHelper _output;
         protected IHttpClientFactory _factory;
-
+        
         protected AbstractApiTest(ITestOutputHelper output)
         {
             _output = output;
             _client = TestClientFactory.CreateClient();
+            _client.BaseAddress = new Uri("https://localhost:5001/graphql");
             _factory = MockIHttpClientFactory(_client);
         }
 
@@ -69,6 +72,7 @@ namespace RamberAcademyAPI_Test.APITests
                     continue;
                 }
                 _output.WriteLine($"property: {propertyName}, type: {propertyValue.Type}");
+                _output.WriteLine($"comparing: {jObject1[propertyName]} vs {jObject2[propertyName]}");
                 Assert.Equal(jObject1[propertyName], jObject2[propertyName]);
             }
         }

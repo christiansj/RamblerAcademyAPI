@@ -16,13 +16,11 @@ namespace RamberAcademyAPI_Test.APITests
     {
         private readonly int _TestDataCnt;
         private const string fragment = "id name";
-        private BuildingConsumer _consumer;
-        private BuildingController _controller;
+        private readonly BuildingConsumer _consumer;
+        private readonly BuildingController _controller;
         public BuildingAPITests(ITestOutputHelper output) : base(output)
         {
-            _client.BaseAddress = new Uri("https://localhost:5001/graphql");
-            _TestDataCnt = TestData.Buildings().Count;
-            
+            _TestDataCnt = TestData.Buildings().Count;   
             _consumer = new BuildingConsumer(_factory);
             _controller = new BuildingController(_consumer);
         }
