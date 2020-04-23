@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
-using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLUserErrors;
 using RamblerAcademyAPI.Models;
 

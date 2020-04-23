@@ -4,7 +4,7 @@ using RamblerAcademyAPI.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
+using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
 using System.Net.Http;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers

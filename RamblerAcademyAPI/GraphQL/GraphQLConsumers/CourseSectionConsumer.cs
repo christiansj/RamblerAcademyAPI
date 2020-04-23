@@ -1,6 +1,6 @@
 ﻿using RamblerAcademyAPI.GraphQL.Client;
 using RamblerAcademyAPI.Models;
-using RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util;
+using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;

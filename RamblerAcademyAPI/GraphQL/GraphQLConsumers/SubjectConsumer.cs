@@ -10,7 +10,7 @@ using RamblerAcademyAPI.Util;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
 using System.Net.Http;
 
-namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers.Util
+namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
     public class SubjectConsumer
     {
