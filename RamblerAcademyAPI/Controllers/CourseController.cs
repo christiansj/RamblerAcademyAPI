@@ -23,10 +23,10 @@ namespace RamblerAcademyAPI.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public async Task<List<Course>> Get()
+        public async Task<ActionResult>Get()
         {
             List<Course> courses = await _consumer.GetAllCoursesAsync();
-            return courses;
+            return Ok(courses);
         }
 
         // GET api/<controller>/5
@@ -43,15 +43,15 @@ namespace RamblerAcademyAPI.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public async Task<ActionResult<Course>> Post(Course course)
+        public async Task<ActionResult> Post(Course course)
         {
-            Console.WriteLine($"course: \"{course.Name}\"");
-            return await _consumer.CreateCourseAsync(course);
+            var newCourse = await _consumer.CreateCourseAsync(course);
+            return Ok(newCourse);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Course>> Put(int id, Course course)
+        public async Task<ActionResult> Put(int id, Course course)
         {
             try
             {

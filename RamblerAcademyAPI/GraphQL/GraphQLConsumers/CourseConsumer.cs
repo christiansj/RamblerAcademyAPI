@@ -27,6 +27,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                 id
                 name
             }
+            subjectId
             courseSections{
                 courseReferenceNumber
                 semester{
