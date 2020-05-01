@@ -15,13 +15,11 @@ namespace RamberAcademyAPI_Test.APITests
 {
     public class DayApiTests : AbstractApiTest<Day>
     {
-        private readonly int _TestDataCnt;
         protected readonly DayConsumer _consumer;
         protected readonly DayController _controller;
 
         public DayApiTests(ITestOutputHelper output) : base(output)
         {
-            _TestDataCnt = TestData.Courses().Count;
             _consumer = new DayConsumer(_factory);
             _controller = new DayController(_consumer);
         }
