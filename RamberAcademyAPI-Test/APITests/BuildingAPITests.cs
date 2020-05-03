@@ -15,9 +15,8 @@ namespace RamberAcademyAPI_Test.APITests
     public class BuildingAPITests : AbstractApiTest<Building>
     {
         private readonly int _TestDataCnt;
-        private const string fragment = "id name";
         private readonly BuildingConsumer _consumer;
-        private readonly BuildingController _controller;
+        
         public BuildingAPITests(ITestOutputHelper output) : base(output)
         {
             _TestDataCnt = TestData.Buildings().Count;   

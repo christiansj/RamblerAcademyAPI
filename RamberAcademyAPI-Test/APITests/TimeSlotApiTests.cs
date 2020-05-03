@@ -17,7 +17,6 @@ namespace RamberAcademyAPI_Test.APITests
     {
         private readonly int _TestDataCnt;
         protected readonly TimeSlotConsumer _consumer;
-        protected readonly TimeSlotController _controller;
 
         public TimeSlotApiTests(ITestOutputHelper output) : base(output)
         {

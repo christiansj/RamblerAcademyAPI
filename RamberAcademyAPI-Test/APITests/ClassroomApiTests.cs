@@ -16,8 +16,7 @@ namespace RamberAcademyAPI_Test.APITests
     {
         private readonly int _TestDataCnt;
         protected readonly ClassroomConsumer _consumer;
-        protected readonly ClassroomController _controller;
-
+        
         public ClassroomApiTests(ITestOutputHelper output) : base(output)
         {
             _TestDataCnt = TestData.Classrooms().Count;

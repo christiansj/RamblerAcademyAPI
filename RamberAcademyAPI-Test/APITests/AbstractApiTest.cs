@@ -19,7 +19,7 @@ namespace RamberAcademyAPI_Test.APITests
         protected HttpClient _client;
         protected ITestOutputHelper _output;
         protected IHttpClientFactory _factory;
-        
+        protected IApiController<T> _controller;
         protected AbstractApiTest(ITestOutputHelper output)
         {
             _output = output;

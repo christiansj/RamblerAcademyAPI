@@ -16,12 +16,12 @@ namespace RamberAcademyAPI_Test.APITests
     public class DayApiTests : AbstractApiTest<Day>
     {
         protected readonly DayConsumer _consumer;
-        protected readonly DayController _controller;
+        protected readonly DayController dayController;
 
         public DayApiTests(ITestOutputHelper output) : base(output)
         {
             _consumer = new DayConsumer(_factory);
-            _controller = new DayController(_consumer);
+            dayController = new DayController(_consumer);
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace RamberAcademyAPI_Test.APITests
         {
             var expected = TestData.Days();
 
-            var result = await _controller.Get() as OkObjectResult;
+            var result = await dayController.Get() as OkObjectResult;
             Assert.NotNull(result);
 
             var actual = (IEnumerable<Day>)result.Value;
@@ -46,7 +46,7 @@ namespace RamberAcademyAPI_Test.APITests
             const int dayId = 2;
             var expected = TestData.Days().Find(d => d.Id == dayId);
 
-            var result = await _controller.Get(dayId) as OkObjectResult;
+            var result = await dayController.Get(dayId) as OkObjectResult;
             Assert.NotNull(result);
             var actual = (Day)result.Value;
 
@@ -60,7 +60,7 @@ namespace RamberAcademyAPI_Test.APITests
         {
             const int dayId = 10000;
 
-            var result = await _controller.Get(dayId) as NotFoundResult;
+            var result = await dayController.Get(dayId) as NotFoundResult;
 
             Assert.NotNull(result);
         }

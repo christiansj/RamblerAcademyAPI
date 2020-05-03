@@ -12,7 +12,7 @@ namespace RamblerAcademyAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BuildingController : Controller
+    public class BuildingController : Controller, IApiController<Building>
     {
         private readonly BuildingConsumer _consumer;
         
@@ -23,7 +23,7 @@ namespace RamblerAcademyAPI.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult> Get()
         { 
             List<Building> buildings = await _consumer.GetAllBuildings();
             return Ok(buildings);

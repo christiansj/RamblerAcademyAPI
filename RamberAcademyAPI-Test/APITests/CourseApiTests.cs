@@ -17,7 +17,6 @@ namespace RamberAcademyAPI_Test.APITests
     {
         private readonly int _TestDataCnt;
         protected readonly CourseConsumer _consumer;
-        protected readonly CourseController _controller;
 
         public CourseApiTests(ITestOutputHelper output) : base(output)
         {
