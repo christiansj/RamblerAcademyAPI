@@ -47,7 +47,7 @@ namespace RamberAcademyAPI_Test.APITests
             var expected = TestData.TimeSlots().Find(ts => ts.Id == timeSlotId);
 
       
-            var actual = await GetExistentTimeSlotAsync(timeSlotId);
+            var actual = await GetExistentRecordAsync(timeSlotId);
 
             Assert.NotNull(actual);
             AssertObjectsAreEqual(expected, actual);
@@ -76,7 +76,7 @@ namespace RamberAcademyAPI_Test.APITests
 
             Assert.NotNull(actual);
             AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentTimeSlotAsync(_TestDataCnt + 1));
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(_TestDataCnt + 1));
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace RamberAcademyAPI_Test.APITests
 
             Assert.NotNull(actual);
             AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentTimeSlotAsync(timeSlotId));
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(timeSlotId));
         }
 
         [Fact]
@@ -129,14 +129,6 @@ namespace RamberAcademyAPI_Test.APITests
             var result = await _controller.Delete(timeSlotId) as NotFoundResult;
 
             Assert.NotNull(result);
-        }
-
-        private async Task<TimeSlot> GetExistentTimeSlotAsync(int timeSlotId)
-        {
-            var result = await _controller.Get(timeSlotId) as OkObjectResult;
-            Assert.NotNull(result);
-
-            return (TimeSlot)result.Value;
         }
     }
 }

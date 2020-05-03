@@ -45,7 +45,7 @@ namespace RamberAcademyAPI_Test.APITests
             const int classroomId = 3;
 
             Classroom expected = TestData.Classrooms().Find(c => c.Id == classroomId);
-            Classroom actual = await GetExistentClassroomAsync(classroomId);
+            Classroom actual = await GetExistentRecordAsync(classroomId);
 
             AssertObjectsAreEqual(expected, actual);
         }
@@ -74,7 +74,7 @@ namespace RamberAcademyAPI_Test.APITests
 
             Assert.NotNull(actual);
             AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentClassroomAsync(_TestDataCnt + 1));
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(_TestDataCnt + 1));
         }
 
         // PUT /api/classroom/{id}
@@ -90,7 +90,7 @@ namespace RamberAcademyAPI_Test.APITests
 
             Assert.NotNull(actual);
             AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentClassroomAsync(classroomId));
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(classroomId));
         }
 
         // PUT /api/classroom/{id}
@@ -127,14 +127,6 @@ namespace RamberAcademyAPI_Test.APITests
             var response = await _controller.Delete(classroomId) as NotFoundResult;
 
             Assert.NotNull(response);
-        }
-
-        private async Task<Classroom> GetExistentClassroomAsync(int id)
-        {
-            var response = await _controller.Get(id) as OkObjectResult;
-            Assert.NotNull(response);
-
-            return (Classroom)response.Value;
         }
     }
 }

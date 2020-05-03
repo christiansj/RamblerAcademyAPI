@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RamblerAcademyAPI.Controllers;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Xunit;
 using Xunit.Abstractions;
@@ -58,6 +60,14 @@ namespace RamberAcademyAPI_Test.APITests
                 CompareObjects((JObject)jArray1[i], (JObject)jArray2[i]);
             }
            
+        }
+
+        protected async Task<T> GetExistentRecordAsync(int id)
+        {
+            var result = await _controller.Get(id) as OkObjectResult;
+            Assert.NotNull(result);
+
+            return (T)result.Value;
         }
 
         private void CompareObjects(JObject jObject1, JObject jObject2)

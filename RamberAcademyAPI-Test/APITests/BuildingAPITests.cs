@@ -43,7 +43,7 @@ namespace RamberAcademyAPI_Test.APITests
         {
             const int buildingId = 1;
             Building expected = TestData.Buildings().Find(b => b.Id == buildingId);
-            Building actual = await GetBuildingAsync(buildingId);
+            Building actual = await GetExistentRecordAsync(buildingId);
             
 
             AssertObjectsAreEqual(expected, actual);
@@ -72,7 +72,7 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(actual);
 
             AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetBuildingAsync(buildingId));
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(buildingId));
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(actual);
 
             AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetBuildingAsync(buildingId));
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(buildingId));
         }
 
         [Fact]
@@ -121,14 +121,6 @@ namespace RamberAcademyAPI_Test.APITests
             var response = await _controller.Delete(buildingId) as NotFoundResult;
 
             Assert.NotNull(response);
-        }
-
-        private async Task<Building> GetBuildingAsync(int buildingId)
-        {
-            var response = await _controller.Get(buildingId) as OkObjectResult;
-            Assert.NotNull(response);
-
-            return (Building)response.Value;
         }
     }
 }

@@ -47,7 +47,7 @@ namespace RamberAcademyAPI_Test.APITests
             const int subjectId = 2;
             var expected = TestData.Subjects().Find(s => s.Id == subjectId);
 
-            var actual = await GetExistentSubjectAsync(subjectId);
+            var actual = await GetExistentRecordAsync(subjectId);
 
             AssertObjectsAreEqual(expected, actual);
         }
@@ -75,7 +75,7 @@ namespace RamberAcademyAPI_Test.APITests
 
             Assert.NotNull(actual);
             AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentSubjectAsync(_TestDataCnt + 1));
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(_TestDataCnt + 1));
         }
 
         [Fact]
@@ -91,7 +91,7 @@ namespace RamberAcademyAPI_Test.APITests
 
             Assert.NotNull(actual);
             AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentSubjectAsync(subjectId));
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(subjectId));
         }
 
         [Fact]
@@ -128,14 +128,6 @@ namespace RamberAcademyAPI_Test.APITests
             var result = await _controller.Delete(subjectId) as NotFoundResult;
 
             Assert.NotNull(result);
-        }
-
-        private async Task<Subject> GetExistentSubjectAsync(int id)
-        {
-            var result = await _controller.Get(id) as OkObjectResult;
-            Assert.NotNull(result);
-            
-            return (Subject)result.Value;
         }
     }
 }
