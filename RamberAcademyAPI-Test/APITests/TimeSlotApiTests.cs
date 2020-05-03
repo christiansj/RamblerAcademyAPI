@@ -69,13 +69,7 @@ namespace RamberAcademyAPI_Test.APITests
             const int timeSlotId = 3;
             var expected = new TimeSlot(timeSlotId, new TimeSpan(5, 20, 0), new TimeSpan(6, 0, 0));
 
-            var result = await _controller.Put(timeSlotId, expected) as OkObjectResult;
-            Assert.NotNull(result);
-            var actual = (TimeSlot)result.Value;
-
-            Assert.NotNull(actual);
-            AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(timeSlotId));
+            await API_PutRecordTest(timeSlotId, expected);
         }
 
         [Fact]

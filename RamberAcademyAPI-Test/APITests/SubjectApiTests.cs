@@ -69,13 +69,7 @@ namespace RamberAcademyAPI_Test.APITests
             const int subjectId = 2;
             var expected = new Subject(subjectId, "Updated Subject", "UPD");
 
-            var result = await _controller.Put(subjectId, expected) as OkObjectResult;
-            Assert.NotNull(result);
-            var actual = (Subject)result.Value;
-
-            Assert.NotNull(actual);
-            AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(subjectId));
+            await API_PutRecordTest(subjectId, expected);
         }
 
         [Fact]

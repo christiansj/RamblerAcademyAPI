@@ -69,13 +69,7 @@ namespace RamberAcademyAPI_Test.APITests
             const int courseId = 3;
             var expected = new Course(courseId, 500, "Updated Test Course", 2);
 
-            var result = await _controller.Put(courseId, expected) as OkObjectResult;
-            Assert.NotNull(result);
-            var actual = (Course)result.Value;
-
-            Assert.NotNull(actual);
-            AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(courseId));
+            await API_PutRecordTest(courseId, expected);
         }
 
         [Fact]

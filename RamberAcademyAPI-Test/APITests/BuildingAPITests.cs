@@ -60,17 +60,10 @@ namespace RamberAcademyAPI_Test.APITests
         [Fact]
         public async void PUT_BuildingTest()
         {
-            int buildingId = 2;
+            const int buildingId = 2;
             Building expected = new Building(buildingId, "Updated Test Building");
 
-            var response = await _controller.Put(buildingId, expected) as OkObjectResult;
-            Assert.NotNull(response);
-
-            var actual = (Building)response.Value;
-            Assert.NotNull(actual);
-
-            AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(buildingId));
+            await API_PutRecordTest(buildingId, expected);
         }
 
         [Fact]
