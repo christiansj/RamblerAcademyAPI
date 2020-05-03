@@ -15,16 +15,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
     public class SemesterConsumer
     {
         private readonly GraphQLClient _client;
-        private string semesterFragment = @"
-            id
-            year
-            startDate
-            endDate
-            season{
-                id
-                name
-            }
-        ";
+        private string semesterFragment = "id year startDate endDate seasonId season{ id name }";
     
         public SemesterConsumer(IHttpClientFactory factory)
         {

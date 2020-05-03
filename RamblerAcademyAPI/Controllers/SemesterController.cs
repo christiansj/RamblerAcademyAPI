@@ -11,13 +11,15 @@ using RamblerAcademyAPI.Models;
 namespace RamblerAcademyAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class SemesterController : Controller
+    public class SemesterController : Controller, IApiController<Semester>
     {
         private readonly SemesterConsumer _consumer;
+
         public SemesterController(SemesterConsumer consumer)
         {
             _consumer = consumer;
         }
+
         // GET: api/<controller>
         [HttpGet]
         public async Task<ActionResult> Get()

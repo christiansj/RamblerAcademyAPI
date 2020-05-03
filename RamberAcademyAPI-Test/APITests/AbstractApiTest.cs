@@ -131,7 +131,7 @@ namespace RamberAcademyAPI_Test.APITests
                     continue;
                 }
                 _output.WriteLine($"property: {propertyName}, type: {propertyValue.Type}");
-                _output.WriteLine($"comparing: {jObject1[propertyName]} vs {jObject2[propertyName]}");
+                _output.WriteLine($"\tcomparing: {jObject1[propertyName]} vs {jObject2[propertyName]}");
                 Assert.Equal(jObject1[propertyName], jObject2[propertyName]);
             }
         }
