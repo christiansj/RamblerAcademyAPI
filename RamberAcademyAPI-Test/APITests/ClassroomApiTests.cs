@@ -58,14 +58,7 @@ namespace RamberAcademyAPI_Test.APITests
         {
             Classroom expected = new Classroom(_TestDataCnt + 1, 4, 5, 54, 2);
 
-            var response = await _controller.Post(expected) as OkObjectResult;
-            Assert.NotNull(response);
-
-            var actual = (Classroom)response.Value;
-
-            Assert.NotNull(actual);
-            AssertObjectsAreEqual(expected, actual);
-            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(_TestDataCnt + 1));
+            await API_PostRecordTest(_TestDataCnt, expected);
         }
 
         // PUT /api/classroom/{id}

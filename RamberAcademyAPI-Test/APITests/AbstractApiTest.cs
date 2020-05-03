@@ -80,6 +80,17 @@ namespace RamberAcademyAPI_Test.APITests
             AssertObjectsAreEqual(expected, actual);
         }
 
+        protected async Task API_PostRecordTest(int testDataCnt, T expected)
+        {
+            var result = await _controller.Post(expected) as OkObjectResult;
+            Assert.NotNull(result);
+            var actual = (T)result.Value;
+
+            Assert.NotNull(actual);
+            AssertObjectsAreEqual(expected, actual);
+            AssertObjectsAreEqual(expected, await GetExistentRecordAsync(testDataCnt + 1));
+        }
+
         protected async Task<T> GetExistentRecordAsync(int id)
         {
             var result = await _controller.Get(id) as OkObjectResult;
