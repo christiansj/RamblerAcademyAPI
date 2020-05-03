@@ -29,7 +29,7 @@ namespace RamberAcademyAPI_Test.APITests
         // GET /api/subject
         public async void GET_SubjectsTest()
         {
-            await GET_AllRecordsTest(TestData.Subjects());
+            await API_GetAllRecordsTest(TestData.Subjects());
         }
 
         [Fact]
@@ -39,9 +39,7 @@ namespace RamberAcademyAPI_Test.APITests
             const int subjectId = 2;
             var expected = TestData.Subjects().Find(s => s.Id == subjectId);
 
-            var actual = await GetExistentRecordAsync(subjectId);
-
-            AssertObjectsAreEqual(expected, actual);
+            await API_GetExistentRecordTest(subjectId, expected);
         }
 
         [Fact]

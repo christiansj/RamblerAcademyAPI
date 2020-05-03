@@ -62,7 +62,7 @@ namespace RamberAcademyAPI_Test.APITests
            
         }
 
-        protected async Task GET_AllRecordsTest(IEnumerable<T> expected)
+        protected async Task API_GetAllRecordsTest(IEnumerable<T> expected)
         {
             var response = await _controller.Get() as OkObjectResult;
             Assert.NotNull(response);
@@ -71,6 +71,13 @@ namespace RamberAcademyAPI_Test.APITests
 
             Assert.NotNull(actual);
             AssertListsAreEqual(expected, actual);
+        }
+
+        protected async Task API_GetExistentRecordTest(int id, T expected)
+        {
+            T actual = await GetExistentRecordAsync(id);
+
+            AssertObjectsAreEqual(expected, actual);
         }
 
         protected async Task<T> GetExistentRecordAsync(int id)

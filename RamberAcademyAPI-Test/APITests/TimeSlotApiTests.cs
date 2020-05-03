@@ -29,7 +29,7 @@ namespace RamberAcademyAPI_Test.APITests
         // GET /api/timeSlot
         public async void GET_TimeSlotsTest()
         {
-            await GET_AllRecordsTest(TestData.TimeSlots());
+            await API_GetAllRecordsTest(TestData.TimeSlots());
         }
 
         [Fact]
@@ -39,11 +39,7 @@ namespace RamberAcademyAPI_Test.APITests
             const int timeSlotId = 3;
             var expected = TestData.TimeSlots().Find(ts => ts.Id == timeSlotId);
 
-      
-            var actual = await GetExistentRecordAsync(timeSlotId);
-
-            Assert.NotNull(actual);
-            AssertObjectsAreEqual(expected, actual);
+            await API_GetExistentRecordTest(timeSlotId, expected);
         }
 
         [Fact]

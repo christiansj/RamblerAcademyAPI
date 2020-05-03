@@ -28,7 +28,7 @@ namespace RamberAcademyAPI_Test.APITests
         [Fact]
         public async void GET_ClassroomsTest()
         {
-            await GET_AllRecordsTest(TestData.Classrooms());
+            await API_GetAllRecordsTest(TestData.Classrooms());
         }
 
         // GET /api/classroom/{id}
@@ -36,11 +36,9 @@ namespace RamberAcademyAPI_Test.APITests
         public async void GET_ClassroomTest()
         {
             const int classroomId = 3;
-
             Classroom expected = TestData.Classrooms().Find(c => c.Id == classroomId);
-            Classroom actual = await GetExistentRecordAsync(classroomId);
 
-            AssertObjectsAreEqual(expected, actual);
+            await API_GetExistentRecordTest(classroomId, expected);
         }
 
         // GET /api/classroom/{id}

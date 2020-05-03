@@ -27,7 +27,7 @@ namespace RamberAcademyAPI_Test.APITests
         [Fact]
         public async void GET_BuildingsTest()
         {
-            await GET_AllRecordsTest(TestData.Buildings());
+            await API_GetAllRecordsTest(TestData.Buildings());
         } 
 
         [Fact]
@@ -35,10 +35,8 @@ namespace RamberAcademyAPI_Test.APITests
         {
             const int buildingId = 1;
             Building expected = TestData.Buildings().Find(b => b.Id == buildingId);
-            Building actual = await GetExistentRecordAsync(buildingId);
-            
 
-            AssertObjectsAreEqual(expected, actual);
+            await API_GetExistentRecordTest(buildingId, expected);
         }
 
         [Fact]
