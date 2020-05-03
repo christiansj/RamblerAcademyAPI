@@ -88,13 +88,7 @@ namespace RamberAcademyAPI_Test.APITests
         // DELETE /api/timeSlot/{id}
         public async void DELETE_TimeSlotTest()
         {
-            const int timeSlotId = 2;
-
-            var deleteResult = await _controller.Delete(timeSlotId) as OkResult;
-            var getResult = await _controller.Get(timeSlotId) as NotFoundResult;
-
-            Assert.NotNull(deleteResult);
-            Assert.NotNull(getResult);
+            await API_DeleteRecordTest(2);
         }
 
         [Fact]

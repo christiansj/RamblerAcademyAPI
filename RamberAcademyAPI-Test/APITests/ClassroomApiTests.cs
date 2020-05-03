@@ -87,13 +87,7 @@ namespace RamberAcademyAPI_Test.APITests
         [Fact]
         public async void DELETE_ClassroomTest()
         {
-            const int classroomId = 3;
-
-            var deleteResponse = await _controller.Delete(classroomId) as OkResult;
-            var getResponse = await _controller.Get(classroomId) as NotFoundResult;
-
-            Assert.NotNull(deleteResponse);
-            Assert.NotNull(getResponse);
+            await API_DeleteRecordTest(3);
         }
 
         // DELETE /api/classroom/{id}

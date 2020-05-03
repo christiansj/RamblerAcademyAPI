@@ -102,6 +102,15 @@ namespace RamberAcademyAPI_Test.APITests
             AssertObjectsAreEqual(expected, await GetExistentRecordAsync(id));
         }
 
+        protected async Task API_DeleteRecordTest(int id)
+        {
+            var deleteResult = await _controller.Delete(id) as OkResult;
+            var getResult = await _controller.Get(id) as NotFoundResult;
+
+            Assert.NotNull(deleteResult);
+            Assert.NotNull(getResult);
+        }
+
         protected async Task<T> GetExistentRecordAsync(int id)
         {
             var result = await _controller.Get(id) as OkObjectResult;
