@@ -25,15 +25,15 @@ namespace RamberAcademyAPI_Test.APITests
             _controller = new CourseController(_consumer);
         }
 
-        [Fact]
         // GET /api/course
+        [Fact]
         public async void GET_CoursesTest()
         {
             await API_GetAllRecordsTest(TestData.Courses());
         }
 
-        [Fact]
         // GET /api/course/{id}
+        [Fact]
         public async void GET_CourseTest()
         {
             const int id = 2;
@@ -42,8 +42,8 @@ namespace RamberAcademyAPI_Test.APITests
             await API_GetExistentRecordTest(id, expected);
         }
 
-        [Fact]
         // GET /api/course/{id}
+        [Fact]
         public async void GET_NonExistentCourseTest()
         {
             const int id = 10000;
@@ -53,8 +53,8 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(result);
         }
 
-        [Fact]
         // POST /api/course
+        [Fact]
         public async void POST_CourseTest()
         {
             var expected = new Course(_TestDataCnt + 1, 400, "POST Test Course", 1);
@@ -62,8 +62,8 @@ namespace RamberAcademyAPI_Test.APITests
             await API_PostRecordTest(_TestDataCnt, expected);
         }
 
-        [Fact]
         // PUT /api/course/{id}
+        [Fact]
         public async void PUT_CourseTest()
         {
             const int courseId = 3;
@@ -72,8 +72,8 @@ namespace RamberAcademyAPI_Test.APITests
             await API_PutRecordTest(courseId, expected);
         }
 
-        [Fact]
         // PUT /api/course/{id}
+        [Fact]
         public async void PUT_NonExistentCourseTest()
         {
             const int courseId = 10000;
@@ -83,15 +83,15 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(result);
         }
 
-        [Fact]
         // DELETE /api/course/{id}
+        [Fact]
         public async void DELETE_CourseTest()
         {
             await API_DeleteRecordTest(2);
         }
 
-        [Fact]
         // DELETE /api/course/{id}
+        [Fact]
         public async void DELETE_NonExistentCourseTest()
         {
             const int courseId = 10000;

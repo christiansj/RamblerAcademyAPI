@@ -24,12 +24,14 @@ namespace RamberAcademyAPI_Test.APITests
             _controller = new BuildingController(_consumer);
         }
 
+        // GET /api/building
         [Fact]
         public async void GET_BuildingsTest()
         {
             await API_GetAllRecordsTest(TestData.Buildings());
-        } 
+        }
 
+        // GET /api/building/{id}
         [Fact]
         public async void GET_BuildingTest()
         {
@@ -39,6 +41,7 @@ namespace RamberAcademyAPI_Test.APITests
             await API_GetExistentRecordTest(buildingId, expected);
         }
 
+        // GET /api/building/{id}
         [Fact]
         public async void GET_NonExistentBuildingTest()
         {
@@ -49,6 +52,7 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(response);
         }
 
+        // POST /api/building
         [Fact]
         public async void POST_BuildingTest()
         {
@@ -57,6 +61,7 @@ namespace RamberAcademyAPI_Test.APITests
             await API_PostRecordTest(_TestDataCnt, expected);
         }
 
+        // PUT /api/building/{id}
         [Fact]
         public async void PUT_BuildingTest()
         {
@@ -66,6 +71,7 @@ namespace RamberAcademyAPI_Test.APITests
             await API_PutRecordTest(buildingId, expected);
         }
 
+        // PUT /api/building/{id}
         [Fact]
         public async void PUT_NonExistentBuildingTest()
         {
@@ -76,12 +82,14 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(response);
         }
 
+        // DELETE /api/building/{id}
         [Fact]
         public async void DELETE_BuildingTest()
         {
             await API_DeleteRecordTest(1);
         }
 
+        // DELETE /api/building/{id}
         [Fact]
         public async void DELETE_NonExistentBuildingTest()
         {

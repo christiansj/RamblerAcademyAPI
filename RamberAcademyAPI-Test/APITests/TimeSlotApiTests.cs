@@ -25,15 +25,15 @@ namespace RamberAcademyAPI_Test.APITests
             _controller = new TimeSlotController(_consumer);
         }
 
-        [Fact]
         // GET /api/timeSlot
+        [Fact]
         public async void GET_TimeSlotsTest()
         {
             await API_GetAllRecordsTest(TestData.TimeSlots());
         }
-
-        [Fact]
+ 
         // GET /api/timeSlot/{id}
+        [Fact]
         public async void GET_TimeSlotTest()
         {
             const int timeSlotId = 3;
@@ -41,9 +41,9 @@ namespace RamberAcademyAPI_Test.APITests
 
             await API_GetExistentRecordTest(timeSlotId, expected);
         }
-
+       
+         // GET /api/timeSlot/{id}
         [Fact]
-        // GET /api/timeSlot/{id}
         public async void GET_NonExistentTimeSlot()
         {
             const int timeSlotId = 100000;
@@ -53,8 +53,8 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(result);
         }
 
-        [Fact]
         // POST /api/timeSlot
+        [Fact]
         public async void POST_TimeSlotTest()
         {
             var expected = new TimeSlot(_TestDataCnt + 1, new TimeSpan(3, 40, 0), new TimeSpan(4, 40, 0));
@@ -62,8 +62,8 @@ namespace RamberAcademyAPI_Test.APITests
             await API_PostRecordTest(_TestDataCnt, expected);
         }
 
-        [Fact]
         // PUT /api/timeSlot/{id}
+        [Fact]
         public async void PUT_TimeSlotTest()
         {
             const int timeSlotId = 3;
@@ -72,8 +72,8 @@ namespace RamberAcademyAPI_Test.APITests
             await API_PutRecordTest(timeSlotId, expected);
         }
 
-        [Fact]
         // PUT /api/timeSlot/{id}
+        [Fact]
         public async void PUT_NonExistentTimeSlotTest()
         {
             const int timeSlotId = 10000;
@@ -84,8 +84,8 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(result);
         }
 
-        [Fact]
         // DELETE /api/timeSlot/{id}
+        [Fact]
         public async void DELETE_TimeSlotTest()
         {
             await API_DeleteRecordTest(2);

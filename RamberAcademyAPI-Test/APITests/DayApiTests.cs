@@ -24,8 +24,8 @@ namespace RamberAcademyAPI_Test.APITests
             dayController = new DayController(_consumer);
         }
 
-        [Fact]
         // GET /api/day
+        [Fact]
         public async void GET_DaysTest()
         {
             var expected = TestData.Days();
@@ -39,8 +39,8 @@ namespace RamberAcademyAPI_Test.APITests
             AssertListsAreEqual(expected, actual);
         }
 
-        [Fact]
         // GET /api/day/{id}
+        [Fact]
         public async void GET_DayTest()
         {
             const int dayId = 2;
@@ -54,8 +54,8 @@ namespace RamberAcademyAPI_Test.APITests
             AssertObjectsAreEqual(expected, actual);
         }
 
-        [Fact]
         // GET /api/day/{id}
+        [Fact]
         public async void GET_NonExistentDayTest()
         {
             const int dayId = 10000;

@@ -25,15 +25,15 @@ namespace RamberAcademyAPI_Test.APITests
             _controller = new SubjectController(_consumer);
         }
 
-        [Fact]
         // GET /api/subject
+        [Fact]
         public async void GET_SubjectsTest()
         {
             await API_GetAllRecordsTest(TestData.Subjects());
         }
 
-        [Fact]
         // GET /api/subject/{id}
+        [Fact]
         public async void GET_SubjectTest()
         {
             const int subjectId = 2;
@@ -42,8 +42,8 @@ namespace RamberAcademyAPI_Test.APITests
             await API_GetExistentRecordTest(subjectId, expected);
         }
 
-        [Fact]
         // GET /api/subject/{id}
+        [Fact]
         public async void GET_NonExistentSubjectTest()
         {
             const int subjectId = 100000;
@@ -53,8 +53,8 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(result);
         }
 
-        [Fact]
         // POST /api/subject
+        [Fact]
         public async void POST_SubjectTest()
         {
             var expected = new Subject(_TestDataCnt + 1, "New Test", "NEW");
@@ -62,8 +62,8 @@ namespace RamberAcademyAPI_Test.APITests
             await API_PostRecordTest(_TestDataCnt, expected);
         }
 
-        [Fact]
         // PUT /api/subject/{id}
+        [Fact]
         public async void PUT_SubjectTest()
         {
             const int subjectId = 2;
@@ -72,8 +72,8 @@ namespace RamberAcademyAPI_Test.APITests
             await API_PutRecordTest(subjectId, expected);
         }
 
-        [Fact]
         // PUT /api/subject/{id}
+        [Fact]
         public async void PUT_NonExistentSubjectTest()
         {
             const int subjectId = 10000;
@@ -84,15 +84,15 @@ namespace RamberAcademyAPI_Test.APITests
             Assert.NotNull(result);
         }
 
-        [Fact]
         // DELETE /api/subject/{id}
+        [Fact]
         public async void DELETE_SubjectTest()
         {
             await API_DeleteRecordTest(1);
         }
 
-        [Fact]
         // DELETE /api/subject/{id}
+        [Fact]
         public async void DELETE_NonExistentSubjectTest()
         {
             const int subjectId = 10000;
