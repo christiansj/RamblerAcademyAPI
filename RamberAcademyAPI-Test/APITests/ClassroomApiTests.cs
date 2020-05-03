@@ -28,14 +28,7 @@ namespace RamberAcademyAPI_Test.APITests
         [Fact]
         public async void GET_ClassroomsTest()
         {
-            IEnumerable<Classroom> expected = TestData.Classrooms().OrderBy(c => c.Id);
-
-            var response = await _controller.Get() as OkObjectResult;
-            Assert.NotNull(response);
-            var actual = (IEnumerable<Classroom>)response.Value;
-
-            Assert.NotNull(actual);
-            AssertListsAreEqual(expected, actual.OrderBy(c => c.Id));
+            await GET_AllRecordsTest(TestData.Classrooms());
         }
 
         // GET /api/classroom/{id}

@@ -27,15 +27,7 @@ namespace RamberAcademyAPI_Test.APITests
         [Fact]
         public async void GET_BuildingsTest()
         {
-            IEnumerable<Building> expectedResult = TestData.Buildings().OrderBy(b => b.Id);
-
-            var response = await _controller.Get() as OkObjectResult;
-            Assert.NotNull(response);
-
-            var result = (IEnumerable<Building>)response.Value;
-            IEnumerable<Building> actual = result.OrderBy(b => b.Id);
-
-            AssertListsAreEqual(expectedResult, actual);
+            await GET_AllRecordsTest(TestData.Buildings());
         } 
 
         [Fact]

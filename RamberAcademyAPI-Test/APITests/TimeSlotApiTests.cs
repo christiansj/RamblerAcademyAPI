@@ -29,14 +29,7 @@ namespace RamberAcademyAPI_Test.APITests
         // GET /api/timeSlot
         public async void GET_TimeSlotsTest()
         {
-            var expected = TestData.TimeSlots();
-
-            var result = await _controller.Get() as OkObjectResult;
-            Assert.NotNull(result);
-            var actual = (IEnumerable<TimeSlot>)result.Value;
-
-            Assert.NotNull(actual);
-            AssertListsAreEqual(expected, actual);
+            await GET_AllRecordsTest(TestData.TimeSlots());
         }
 
         [Fact]

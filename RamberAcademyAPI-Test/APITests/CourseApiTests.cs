@@ -29,13 +29,7 @@ namespace RamberAcademyAPI_Test.APITests
         // GET /api/course
         public async void GET_CoursesTest()
         {
-            var expected = TestData.Courses();
-
-            var result = await _controller.Get() as OkObjectResult;
-            Assert.NotNull(result);
-            var actual = (IEnumerable<Course>)result.Value;
-
-            AssertListsAreEqual(expected, actual);
+            await GET_AllRecordsTest(TestData.Courses());
         }
 
         [Fact]
