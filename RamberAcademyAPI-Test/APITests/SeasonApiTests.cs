@@ -12,7 +12,7 @@ using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test.APITests
 {
-    public class SeasonApiTests : AbstractApiTest<Season>
+    public class SeasonApiTests : AbstractOneIdApiTest<Season>
     {
         private readonly int _TestDataCnt;
         private readonly SeasonConsumer _consumer;

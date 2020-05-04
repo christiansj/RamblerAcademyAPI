@@ -13,7 +13,7 @@ using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test.APITests
 {
-    public class CourseApiTests : AbstractApiTest<Course>
+    public class CourseApiTests : AbstractOneIdApiTest<Course>
     {
         private readonly int _TestDataCnt;
         protected readonly CourseConsumer _consumer;

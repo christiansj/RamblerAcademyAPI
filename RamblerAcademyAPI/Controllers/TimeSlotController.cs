@@ -13,7 +13,7 @@ using RamblerAcademyAPI.Models;
 namespace RamblerAcademyAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class TimeSlotController : Controller, IApiController<TimeSlot>
+    public class TimeSlotController : Controller, IOneIdApiController<TimeSlot>
     {
         private readonly TimeSlotConsumer _consumer;
 

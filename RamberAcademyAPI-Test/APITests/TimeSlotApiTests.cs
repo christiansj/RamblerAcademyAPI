@@ -13,7 +13,7 @@ using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test.APITests
 {
-    public class TimeSlotApiTests : AbstractApiTest<TimeSlot>
+    public class TimeSlotApiTests : AbstractOneIdApiTest<TimeSlot>
     {
         private readonly int _TestDataCnt;
         protected readonly TimeSlotConsumer _consumer;

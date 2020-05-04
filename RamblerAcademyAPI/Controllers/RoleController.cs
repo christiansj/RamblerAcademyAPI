@@ -12,7 +12,7 @@ using RamblerAcademyAPI.Models;
 namespace RamblerAcademyAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class RoleController : Controller, IApiController<Role>
+    public class RoleController : Controller, IOneIdApiController<Role>
     {
         private readonly RoleConsumer _consumer;
 

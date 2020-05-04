@@ -12,7 +12,7 @@ namespace RamblerAcademyAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BuildingController : Controller, IApiController<Building>
+    public class BuildingController : Controller, IOneIdApiController<Building>
     {
         private readonly BuildingConsumer _consumer;
         

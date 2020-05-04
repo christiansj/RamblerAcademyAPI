@@ -16,13 +16,13 @@ using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test.APITests
 {
-    public class AbstractApiTest<T>
+    public class AbstractOneIdApiTest<T>
     {
         protected HttpClient _client;
         protected ITestOutputHelper _output;
         protected IHttpClientFactory _factory;
-        protected IApiController<T> _controller;
-        protected AbstractApiTest(ITestOutputHelper output)
+        protected IOneIdApiController<T> _controller;
+        protected AbstractOneIdApiTest(ITestOutputHelper output)
         {
             _output = output;
             _client = TestClientFactory.CreateClient();

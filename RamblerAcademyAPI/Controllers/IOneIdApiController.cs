@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.Controllers
 {
-    public interface IApiController<T>
+    public interface IOneIdApiController<T>
     {
         Task<ActionResult> Get();
         Task<ActionResult> Get(int id);

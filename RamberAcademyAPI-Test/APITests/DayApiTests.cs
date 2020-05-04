@@ -13,7 +13,7 @@ using Xunit.Abstractions;
 
 namespace RamberAcademyAPI_Test.APITests
 {
-    public class DayApiTests : AbstractApiTest<Day>
+    public class DayApiTests : AbstractOneIdApiTest<Day>
     {
         protected readonly DayConsumer _consumer;
         protected readonly DayController dayController;

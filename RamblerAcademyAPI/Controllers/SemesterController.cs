@@ -11,7 +11,7 @@ using RamblerAcademyAPI.Models;
 namespace RamblerAcademyAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class SemesterController : Controller, IApiController<Semester>
+    public class SemesterController : Controller, IOneIdApiController<Semester>
     {
         private readonly SemesterConsumer _consumer;
 
