@@ -22,7 +22,6 @@ namespace RamberAcademyAPI_Test.APITests
             _TestDataCnt = TestData.Users().Count;
             _consumer = new UserConsumer(_factory);
             userController = new UserController(_consumer);
-            _controller = userController;
         }
 
         // GET /api/user

@@ -12,7 +12,7 @@ using RamblerAcademyAPI.Models;
 namespace RamblerAcademyAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class UserController : Controller, IOneIdApiController<User>
+    public class UserController : Controller
     {
         private readonly UserConsumer _consumer;
 
@@ -86,21 +86,6 @@ namespace RamblerAcademyAPI.Controllers
                 }
                 throw e;
             }
-        }
-
-        public Task<ActionResult> Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ActionResult> Put(int id, User t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ActionResult> Delete(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
