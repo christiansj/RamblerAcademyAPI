@@ -20,6 +20,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             lastName
             email
             password
+            roleId
             role{
                 id
                 name

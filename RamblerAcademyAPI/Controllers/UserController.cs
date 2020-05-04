@@ -12,7 +12,7 @@ using RamblerAcademyAPI.Models;
 namespace RamblerAcademyAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class UserController : Controller
+    public class UserController : Controller, IApiController<User>
     {
         private readonly UserConsumer _consumer;
 
@@ -28,6 +28,7 @@ namespace RamblerAcademyAPI.Controllers
             IEnumerable<User> users = await _consumer.GetAllUsersAsync();
             return Ok(users);
         }
+
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
@@ -85,6 +86,21 @@ namespace RamblerAcademyAPI.Controllers
                 }
                 throw e;
             }
+        }
+
+        public Task<ActionResult> Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ActionResult> Put(int id, User t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ActionResult> Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
