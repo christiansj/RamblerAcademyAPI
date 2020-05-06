@@ -16,8 +16,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
     {
         private GraphQLClient _client;
         private string courseSectionFragment = @"
-            courseReferenceNumber
-            sectionNumber
+            courseReferenceNumber, sectionNumber, courseId, semesterId, classroomId
             course{
                 id
                 name

@@ -28,9 +28,10 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         {
             List<CourseSection> courseSections = await ListQueryRequest($"courseSections{{{fragment}}}", "courseSections");
             _output.WriteLine(_TestDataCnt.ToString());
-        
+            var expected = TestData.CourseSections().OrderBy(cs => cs.CourseReferenceNumber);
+            var actual = courseSections.OrderBy(cs => cs.CourseReferenceNumber);
 
-            AssertObjectsAreEqual(TestData.CourseSections().OrderBy(cs=>cs.CourseReferenceNumber), courseSections.OrderBy(cs=>cs.CourseReferenceNumber));
+            AssertObjectsAreEqual(expected, actual);
         }
 
         // courseSection(crn)
