@@ -41,6 +41,20 @@ namespace RamblerAcademyAPI.Controllers
             return Ok(dayTimeSlots);
         }
 
+        // GET /api/<controller>/day/1/timeSlot/2
+        [HttpGet("day/{dayId}/timeSlot/{timeSlotId}")]
+        public async Task<ActionResult> GetByIds(int dayId, int timeSlotId)
+        {
+            DayTimeSlot dayTimeSlot = await _consumer.GetDayTimeSlotByIds(dayId, timeSlotId);
+
+            if(dayTimeSlot == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(dayTimeSlot);
+        }
+
         // POST api/<controller>
         [HttpPost]
         public async Task<ActionResult> Post(DayTimeSlot dayTimeSlot)

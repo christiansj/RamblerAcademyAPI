@@ -14,7 +14,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
     {
         private readonly GraphQLClient _client;
         private readonly string dayTimeSlotFragment = @"
-            day { id name } timeSlot{ id startTime endTime }
+            dayId timeSlotId day { id name } timeSlot{ id startTime endTime }
         ";
         public DayTimeSlotConsumer(IHttpClientFactory factory)
         {
@@ -37,6 +37,15 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
             string data = await _client.Query(query, "dayTimeSlotsPerTimeSlot");
             return JsonConvert.DeserializeObject<IEnumerable<DayTimeSlot>>(data);
+        }
+
+        public async Task<DayTimeSlot> GetDayTimeSlotByIds(int dayId, int timeSlotId)
+        {
+            string query = $@"dayTimeSlot(dayId: {dayId}, timeSlotId: {timeSlotId})
+                            {{ {dayTimeSlotFragment} }}";
+
+            string data = await _client.Query(query, "dayTimeSlot");
+            return JsonConvert.DeserializeObject<DayTimeSlot>(data);
         }
 
         public async Task<DayTimeSlot> CreateDayTimeSlot(DayTimeSlot dayTimeSlot)
