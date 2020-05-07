@@ -18,8 +18,7 @@ using RamblerAcademyAPI.Extensions;
 using RamblerAcademyAPI.GraphQL.Client;
 using System.Net.Http;
 
-using GraphQL.Client.Http;
-using Newtonsoft.Json;
+using Microsoft.OpenApi.Models;
 namespace RamblerAcademyAPI
 {
     public class Startup
@@ -53,8 +52,16 @@ namespace RamblerAcademyAPI
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddControllers();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rambler Academy API", Version = "v1" });
+            });
+
+
             services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,11 +78,15 @@ namespace RamblerAcademyAPI
             app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
             app.UseGraphQL<AppSchema>();
             
-           app.UseRouting();
+            app.UseRouting();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rambler Academy API V1");
+            });
 
             app.UseAuthorization();
-
-
 
             app.UseEndpoints(endpoints =>
             {

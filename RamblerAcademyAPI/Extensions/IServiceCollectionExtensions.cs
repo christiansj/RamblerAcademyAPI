@@ -3,8 +3,6 @@ using RamblerAcademyAPI.Contracts;
 using RamblerAcademyAPI.GraphQL.GraphQLMutations;
 using RamblerAcademyAPI.GraphQL.GraphQLQueries;
 using RamblerAcademyAPI.Repository;
-using GraphQL.Client;
-using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
 using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
 
 namespace RamblerAcademyAPI.Extensions
