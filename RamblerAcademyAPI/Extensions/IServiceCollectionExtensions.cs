@@ -73,6 +73,7 @@ namespace RamblerAcademyAPI.Extensions
             services.AddScoped<CourseSectionDayTimeSlotConsumer>();
             services.AddScoped<DayConsumer>();
             services.AddScoped<DayTimeSlotConsumer>();
+            services.AddScoped<EnrollmentConsumer>();
             services.AddScoped<RoleConsumer>();
             services.AddScoped<SeasonConsumer>();
             services.AddScoped<SemesterConsumer>();
