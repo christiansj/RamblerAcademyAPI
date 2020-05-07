@@ -10,6 +10,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLInputTypes
             Field<NonNullGraphType<IntGraphType>>("floor"); 
             Field<NonNullGraphType<IntGraphType>>("hallwayNumber");
             Field<NonNullGraphType<IntGraphType>>("roomNumber");
+            Field<NonNullGraphType<IntGraphType>>("maxCapacity");
             Field<NonNullGraphType<IntGraphType>>("buildingId");
         }
     }

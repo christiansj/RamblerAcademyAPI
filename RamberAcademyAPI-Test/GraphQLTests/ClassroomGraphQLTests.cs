@@ -14,7 +14,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
     public class ClassroomGraphQLTests : GraphQLIntegrationTest<Classroom>
     {
         private readonly int _TestDataCnt;
-        private readonly string fragment = "id floor hallwayNumber roomNumber buildingId";
+        private readonly string fragment = "id floor hallwayNumber roomNumber maxCapacity buildingId";
         public ClassroomGraphQLTests(ITestOutputHelper output) : base(output)
         {
             _TestDataCnt = TestData.Classrooms().Count;

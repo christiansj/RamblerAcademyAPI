@@ -39,6 +39,7 @@ namespace RamblerAcademyAPI.Repository
             dbClassroom.Floor = classroom.Floor;
             dbClassroom.HallwayNumber = classroom.HallwayNumber;
             dbClassroom.RoomNumber = classroom.RoomNumber;
+            dbClassroom.MaxCapacity = classroom.MaxCapacity;
             dbClassroom.BuildingId = classroom.BuildingId;
 
             _context.SaveChanges();
