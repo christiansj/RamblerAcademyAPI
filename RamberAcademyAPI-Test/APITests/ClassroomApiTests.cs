@@ -3,10 +3,6 @@ using RamberAcademyAPI_Test.Data;
 using RamblerAcademyAPI.Controllers;
 using RamblerAcademyAPI.GraphQL.GraphQLConsumers;
 using RamblerAcademyAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
