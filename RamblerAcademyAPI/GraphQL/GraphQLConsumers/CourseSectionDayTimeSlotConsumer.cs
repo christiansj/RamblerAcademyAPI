@@ -14,7 +14,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
     {
         private readonly GraphQLClient _client;
         private readonly string fragment = @"
-                courseReferenceNumber day { id name } courseSection{ course { name } }
+                courseReferenceNumber dayId timeSlotId day{ id name } courseSection{ course { name } }
             ";
         public CourseSectionDayTimeSlotConsumer(IHttpClientFactory factory)
         {
@@ -35,6 +35,17 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             string query = $"{queryName}(dayId: {dayId}){{{fragment}}}";
             string data = await _client.Query(query, queryName);
             return JsonConvert.DeserializeObject<IEnumerable<CourseSectionDayTimeSlot>>(data);
+        }
+
+        public async Task<CourseSectionDayTimeSlot> GetAsync(int crn, int dayId, int timeSlotId)
+        {
+            const string queryName = "courseSectionDayTimeSlot";
+            string query = $"{queryName}(crn: {crn}, dayId: {dayId}, timeSlotId: {timeSlotId}){{{fragment}}}";
+            string data = await _client.Query(query, queryName);
+
+            return JsonConvert.DeserializeObject<CourseSectionDayTimeSlot>(data);
+
+
         }
 
         public async Task<CourseSectionDayTimeSlot> CreateAsync(CourseSectionDayTimeSlot csdt)

@@ -27,8 +27,8 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
                 }
             );
 
-            // courseSectionDayTimeSlot(crn)
-            Field <ListGraphType<CourseSectionDayTimeSlotType>>(
+            // courseSectionDayTimeSlotsPerCourseSection(crn)
+            Field<ListGraphType<CourseSectionDayTimeSlotType>>(
                 "courseSectionDayTimeSlotsPerCourseSection",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "crn"}

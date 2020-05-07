@@ -22,7 +22,7 @@ namespace RamblerAcademyAPI.Controllers
         }
 
         // GET: api/<controller>
-        [HttpGet("crn/{crn}")]
+        [HttpGet("courseSection/{crn}")]
         public async Task<ActionResult> GetPerCourseSection(int crn)
         {
             IEnumerable<CourseSectionDayTimeSlot> csdts = await _consumer.GetAllPerCourseSectionAsync(crn);
@@ -31,12 +31,26 @@ namespace RamblerAcademyAPI.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("dayId/{dayId}")]
+        [HttpGet("day/{dayId}")]
         public async Task<ActionResult> GetPerDay(int dayId)
         {
             IEnumerable<CourseSectionDayTimeSlot> csdts = await _consumer.GetAllPerDayAsync(dayId);
 
             return Ok(csdts);
+        }
+
+        // GET api/<controller>/courseSection/{crn}/day/{dayId}/timeSlot/{timeSlotId}
+        [HttpGet("courseSection/{crn}/day/{dayId}/timeSlot/{timeSlotId}")]
+        public async Task<ActionResult> Get(int crn, int dayId, int timeSlotId)
+        {
+            CourseSectionDayTimeSlot record = await _consumer.GetAsync(crn, dayId, timeSlotId);
+
+            if(record == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(record);
         }
 
         // POST api/<controller>
@@ -48,9 +62,8 @@ namespace RamblerAcademyAPI.Controllers
         }
 
        
-
         // DELETE api/<controller>/5
-        [HttpDelete("crn/{crn}/dayId/{dayId}/timeSlotId/{timeSlotId}")]
+        [HttpDelete("courseSection/{crn}/day/{dayId}/timeSlot/{timeSlotId}")]
         public async Task<ActionResult> Delete(int crn, int dayId, int timeSlotId)
         {
             try
