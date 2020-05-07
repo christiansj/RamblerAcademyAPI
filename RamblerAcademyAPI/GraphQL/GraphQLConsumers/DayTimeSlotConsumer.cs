@@ -50,7 +50,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
         public async Task<DayTimeSlot> CreateDayTimeSlot(DayTimeSlot dayTimeSlot)
         {
-            string mutation = $@"createDayTimeSlot(dayTimeSlot: {dayTimeSlotInput(dayTimeSlot)}){{ 
+            string mutation = $@"createDayTimeSlot(dayTimeSlot: {DayTimeSlotInput(dayTimeSlot)}){{ 
                                       {dayTimeSlotFragment} }}";
 
             string data = await _client.Mutation(mutation, "createDayTimeSlot");
@@ -65,7 +65,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             return true;
         }
 
-        private string dayTimeSlotInput(DayTimeSlot dayTimeSlot)
+        private string DayTimeSlotInput(DayTimeSlot dayTimeSlot)
         {
             var fields = new DayTimeSlotInputType().Fields;
             return GraphQLQueryUtil.InputObject(fields, dayTimeSlot);

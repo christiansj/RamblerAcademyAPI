@@ -13,8 +13,8 @@ namespace RamberAcademyAPI_Test.APITests
 {
     public class CourseSectionDayTimeSlotApiTests : ApiTest<CourseSectionDayTimeSlot>
     {
-        private CourseSectionDayTimeSlotConsumer _consumer;
-        private CourseSectionDayTimeSlotController testController;
+        private readonly CourseSectionDayTimeSlotConsumer _consumer;
+        private readonly CourseSectionDayTimeSlotController testController;
 
         public CourseSectionDayTimeSlotApiTests(ITestOutputHelper output) : base(output)
         {

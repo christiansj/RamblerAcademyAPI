@@ -1,19 +1,18 @@
-﻿using RamblerAcademyAPI.GraphQL.Client;
-using RamblerAcademyAPI.Models;
-
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using RamblerAcademyAPI.Util;
+﻿using Newtonsoft.Json;
+using RamblerAcademyAPI.GraphQL.Client;
 using RamblerAcademyAPI.GraphQL.GraphQLInputTypes;
+using RamblerAcademyAPI.Models;
+using RamblerAcademyAPI.Util;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 {
     public class EnrollmentConsumer
     {
         private readonly GraphQLClient _client;
-        private string fragment = @"courseReferenceNumber studentId
+        private readonly string fragment = @"courseReferenceNumber studentId
                             student { firstName lastName }
                             courseSection{ course{ name } }";
 
@@ -48,7 +47,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         public async Task<Enrollment> CreateEnrollmentAsync(Enrollment enrollment)
         {
             
-            string mutation = $"createEnrollment(enrollment: {enrollmentInput(enrollment)}){{{fragment}}}";
+            string mutation = $"createEnrollment(enrollment: {EnrollmentInput(enrollment)}){{{fragment}}}";
             string data = await _client.Mutation(mutation, "createEnrollment");
 
             return JsonConvert.DeserializeObject<Enrollment>(data);
@@ -62,7 +61,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             return true;
         }
 
-        private string enrollmentInput(Enrollment enrollment)
+        private string EnrollmentInput(Enrollment enrollment)
         {
             var fields = new EnrollmentInputType().Fields;
 

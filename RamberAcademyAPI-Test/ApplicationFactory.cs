@@ -40,23 +40,21 @@ namespace RamberAcademyAPI_Test
 
                 var sp = services.BuildServiceProvider();
 
-                using (var scope = sp.CreateScope())
-                {
-                    var scopedServices = scope.ServiceProvider;
-                    var db = scopedServices.GetRequiredService<RamblerAcademyContext>();
-                    var logger = scopedServices.GetRequiredService<ILogger<WebApplicationFactory<Startup>>>();
-         
-                    db.Database.EnsureCreated();
+                using var scope = sp.CreateScope();
+                var scopedServices = scope.ServiceProvider;
+                var db = scopedServices.GetRequiredService<RamblerAcademyContext>();
+                var logger = scopedServices.GetRequiredService<ILogger<WebApplicationFactory<Startup>>>();
 
-                    try
-                    {
-                        Utilities.IntializeDbForTests(db);
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.LogError(ex, "An Error ocurred seeding the the" +
-                            "database with test messages. Error: {Message}", ex.Message);
-                    }
+                db.Database.EnsureCreated();
+
+                try
+                {
+                    Utilities.IntializeDbForTests(db);
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "An Error ocurred seeding the the" +
+                        "database with test messages. Error: {Message}", ex.Message);
                 }
             });
 

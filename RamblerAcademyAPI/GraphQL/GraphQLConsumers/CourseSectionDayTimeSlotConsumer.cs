@@ -52,7 +52,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         {
             const string mutationName = "createCourseSectionDayTimeSlot";
             string mutation = string.Format(@"{0}(courseSectionDayTimeSlot: {1}){{
-                  {2} }}", mutationName, input(csdt), fragment);
+                  {2} }}", mutationName, InputObject(csdt), fragment);
 
             string data = await _client.Mutation(mutation, mutationName);
             return JsonConvert.DeserializeObject<CourseSectionDayTimeSlot>(data);
@@ -68,7 +68,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             return true;
         }
 
-        private string input(CourseSectionDayTimeSlot csdt)
+        private string InputObject(CourseSectionDayTimeSlot csdt)
         {
             var fields = new CourseSectionDayTimeSlotInputType().Fields;
             return GraphQLQueryUtil.InputObject(fields, csdt);

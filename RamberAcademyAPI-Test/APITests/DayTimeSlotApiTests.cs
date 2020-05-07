@@ -13,13 +13,11 @@ namespace RamberAcademyAPI_Test.APITests
 {
     public class DayTimeSlotApiTests  : ApiTest<DayTimeSlot>
     {
-        private readonly int _TestDataCnt;
         private readonly DayTimeSlotConsumer _consumer;
         private readonly DayTimeSlotController dayTimeSlotController;
 
         public DayTimeSlotApiTests(ITestOutputHelper output) : base(output)
         {
-            _TestDataCnt = TestData.Buildings().Count;
             _consumer = new DayTimeSlotConsumer(_factory);
             dayTimeSlotController = new DayTimeSlotController(_consumer);
         }

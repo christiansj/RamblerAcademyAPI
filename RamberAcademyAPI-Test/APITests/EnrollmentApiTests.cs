@@ -13,14 +13,11 @@ namespace RamberAcademyAPI_Test.APITests
 {
     public class EnrollmentApiTests : ApiTest<Enrollment>
     {
-
-        private readonly int _TestDataCnt;
         protected readonly EnrollmentConsumer _consumer;
         protected readonly EnrollmentController enrollmentController;
 
         public EnrollmentApiTests(ITestOutputHelper output) : base(output)
         {
-            _TestDataCnt = TestData.Enrollments().Count;
             _consumer = new EnrollmentConsumer(_factory);
             enrollmentController = new EnrollmentController(_consumer);
         }
@@ -72,9 +69,7 @@ namespace RamberAcademyAPI_Test.APITests
             var expected = TestData.Enrollments()
                 .FirstOrDefault(e => e.StudentId == studentId && e.CourseReferenceNumber == crn);
 
-            var result = await enrollmentController.Get(studentId, crn) as OkObjectResult;
-            Assert.NotNull(result);
-            var actual = (Enrollment)result.Value;
+            var actual = await GetExistentEnrollmentAsync(studentId, crn);
 
             Assert.NotNull(actual);
             AssertObjectsAreEqual(expected, actual);
