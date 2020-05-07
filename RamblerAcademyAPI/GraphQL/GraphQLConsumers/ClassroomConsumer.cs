@@ -19,6 +19,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             hallwayNumber
             roomNumber
             buildingId
+            maxCapacity
             building{
                 name
             }
@@ -51,7 +52,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             string mutation = string.Format(@"
                         createClassroom(classroom: {0}){{ 
                                    {1} 
-                        }}", classroomInput(classroom), classroomFragment);
+                        }}", ClassroomInput(classroom), classroomFragment);
 
             string data = await _client.Mutation(mutation, "createClassroom");
             return JsonConvert.DeserializeObject<Classroom>(data);
@@ -62,7 +63,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             string mutation = string.Format(@"
                       updateClassroom(classroomId: {0}, classroom: {1}){{
                             {2}
-                      }}", classroomId, classroomInput(classroom), classroomFragment);
+                      }}", classroomId, ClassroomInput(classroom), classroomFragment);
 
             string data = await _client.Mutation(mutation, "updateClassroom");
             return JsonConvert.DeserializeObject<Classroom>(data);
@@ -76,7 +77,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             return true;
         }
 
-        private string classroomInput(Classroom classroom)
+        private string ClassroomInput(Classroom classroom)
         {
             var fields = new ClassroomInputType().Fields;
             return GraphQLQueryUtil.InputObject(fields, classroom);

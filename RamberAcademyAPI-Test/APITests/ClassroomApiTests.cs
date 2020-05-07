@@ -52,7 +52,7 @@ namespace RamberAcademyAPI_Test.APITests
         [Fact]
         public async void POST_ClassroomTest()
         {
-            Classroom expected = new Classroom(_TestDataCnt + 1, 4, 5, 54, 2);
+            Classroom expected = new Classroom(_TestDataCnt + 1, 4, 5, 54, 40, 2);
 
             await API_PostRecordTest(_TestDataCnt, expected);
         }
@@ -62,7 +62,7 @@ namespace RamberAcademyAPI_Test.APITests
         public async void PUT_ClassroomTest()
         {
             const int classroomId = 2;
-            Classroom expected = new Classroom(classroomId, 9, 24, 23, 2);
+            Classroom expected = new Classroom(classroomId, 9, 24, 23, 60, 2);
 
             await API_PutRecordTest(classroomId, expected);
         }
@@ -72,7 +72,7 @@ namespace RamberAcademyAPI_Test.APITests
         public async void PUT_NonExistentClassroomTest()
         {
             const int classroomId = 10000;
-            Classroom badClassroom = new Classroom(classroomId, 4, 3, 4, 2);
+            Classroom badClassroom = new Classroom(classroomId, 4, 3, 4, 999, 2);
 
             var response = await _controller.Put(classroomId, badClassroom) as NotFoundResult;
 

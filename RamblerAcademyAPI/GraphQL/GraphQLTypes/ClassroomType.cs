@@ -20,6 +20,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
             Field(c => c.RoomNumber, type: typeof(IntGraphType))
                 .Description("RoomNumber property of the Classroom object");
 
+            Field(c => c.MaxCapacity, type: typeof(IntGraphType))
+                .Description("Max Capacity property of the Classroom object");
+
             Field(c => c.BuildingId, type: typeof(IntGraphType))
                 .Description("BuildingId property of the Classroom object. References the Id property of a Building object");
 

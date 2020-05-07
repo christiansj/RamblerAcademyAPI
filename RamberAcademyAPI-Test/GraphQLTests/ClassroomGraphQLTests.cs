@@ -45,7 +45,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         [Fact]
         public async void ClassroomCreateMutation()
         {
-            Classroom expectedClassroom = new Classroom(_TestDataCnt + 1, 2, 11, 1, 1);
+            Classroom expectedClassroom = new Classroom(_TestDataCnt + 1, 2, 11, 1, 40, 1);
             string mutation = $"createClassroom(classroom: {ClassroomInput(expectedClassroom)}){{{fragment}}}";
 
             var createTask = MutationRequest(mutation, "createClassroom");
@@ -61,7 +61,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         public async void ClassroomUpdateMutationTest()
         {
             const int classroomId = 4;
-            Classroom expectedClassroom = new Classroom(classroomId, 2, 2, 22, 2);
+            Classroom expectedClassroom = new Classroom(classroomId, 2, 2, 22, 70, 2);
             string mutation = $@"updateClassroom(classroomId: {classroomId}, classroom: {ClassroomInput(expectedClassroom)})
                             {{{fragment}}}";
 

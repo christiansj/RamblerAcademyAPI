@@ -71,13 +71,13 @@ namespace RamberAcademyAPI_Test.Data
         {
             return new List<Classroom>
             {
-                new Classroom(1, 1, 2, 11, 1),
-                new Classroom(2, 1, 3, 22, 1),
-                new Classroom(3, 1, 4, 32, 1),
+                new Classroom(1, 1, 2, 11, 50, 1),
+                new Classroom(2, 1, 3, 22, 50, 1),
+                new Classroom(3, 1, 4, 32, 30, 1),
 
-                new Classroom(4, 1, 1, 1, 2),
-                new Classroom(5, 1, 2, 24, 2),
-                new Classroom(6, 1, 3, 34, 2),
+                new Classroom(4, 1, 1, 1, 200, 2),
+                new Classroom(5, 1, 2, 24, 200, 2),
+                new Classroom(6, 1, 3, 34, 100, 2),
             };
         }
 
