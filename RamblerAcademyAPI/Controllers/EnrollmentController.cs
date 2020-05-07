@@ -18,6 +18,19 @@ namespace RamblerAcademyAPI.Controllers
             _consumer = consumer;
         }
 
+        [HttpGet("student/{studentId}/courseSection/{crn}")]
+        public async Task<ActionResult> Get(long studentId, int crn)
+        {
+            Enrollment enrollment = await _consumer.GetEnrollmentAsync(studentId, crn);
+
+            if(enrollment == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(enrollment);
+        }
+
         [HttpGet("student/{studentId}")]
         public async Task<ActionResult> GetEnrollmentsPerStudent(long studentId)
         {

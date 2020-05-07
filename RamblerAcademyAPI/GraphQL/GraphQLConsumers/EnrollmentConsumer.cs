@@ -22,6 +22,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));
         }
 
+        public async Task<Enrollment> GetEnrollmentAsync(long studentId, int crn)
+        {
+            string query = $"enrollment(studentId: {studentId}, crn: {crn}){{{fragment}}}";
+            string data = await _client.Query(query, "enrollment");
+
+            return JsonConvert.DeserializeObject<Enrollment>(data);
+        }
         public async Task<IEnumerable<Enrollment>> GetEnrollmentsPerStudentAsync(long studentId)
         {
             string query = $"enrollmentsPerStudent(studentId: {studentId}){{{ fragment }}}";
