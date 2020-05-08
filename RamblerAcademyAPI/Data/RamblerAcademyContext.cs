@@ -51,6 +51,10 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(cs => new { cs.CourseId, cs.SectionNumber, cs.SemesterId })
                 .IsUnique();
 
+            builder.Entity<Semester>()
+                .HasIndex(s => new { s.Year, s.SeasonId })
+                .IsUnique();
+
             builder.Entity<TimeSlot>()
                 .HasIndex(ts => new { ts.StartTime, ts.EndTime })
                 .IsUnique();
