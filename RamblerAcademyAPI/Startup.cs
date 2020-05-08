@@ -49,6 +49,9 @@ namespace RamblerAcademyAPI
             services.AddHttpClient("graphQLClient", hc => { hc.BaseAddress = new System.Uri("https://localhost:5001/graphql"); });
             services.AddScoped<AppSchema>();
             services.AddScoped(x => new GraphQLClient(new HttpClient()));
+
+            services.AddCors();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddControllers();
 
@@ -79,6 +82,10 @@ namespace RamblerAcademyAPI
             app.UseGraphQL<AppSchema>();
             
             app.UseRouting();
+
+            app.UseCors(
+                options=>options.WithOrigins("http://localhost:3000").AllowAnyMethod()
+            );
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

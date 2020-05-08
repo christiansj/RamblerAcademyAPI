@@ -12,7 +12,6 @@ namespace RamblerAcademyAPI.Models
         [JsonConstructor]
         public TimeSlot(int id, int startTime, int endTime)
         {
-            Console.WriteLine($"id: {id} start seconds: {startTime}");
             Id = id;
             StartTime = TimeSpan.FromSeconds(startTime);
             EndTime = TimeSpan.FromSeconds(endTime);
