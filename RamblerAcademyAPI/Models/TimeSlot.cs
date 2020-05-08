@@ -19,7 +19,6 @@ namespace RamblerAcademyAPI.Models
         
         public TimeSlot(int id, TimeSpan startTime, TimeSpan endTime)
         {
-            Console.WriteLine($"id: {id} start: {startTime}");
             Id = id;
             StartTime = startTime;
             EndTime = endTime;
