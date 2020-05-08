@@ -39,6 +39,15 @@ namespace RamblerAcademyAPI.Controllers
             return Ok(csdts);
         }
 
+        // GET/api/<controller>/semester/{semesterId}/subject/{subjectId}
+        [HttpGet("semester/{semesterId}/subject/{subjectId}")]
+        public async Task<ActionResult> GetPerSemesterAndSubject(int semesterId, int subjectId)
+        {
+            IEnumerable<CourseSectionDayTimeSlot> csdts = await _consumer.GetAllPerSemesterAndSubject(semesterId, subjectId);
+
+            return Ok(csdts);
+        }
+
         // GET api/<controller>/courseSection/{crn}/day/{dayId}/timeSlot/{timeSlotId}
         [HttpGet("courseSection/{crn}/day/{dayId}/timeSlot/{timeSlotId}")]
         public async Task<ActionResult> Get(int crn, int dayId, int timeSlotId)

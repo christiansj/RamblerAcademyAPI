@@ -18,15 +18,17 @@ namespace RamblerAcademyAPI.Repository
 
         public IEnumerable<CourseSectionDayTimeSlot> GetAll() => _context.CourseSectionDayTimeSlots.ToList();
 
-        public CourseSectionDayTimeSlot GetCourseSectionDayTimeSlotByIds(int crn, int dayId, int timeSlotId)
-        {
-            return _context.CourseSectionDayTimeSlots.FirstOrDefault(csdt => csdt.CourseReferenceNumber == crn
-                                                                    && csdt.DayId == dayId && csdt.TimeSlotId == timeSlotId);
-        }
         public IEnumerable<CourseSectionDayTimeSlot> GetAllCourseSectionDayTimeSlotsPerCourseSection(int crn)
         {
             return _context.CourseSectionDayTimeSlots
                 .Where(csdt => csdt.CourseReferenceNumber == crn)
+                .ToList();
+        }
+
+        public IEnumerable<CourseSectionDayTimeSlot> GetAllPerSemesterAndSubject(int semesterId, int subjectId)
+        {
+            return _context.CourseSectionDayTimeSlots
+                .Where(csdt => csdt.CourseSection.SemesterId == semesterId && csdt.CourseSection.Course.SubjectId == subjectId)
                 .ToList();
         }
 
@@ -36,6 +38,13 @@ namespace RamblerAcademyAPI.Repository
                 .Where(csdt => csdt.DayId == dayId)
                 .ToList();
         }
+
+        public CourseSectionDayTimeSlot GetCourseSectionDayTimeSlotByIds(int crn, int dayId, int timeSlotId)
+        {
+            return _context.CourseSectionDayTimeSlots.FirstOrDefault(csdt => csdt.CourseReferenceNumber == crn
+                                                                    && csdt.DayId == dayId && csdt.TimeSlotId == timeSlotId);
+        }
+
         public CourseSectionDayTimeSlot CreateCourseSectionDayTimeSlot(CourseSectionDayTimeSlot courseSectionDayTimeSlot)
         {
             _context.Add(courseSectionDayTimeSlot);

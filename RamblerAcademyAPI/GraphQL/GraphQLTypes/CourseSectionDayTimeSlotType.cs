@@ -6,7 +6,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 {
     public class CourseSectionDayTimeSlotType : ObjectGraphType<CourseSectionDayTimeSlot>
     {
-        public CourseSectionDayTimeSlotType(ICourseSectionRepository courseSectionRepository, IDayRepository dayRepository, ITimeSlotRepository timeSlotRepository)
+        public CourseSectionDayTimeSlotType(ICourseSectionRepository courseSectionRepository, IDayRepository dayRepository, ITimeSlotRepository timeSlotRepository, IDayTimeSlotRepository dayTimeSlotRepository)
         {
             Field(csdt => csdt.CourseReferenceNumber, type: typeof(IdGraphType))
                 .Description(fieldDescription("CourseReferenceNumber", "CourseSection"));
@@ -19,17 +19,13 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
             Field(csdt => csdt.DayId, type: typeof(IdGraphType))
                 .Description(fieldDescription("DayId", "Day"));
 
-            Field<DayType>(
-               "day",
-               resolve: context => dayRepository.GetDayById(context.Source.DayId)
-           );
-
             Field(csdt => csdt.TimeSlotId, type: typeof(IdGraphType))
                 .Description(fieldDescription("TimeSlotId", "TimeSlot"));
 
-            Field<TimeSlotType>(
-                "timeSlot",
-                resolve: context => timeSlotRepository.GetTimeSlotById(context.Source.TimeSlotId)
+            
+            Field<DayTimeSlotType>(
+                "dayTimeSlot",
+                resolve: context => dayTimeSlotRepository.GetDayTimeSlotByIds(context.Source.DayId, context.Source.TimeSlotId)
             );
         }
 

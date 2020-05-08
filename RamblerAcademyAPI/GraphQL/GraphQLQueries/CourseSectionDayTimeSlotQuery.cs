@@ -40,6 +40,21 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLQueries
                 }
             );
 
+            // courseSectionDayTimeSlotsPerSemesterAndSubject(semesterId, subjectId)
+            Field<ListGraphType<CourseSectionDayTimeSlotType>>(
+                "courseSectionDayTimeSlotsPerSemesterAndSubject",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "semesterId"},
+                    new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "subjectId"}
+                ),
+                resolve: context =>
+                {
+                    int semesterId = context.GetArgument<int>("semesterId");
+                    int subjectId = context.GetArgument<int>("subjectId");
+
+                    return repository.GetAllPerSemesterAndSubject(semesterId, subjectId);
+                }
+            );
             // courseSectionDayTimeSlot(crn, dayId, timeSlotId)
             Field<CourseSectionDayTimeSlotType>(
                 "courseSectionDayTimeSlot",

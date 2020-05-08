@@ -20,6 +20,10 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
             Field(cs => cs.CourseId, type: typeof(IntGraphType))
                 .Description("The CourseId property of the CourseSection. References the Id property of a Course object. Part of composite Unique Index of: CourseId, SectionNumber, and SemesterId");
 
+            Field(cs => cs.FinalExamDate, type: typeof(DateTimeGraphType))
+                .Description("The FinalExamDate property of the CourseSection.");
+
+
             Field<CourseType>(
                 "course",
                 resolve: context=> courseRepository.GetCourseById(context.Source.CourseId)

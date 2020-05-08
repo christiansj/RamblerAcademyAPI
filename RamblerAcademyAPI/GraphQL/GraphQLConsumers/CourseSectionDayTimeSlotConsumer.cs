@@ -14,7 +14,18 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
     {
         private readonly GraphQLClient _client;
         private readonly string fragment = @"
-                courseReferenceNumber dayId timeSlotId day{ id name } courseSection{ course { name } }
+                courseReferenceNumber dayId timeSlotId 
+
+                courseSection { 
+                        semesterId sectionNumber
+                        finalExamDate
+                        course { subjectId name courseNumber}
+                        classroom { floor hallwayNumber roomNumber maxCapacity building{ id name } } 
+                }
+                dayTimeSlot {
+                    day { id name }
+                    timeSlot { startTime endTime } 
+                }
             ";
         public CourseSectionDayTimeSlotConsumer(IHttpClientFactory factory)
         {
@@ -33,6 +44,14 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         {
             const string queryName = "courseSectionDayTimeSlotsPerDay";
             string query = $"{queryName}(dayId: {dayId}){{{fragment}}}";
+            string data = await _client.Query(query, queryName);
+            return JsonConvert.DeserializeObject<IEnumerable<CourseSectionDayTimeSlot>>(data);
+        }
+
+        public async Task<IEnumerable<CourseSectionDayTimeSlot>> GetAllPerSemesterAndSubject(int semesterId, int subjectId)
+        {
+            const string queryName = "courseSectionDayTimeSlotsPerSemesterAndSubject";
+            string query = $"{queryName}(semesterId: {semesterId}, subjectId: {subjectId}){{{fragment}}}";
             string data = await _client.Query(query, queryName);
             return JsonConvert.DeserializeObject<IEnumerable<CourseSectionDayTimeSlot>>(data);
         }
