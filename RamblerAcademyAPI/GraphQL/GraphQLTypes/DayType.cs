@@ -12,6 +12,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLTypes
 
             Field(d => d.Name, type: typeof(StringGraphType))
                 .Description("Name property of the day object. Unique index");
+
+            Field(d=>d.Abbreviation, type: typeof(StringGraphType))
+                 .Description("Abbreviation property of the day object. Unique index");
         }
     }
 }

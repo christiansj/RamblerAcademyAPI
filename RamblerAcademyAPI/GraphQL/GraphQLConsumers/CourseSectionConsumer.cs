@@ -27,7 +27,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             }
             courseSectionDayTimeSlots{
                 dayTimeSlot {
-                    day { id name }
+                    day { id name abbreviation }
                     timeSlot { id startTime endTime }
                 }
             }

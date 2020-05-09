@@ -81,6 +81,8 @@
     <Compile Remove="Migrations\20200407042510_EnrollmentSeed.Designer.cs" />
     <Compile Remove="Migrations\20200407203534_Test.cs" />
     <Compile Remove="Migrations\20200407203534_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200509154649_DayAbbreviationProperty.cs" />
+    <Compile Remove="Migrations\20200509154649_DayAbbreviationProperty.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,10 +12,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
     public class DayConsumer
     {
         private readonly GraphQLClient _client;
-        private string dayFragment = @"
-            id
-            name
-        ";
+        private string dayFragment = "id name abbreviation";
         public DayConsumer(IHttpClientFactory factory)
         {
             _client = new GraphQLClient(factory.CreateClient(name: "graphQLClient"));

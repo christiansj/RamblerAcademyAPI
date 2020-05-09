@@ -51,9 +51,9 @@ namespace RamberAcademyAPI_Test.Data
         {
             return new List<Day>
             {
-                new Day(1, "Test Day 1"),
-                new Day(2, "Test Day 2"),
-                new Day(3, "Test Day 3")
+                new Day(1, "Test Day 1", 'A'),
+                new Day(2, "Test Day 2", 'B'),
+                new Day(3, "Test Day 3", 'C')
             };
         }
 

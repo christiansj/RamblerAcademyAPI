@@ -59,6 +59,10 @@ namespace RamblerAcademyAPI.Data
                 .HasIndex(ts => new { ts.StartTime, ts.EndTime })
                 .IsUnique();
 
+            builder.Entity<Day>()
+                .HasIndex(d => d.Abbreviation)
+                .IsUnique();
+
             builder.Entity<DayTimeSlot>()
                 .HasKey(dts => new { dts.DayId, dts.TimeSlotId });
 
