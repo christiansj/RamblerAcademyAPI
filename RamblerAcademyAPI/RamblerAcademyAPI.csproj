@@ -83,6 +83,8 @@
     <Compile Remove="Migrations\20200407203534_Test.Designer.cs" />
     <Compile Remove="Migrations\20200509154649_DayAbbreviationProperty.cs" />
     <Compile Remove="Migrations\20200509154649_DayAbbreviationProperty.Designer.cs" />
+    <Compile Remove="Migrations\20200509181850_AbbreviationBuildingProperty.cs" />
+    <Compile Remove="Migrations\20200509181850_AbbreviationBuildingProperty.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

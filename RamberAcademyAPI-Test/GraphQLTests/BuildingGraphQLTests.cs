@@ -50,7 +50,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             const string buildingInput = "{name: \"New Test Building\"}";
             string mutation = $"createBuilding(building: {buildingInput}){{id name}}";
             int expectedBuildingCnt = _TestDataCnt + 1;
-            Building expectedNewBuilding = new Building(expectedBuildingCnt, "New Test Building");
+            Building expectedNewBuilding = new Building(expectedBuildingCnt, "New Test Building", "NTB");
 
             var createTask =  MutationRequest(mutation, "createBuilding");
             createTask.Wait();
@@ -69,7 +69,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
             string mutation = @$"updateBuilding(buildingId: {buildingId}, building: {buildingInput})
                                 {{id name}}";
 
-            Building expectedNewBuilding = new Building(2, "Updated Test Building 2");
+            Building expectedNewBuilding = new Building(2, "Updated Test Building 2", "UTB");
             Building newBuilding = await MutationRequest(mutation, "updateBuilding");
 
             AssertObjectsAreEqual(newBuilding, expectedNewBuilding);

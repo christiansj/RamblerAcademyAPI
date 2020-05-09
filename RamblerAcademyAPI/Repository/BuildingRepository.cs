@@ -28,6 +28,7 @@ namespace RamblerAcademyAPI.Repository
         public Building UpdateBuilding(Building dbBuilding, Building building)
         {
             dbBuilding.Name = building.Name;
+            dbBuilding.Abbreviation = building.Abbreviation;
 
             _context.SaveChanges();
             return dbBuilding;

@@ -11,8 +11,8 @@ namespace RamberAcademyAPI_Test.Data
         {
             return new List<Building>
             {
-                new Building(1, "Test Building 1"),
-                new Building(2, "Test Building 2")
+                new Building(1, "Test Building 1", "AB"),
+                new Building(2, "Test Building 2", "BB")
             };
         }
 

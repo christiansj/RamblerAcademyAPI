@@ -8,6 +8,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLInputTypes
         {
             Name = "buildingInput";
             Field<NonNullGraphType<StringGraphType>>("name");
+            Field<NonNullGraphType<StringGraphType>>("abbreviation");
         }
     }
 }

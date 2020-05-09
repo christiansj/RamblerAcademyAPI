@@ -19,6 +19,10 @@ namespace RamblerAcademyAPI.Data
         {
             builder.RemovePluralTableNames();
 
+            builder.Entity<Building>()
+                .HasIndex(b => b.Abbreviation)
+                .IsUnique();
+
             builder.Entity<Role>()
                 .HasIndex(r => r.Id)
                 .IsUnique();

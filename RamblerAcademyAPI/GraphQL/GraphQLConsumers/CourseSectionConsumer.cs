@@ -31,6 +31,10 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     timeSlot { id startTime endTime }
                 }
             }
+            classroom {
+                floor hallwayNumber roomNumber
+                building { id name abbreviation } 
+            }
         ";
         public CourseSectionConsumer(IHttpClientFactory factory)
         {

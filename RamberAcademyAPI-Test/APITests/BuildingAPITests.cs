@@ -52,7 +52,7 @@ namespace RamberAcademyAPI_Test.APITests
         [Fact]
         public async void POST_BuildingTest()
         {
-            Building expected = new Building(_TestDataCnt+1, "New Test Building");
+            Building expected = new Building(_TestDataCnt+1, "New Test Building", "NTB");
 
             await API_PostRecordTest(_TestDataCnt, expected);
         }
@@ -62,7 +62,7 @@ namespace RamberAcademyAPI_Test.APITests
         public async void PUT_BuildingTest()
         {
             const int buildingId = 2;
-            Building expected = new Building(buildingId, "Updated Test Building");
+            Building expected = new Building(buildingId, "Updated Test Building", "UTB");
 
             await API_PutRecordTest(buildingId, expected);
         }
@@ -73,7 +73,7 @@ namespace RamberAcademyAPI_Test.APITests
         {
             const int buildingId = 1000;
 
-            var response = await _controller.Put(buildingId, new Building(buildingId, "Bad Test Building")) as NotFoundResult;
+            var response = await _controller.Put(buildingId, new Building(buildingId, "Bad Test Building", "BTB")) as NotFoundResult;
 
             Assert.NotNull(response);
         }

@@ -14,6 +14,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         private string buildingFragment = @"
                 id
                 name
+                abbreviation
                 classrooms{
                     id
                     floor

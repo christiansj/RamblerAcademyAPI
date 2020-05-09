@@ -8,10 +8,10 @@ namespace RamblerAcademyAPI.Data.Seed
         public static void Seed(ModelBuilder builder)
         {
             builder.Entity<Building>().HasData(
-                new Building(1, "Main Building"),
-                new Building(2, "Johnson Arts Building"),
-                new Building(3, "Welch Humanities"),
-                new Building(4, "Rodney Sciences")
+                new Building(1, "Main Building", "MB"),
+                new Building(2, "Johnson Arts Building", "JA"),
+                new Building(3, "Welch Humanities", "WH"),
+                new Building(4, "Rodney Sciences", "RS")
             );
         }
     }
