@@ -38,5 +38,7 @@ namespace RamblerAcademyAPI.Models
         public DateTime FinalExamDate { get; set; }
 
         public IEnumerable<Enrollment> Enrollments { get; set; }
+
+        public IEnumerable<CourseSectionDayTimeSlot> CourseSectionDayTimeSlots { get; set; }
     }
 }

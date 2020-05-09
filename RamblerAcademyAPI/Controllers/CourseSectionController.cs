@@ -21,11 +21,19 @@ namespace RamblerAcademyAPI.Controllers
             _consumer = consumer;
         }
 
-        // GET: api/<controller>
+        // GET api/<controller>
         [HttpGet]
         public async Task<ActionResult> Get()
         {
             IEnumerable<CourseSection> courseSections = await _consumer.GetAllCourseSectionsAsync();
+            return Ok(courseSections);
+        }
+
+        // GET api/<controller>/semester/{semesterId}/subject/{subjectId}
+        [HttpGet("semester/{semesterId}/subject/{subjectId}")]
+        public async Task<ActionResult> GetPerSemesterAndSubject(int semesterId, int subjectId)
+        {
+            IEnumerable<CourseSection> courseSections = await _consumer.GetAllPerSemesterAndSubject(semesterId, subjectId);
             return Ok(courseSections);
         }
 

@@ -17,15 +17,18 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         private GraphQLClient _client;
         private string courseSectionFragment = @"
             courseReferenceNumber, sectionNumber, courseId, semesterId, classroomId
-            course{
-                id
-                name
-            }
+            course{ id name }
             semester{
                 year
-                season{
-                    id
-                    name
+                season{ id name }
+            }
+            enrollments { 
+                student { abcId firstName lastName }  
+            }
+            courseSectionDayTimeSlots{
+                dayTimeSlot {
+                    day { id name }
+                    timeSlot { id startTime endTime }
                 }
             }
         ";
@@ -53,6 +56,15 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
             string data = await _client.Query(query, "courseSection");
             return JsonConvert.DeserializeObject<CourseSection>(data);
+        }
+
+        public async Task<IEnumerable<CourseSection>> GetAllPerSemesterAndSubject(int semesterId, int subjectId)
+        {
+            string queryName = "courseSectionsPerSemesterAndSubject";
+            string query = $"{queryName}(semesterId: {semesterId}, subjectId: {subjectId}){{{courseSectionFragment}}}";
+
+            string data = await _client.Query(query, queryName);
+            return JsonConvert.DeserializeObject<IEnumerable<CourseSection>>(data);
         }
 
         public async Task<CourseSection> CreateCourseSectionAsync(CourseSection courseSection)
