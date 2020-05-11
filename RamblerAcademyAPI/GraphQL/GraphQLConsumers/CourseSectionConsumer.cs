@@ -17,7 +17,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         private GraphQLClient _client;
         private string courseSectionFragment = @"
             courseReferenceNumber, sectionNumber, courseId, semesterId, classroomId
-            course{ id name }
+            course{ id name courseNumber subject { name } }
             semester{
                 year
                 season{ id name }
@@ -32,7 +32,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                 }
             }
             classroom {
-                floor hallwayNumber roomNumber
+                floor hallwayNumber roomNumber maxCapacity
                 building { id name abbreviation } 
             }
         ";
