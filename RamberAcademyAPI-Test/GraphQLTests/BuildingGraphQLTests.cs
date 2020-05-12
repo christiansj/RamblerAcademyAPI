@@ -15,7 +15,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
     {
         
         private readonly int _TestDataCnt;
-        private const string fragment = "id name";
+        private const string fragment = "id name abbreviation";
         public BuildingGraphQLTests(ITestOutputHelper output) :base(output)
         {
             _TestDataCnt = TestData.Buildings().Count;
@@ -25,7 +25,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         [Fact]
         public async void BuildingsQueryTest()
         { 
-            List<Building> buildings = await ListQueryRequest("buildings{id name}", "buildings");
+            List<Building> buildings = await ListQueryRequest("buildings{id name abbreviation}", "buildings");
             Assert.Equal(TestData.Buildings().Count, buildings.Count);
 
             AssertObjectsAreEqual(TestData.Buildings(), buildings);
@@ -47,8 +47,8 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         [Fact]
         public async void BuildingCreateMutationTest()
         {
-            const string buildingInput = "{name: \"New Test Building\"}";
-            string mutation = $"createBuilding(building: {buildingInput}){{id name}}";
+            const string buildingInput = "{name: \"New Test Building\", abbreviation: \"NTB\"}";
+            string mutation = $"createBuilding(building: {buildingInput}){{{fragment}}}";
             int expectedBuildingCnt = _TestDataCnt + 1;
             Building expectedNewBuilding = new Building(expectedBuildingCnt, "New Test Building", "NTB");
 
@@ -65,9 +65,9 @@ namespace RamberAcademyAPI_Test.GraphQLTests
         public async void BuilidingUpdateMutationTest()
         {
             const int buildingId = 2;
-            const string buildingInput = "{name: \"Updated Test Building 2\"}";
+            const string buildingInput = "{name: \"Updated Test Building 2\", abbreviation: \"UTB\"}";
             string mutation = @$"updateBuilding(buildingId: {buildingId}, building: {buildingInput})
-                                {{id name}}";
+                                {{{fragment}}}";
 
             Building expectedNewBuilding = new Building(2, "Updated Test Building 2", "UTB");
             Building newBuilding = await MutationRequest(mutation, "updateBuilding");
@@ -90,7 +90,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
 
         private async Task<Building> GetBuildingRequestAsync(int buildingId)
         {
-            return await SingleQueryRequest($"building(id: {buildingId}){{id name}}", "building");
+            return await SingleQueryRequest($"building(id: {buildingId}){{{fragment}}}", "building");
         }
     }
 }

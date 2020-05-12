@@ -13,7 +13,7 @@ namespace RamberAcademyAPI_Test.GraphQLTests
     public class DayGraphQLTests : GraphQLIntegrationTest<Day>
     {
         
-        private readonly string fragment = "id name";
+        private readonly string fragment = "id name abbreviation";
 
         public DayGraphQLTests(ITestOutputHelper output) : base(output)
         {

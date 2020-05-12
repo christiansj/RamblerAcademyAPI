@@ -52,10 +52,9 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
         {
             string mutation = string.Format(@"
                     createBuilding(building: {0}){{
-                        id
-                        name
+                        {1}
                     }}
-            ", buildingInput(building));
+            ", buildingInput(building), buildingFragment);
 
             string data = await _client.Mutation(mutation, "createBuilding");
             return JsonConvert.DeserializeObject<Building>(data);
@@ -81,7 +80,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
 
         private string buildingInput(Building building)
         {
-            return string.Format("{{ name: \"{0}\" }}", building.Name);
+            return string.Format("{{ name: \"{0}\", abbreviation: \"{1}\" }}", building.Name, building.Abbreviation);
         }
     }
 }
