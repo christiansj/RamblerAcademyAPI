@@ -23,10 +23,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             id
             name
             courseNumber
-            subject{
-                id
-                name
-            }
+            subject{ id name abbreviation }
             subjectId
             courseSections{
                 courseReferenceNumber

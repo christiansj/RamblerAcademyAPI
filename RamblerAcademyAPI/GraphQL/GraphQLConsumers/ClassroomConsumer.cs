@@ -21,6 +21,8 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
             maxCapacity
             buildingId
             building{
+                id 
+                abbreviation
                 name
             }
         ";

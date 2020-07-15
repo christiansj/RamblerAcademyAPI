@@ -23,6 +23,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                 id
                 courseNumber
                 name
+                subject { abbreviation }
             }
         ";
         public SubjectConsumer(IHttpClientFactory factory)

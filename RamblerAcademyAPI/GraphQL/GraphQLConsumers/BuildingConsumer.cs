@@ -20,6 +20,7 @@ namespace RamblerAcademyAPI.GraphQL.GraphQLConsumers
                     floor
                     hallwayNumber
                     roomNumber
+                    building { id name abbreviation }
                 }
          ";
 
