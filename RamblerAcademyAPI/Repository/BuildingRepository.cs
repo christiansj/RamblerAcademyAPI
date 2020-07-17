@@ -36,7 +36,11 @@ namespace RamblerAcademyAPI.Repository
 
         public Building CreateBuilding(Building building)
         {
-            building.Id = _context.Buildings.Max(b => b.Id) + 1;
+            building.Id = 1;
+            if (_context.Buildings.Count() >= 1)
+            {
+                building.Id = _context.Buildings.Max(b => b.Id) + 1;
+            }
             _context.Add(building);
             _context.SaveChanges();
             return building;

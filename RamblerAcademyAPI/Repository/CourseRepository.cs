@@ -36,9 +36,8 @@ namespace RamblerAcademyAPI.Repository
         public Course UpdateCourse(Course dbCourse, Course course)
         {
             dbCourse.Name = course.Name;
-            dbCourse.SubjectId = course.SubjectId;
-            dbCourse.CourseNumber = course.CourseNumber;
-
+            //dbCourse.SubjectId = course.SubjectId;
+           
             _context.SaveChanges();
             return dbCourse;
         }

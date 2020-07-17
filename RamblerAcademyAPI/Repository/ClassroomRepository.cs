@@ -27,7 +27,12 @@ namespace RamblerAcademyAPI.Repository
 
         public Classroom CreateClassroom(Classroom classroom)
         {
-            classroom.Id = _context.Classrooms.Max(c => c.Id)+1;
+            classroom.Id = 1;
+            if(_context.Classrooms.Count() >= 1)
+            {
+                classroom.Id = _context.Classrooms.Max(c => c.Id) + 1;
+            }
+ 
             _context.Add(classroom);
             _context.SaveChanges();
 
